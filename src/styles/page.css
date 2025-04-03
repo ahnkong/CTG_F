@@ -1,0 +1,44 @@
+/* 기본 페이지 스타일 */
+.page {
+  /* width: 100%; */
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 7vw;
+  box-sizing: border-box;
+  overflow-y: hidden; /* 기본적으로 스크롤 막기 */
+  padding-bottom: 90px; /* 네비게이션 바 높이만큼 여백 추가 3/6 4:06 */ 
+
+}
+
+/* ✅ 스크롤 가능한 경우 */
+.scrollable {
+  overflow-y: auto !important; /* 🔥 스크롤 활성화 */
+}
+
+.no-scroll {
+  overflow-y: hidden !important;
+  height: 100vh !important; /* ✅ 높이 고정 */
+  max-height: 100vh;
+}
+
+.page.no-scroll {
+  padding-bottom: 60px !important; /* 네비게이션 바 높이만큼 여백 추가 3/6 4:06 */ 
+  overflow-y: hidden; /* ✅ 페이지 전체 스크롤 방지 */
+
+}
+
+/* ✅ 내부 컨테이너가 100vh 초과하지 않도록 제한 */
+.section-product-detail-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%; /* ✅ 내부 요소가 100vh 초과하지 않도록 */
+  overflow: hidden; /* ✅ 내부 요소 크기 초과 방지 */
+}

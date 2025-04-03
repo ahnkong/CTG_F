@@ -1,0 +1,110 @@
+.edit-profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 7vw;
+  box-sizing: border-box; /* ✅ 내부 요소 크기 계산 문제 해결 */
+}
+
+.editProfile-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: left; 
+  align-self: flex-start; /* 개별 요소만 왼쪽 정렬 */
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 5px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 30px;
+  padding: 2%;
+  flex-direction: column; /* 🔥 세로 정렬 */
+  align-items: stretch; /* 입력 필드 너비 맞춤 */
+  /* background-color: #F5F5F5; */
+  width: 100%; /* 입력 컨테이너 크기 고정 */
+}
+
+.input-textfield {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.8rem;
+  font-size: clamp(1rem, 1rem, 1.2rem);
+  background: #F5F5F5;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  text-align: left;
+  text-indent: 10px;
+  margin-bottom: 30px;
+  transition: border-bottom 0.2sease-in-out;
+}
+
+.input-textfield:focus {
+  border-bottom: 2px solid #007BFF; /* ✅ 포커스 시 밑줄만 표시 */
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 30px; /* 버튼 크기 일정하게 유지 */
+  height: 30px; /* 버튼 높이 설정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+
+
+.edit-profile-buttons-container {
+  display: flex;
+  justify-content: center; /* 버튼을 중앙 정렬 */
+  gap: 15%; /* 버튼 사이 여백 */
+  padding: 5%;
+}
+
+
+
+/* 버튼 기본 스타일 */
+.edit-profile-buttons-container button {
+  flex: 1; /* 버튼 크기 동일하게 설정 */
+  padding: 3%; /* 버튼 크기 조절 */
+  border-radius: 30px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.edit-profile-cancel-button {
+  background-color: #eeeeee;
+  color: black;
+}
+
+.edit-profile-save-button {
+  background-color: black;
+  color: white;
+}

@@ -1,0 +1,148 @@
+/* 🌟 로그인 페이지가 부드럽게 나타나는 효과 */
+#login-page {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 🌟 로그인 컨테이너 */
+.login-container {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 10vh auto; /* 화면 높이에 비례 */
+}
+.login-page-backbutton{
+  position : absolute;
+  top : 8vh;
+}
+/* 🌟 로그인 헤더 (타이틀 & 설명) */
+.login-container .login-header h1 {
+  font-size: 10w; /* 화면 너비에 비례 */
+  text-align: left;
+  margin-top: 17vh;
+}
+
+
+/* 🌟 로고 스타일 */
+.login-logo img {
+  width: 40vw; /* 화면 너비에 비례 */
+  max-width: 160px;
+  height: auto;
+  margin: 20px 0;
+}
+
+/* 🌟 로그인 폼 스타일 */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh; /* 화면 높이에 비례 */
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto;
+  flex-grow: 1; /* ✅ 가변 크기 조절 */
+
+}
+
+/* 🌟 입력 필드 스타일 */
+.input-group {
+  width: 100%;
+  max-width: 350px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1vh;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  text-indent: 4%;
+  padding: 1.5vh; /* 화면 높이에 비례 */
+  border-radius: 2rem;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #ff6ea1;
+  outline: none;
+}
+
+/* 🌟 로그인 버튼 */
+.login-button {
+  width: 100%;
+  max-width: 350px;
+  padding: 1.5vh; /* 화면 높이에 비례 */
+  background-color: #FF8B5A;
+  color: black;
+  border: none;
+  border-radius: 3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 2vh;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #f7a2ba;
+}
+
+
+.loginPage-buttons{
+  width: 90%;
+}
+/* 🌟 아이디/비밀번호 찾기 */
+.login-find {
+  width: 100%;
+  text-align: center; /* 중앙 정렬 */
+}
+
+.login-find a {
+  font-size: 0.9rem;
+  color: blue;
+  margin-top: 7px;
+  margin-bottom: 7vh;
+  text-decoration: underline;
+  text-align: right;
+  display: block;
+}
+
+/* 🌟 푸터 */
+.footer_InitScreen p {
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+}

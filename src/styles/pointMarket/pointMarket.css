@@ -1,0 +1,263 @@
+/* PointMarket.css */
+#pointMarket-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 0.9rem;
+  color : grey;
+}
+
+
+.pointMarket-search-container {
+  display: flex;
+  align-items: center; /* 🔥 세로 중앙 정렬 */
+  width: 100%; /* 전체 너비 맞춤 */
+}
+
+
+.search-bar {
+  flex: 1; /* 🔥 남은 공간을 채우도록 설정 */
+  padding: 3vh; /* 🔥 내부 여백 조정 */
+  text-indent: 10px;
+  margin-left : 3px;
+  font-size: 0.9rem;
+  background-color: gainsboro;
+  border-radius: 20px;
+  border: none;
+  height: 25px; /* 🔥 백버튼과 동일한 높이로 조정 */
+  display: flex;
+  align-items: center;
+}
+.user-info {
+  display: flex;
+  justify-content: space-between; /* 🔥 좌우 정렬 */
+  align-items: center;
+  padding: 4%;
+  background: white;
+  border-radius: 20px;
+  margin: 4% 0%;
+}
+
+.user-info p{
+  margin: 4%;
+}
+
+/* 🔥 포인트 + 아이콘 + 사용내역 버튼을 한 줄에 정렬 */
+.points-container {
+  display: flex;
+  align-items: center; /* 🔥 세로 중앙 정렬 */
+  gap: 5px; /* 숫자, 아이콘, 버튼 간격 */
+}
+
+/* 포인트 숫자 스타일 */
+.points {
+  font-weight: bold;
+  color: #ff9900;
+  font-size: 1rem;
+}
+
+/* 포인트 옆 코인 아이콘 크기 */
+.points-container img {
+  width: 16px;
+  height: 16px;
+}
+
+/* 사용내역 버튼 */
+.history-button {
+  background: #ddd;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+
+
+/* 배너 섹션 */
+.pointMarket-banner {
+  border-radius: 30px;
+  padding: 0px;
+  max-width: 380px;
+  width: 100%;
+  
+}
+
+.pointMarket-banner img {
+  width: 100%;
+  max-width: 340px; /* 최대 크기 설정 */
+  height: auto; /* 비율 유지 */
+  border-radius: 20px; /* 모서리 둥글게 */
+}
+
+/* 카드 섹션 */
+.pointMarket-card-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 0px;
+  margin : 0px;
+  gap : 5%;
+}
+
+.pointMarket-card-wrapper {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  align-items: center; /* 중앙 정렬 */
+}
+
+.pointMarket-card-item {
+  display: flex; /* 🔥 Flexbox 적용 */
+  align-items: center; /* 🔥 세로축 중앙 정렬 */
+  justify-content: center; /* 🔥 가로축 중앙 정렬 */
+  background: white;
+  border-radius: 20px;
+  margin : 0px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 70px;
+  height: 70px;
+}
+  
+.pointMarket-card-item img {
+  width: 40px;
+  height: 40px;
+  display: block; /* 🔥 인라인 여백 제거 */
+}
+
+.card-title {
+  font-size: 0.8rem; /* 글씨 크기 */
+  color: #333;
+  margin-top: 10%; /* 🔥 카드와 텍스트 사이 간격 추가 */
+  text-align: center;
+}
+
+.category-button, .filter-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: white;
+}
+
+.category-button.selected {
+  background: black;
+  color: white;
+}
+
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd; /* 회색 구분선 */
+  margin-bottom: 5%;
+}
+
+.pointMarket-filter-section {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+}
+
+.pointMarket-filter-button {
+  padding: 2% 4%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  background: white;
+  transition: 0.2s ease-in-out;
+}
+
+.pointMarket-filter-button.selected {
+  background: black;
+  color: white;
+}
+
+/* 상품 리스트 컨테이너 */
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 5%; /* 🔥 필터 버튼과 간격 추가 */
+}
+
+/* 개별 상품 카드 */
+.product-section{
+  margin: 0px;
+  padding: 0px;
+}
+
+.product-detail {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-detail:hover {
+  transform: scale(1.02);
+}
+
+/* 상품 이미지 */
+.product-image {
+  width: 60px;
+  height: 6 0px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+/* 상품 정보 레이아웃 조정 */
+.product-info {
+  display: flex;
+  justify-content: space-between; /* 왼쪽 제목 + 오른쪽 가격 배치 */
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* 상품 제목과 가게 */
+.product-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 왼쪽 정렬 */
+  padding: 0px;
+  width: 50%;
+}
+
+.product-text .product-store{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 왼쪽 정렬 */
+  padding-left: 8%;
+  color: #A0a0a0;
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+  height : 10px;
+}
+
+.product-text .product-title{
+  display: flex;
+  flex-direction: column;
+  padding-left: 8%;
+  font-size: 0.9rem;
+  align-items: flex-start; /* 왼쪽 정렬 */
+
+}
+
+
+/* 가격을 오른쪽으로 배치 */
+.product-price {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ff9900;
+  padding-right: 10%; /* 자동 마진으로 오른쪽 정렬 */
+
+}
+
+.product-price img {
+  width : 12px;
+  
+}

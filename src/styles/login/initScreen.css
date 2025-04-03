@@ -1,0 +1,76 @@
+.initScreen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 5vh;
+}
+
+.initScreen-header {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.main-content {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.image-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px; /* 적당히 조절 */
+}
+
+
+/* ✅ 이미지 스타일 */
+.image-logo img {
+  max-width: 250px;
+  object-fit: contain; /* 💡 이미지 비율 유지 */
+  margin-bottom: 5vh;
+  margin-top : 5vh;
+}
+
+/* ✅ 버튼 */
+.start-button {
+  background-color: #FF8B5A;
+  color: white;
+  border: none;
+  padding: 2.5vw 3vw;
+  font-size: 14px;
+  border-radius: 20px;
+  width: 80vw;
+  cursor: pointer;
+  margin-top: 20px; /* 💡 버튼 간격 조정 */
+  height: 40px;
+}
+.login-link{
+  font-size : 14px;
+}
+
+/* ✅ 푸터 스타일 */
+.footer_InitScreen {
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+  margin-bottom: 2vh;
+}
+
+
+
+
+/*미디어 쿼리*/
+@media (max-width: 768px) {
+  .initScreen-container {
+    padding: 8%; /* 작은 화면에서는 여백 증가 */
+    /* gap: 3vh; 간격 조정 */
+  }
+}
+
+@media (max-width: 480px) {
+  .initScreen-container {
+    padding: 5%;
+    gap: 0vh;
+  }
+}

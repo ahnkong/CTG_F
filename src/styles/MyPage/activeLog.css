@@ -1,0 +1,98 @@
+.activeLog-container {
+  display: flex;
+  padding-bottom: 2vh; /* 화면 높이에 비례하는 여백 */
+}
+
+.activeLog-backbutton{
+  position: absolute;
+  top : 7vh;
+
+}
+/* 헤더 (제목) */
+.header {
+  padding: 2vh 2vw; /* 화면 크기에 따라 조정 */
+  font-size: 1.5rem; /* 상대적인 크기 */
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 0;
+  margin-top: 8vh;
+}
+
+/* 필터 버튼 섹션 */
+.filters {
+  display: flex;
+  gap: 1vw; /* 화면 너비에 따라 조정 */
+  padding: 0 4vw;
+  margin-bottom: 1vh;
+}
+
+.filter-button {
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 0.8rem;
+}
+
+.filter-button.selected {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+/* 포스트 목록 섹션 */
+.activeLog-postList-section {
+  flex: 1;
+  padding: 2vh 4vw;
+}
+
+.post-item {
+  padding: 0h;
+}
+
+.category {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  color : white;
+  background-color: black;
+  border-radius: 20rem;
+}
+
+/* 제목 */
+.post-title {
+  margin-top: 1.5vh;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* 추가 정보 */
+.post-info {
+  margin-top: 1vh;
+  font-size: 0.875rem;
+  color: #777;
+}
+
+.post-item-hr {
+  padding-bottom: 10px;
+  border: none; /* 기본 선 제거 */
+  border-top: 2px solid rgb(221, 225, 228); /* 구분선 색상 지정 */
+}
+
+
+
+/* 프로필 아바타 (오른쪽 정렬) */
+.post-avatar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1vh;
+}
+
+.avatar {
+  width: 8vw;
+  height: 8vw;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}

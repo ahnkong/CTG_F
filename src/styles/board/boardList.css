@@ -1,0 +1,324 @@
+/* 배경 스타일 */
+.board-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.3s ease;
+  padding-bottom: 0;
+}
+
+/* 포지티브 타입 배경 */
+.board-list-container.positive {
+  background-image: url('assets/background/back_positive.png');
+}
+
+/* 네거티브 타입 배경 */
+.board-list-container.negative {
+  background-image: url('assets/background/back_negative.png');
+}
+
+/* 로고 텍스트 스타일 */
+.logo-text-wrapper {
+  width: 90%; /* 전체 너비 사용 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+  position: sticky;
+  top: 0;
+  height: 60px;
+  z-index: 10;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.logo-text .static {
+  color: #000000; /* 항상 검정색 */
+}
+
+.logo-text.dynamic.positive {
+  color: #0D29FF; /* 네거티브일 때 파란색 */
+}
+
+.logo-text.dynamic.negative {
+  color: #FF0404; /* 포지티브일 때 빨간색 */
+}
+
+/* 탭 메뉴 스타일 */
+.board-sort-options {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 2px; /* 버튼 간격 */
+  margin: 0;
+  padding: 0px 0 5px 0;
+  max-width: 80%;
+  border-bottom: 1px solid #000000; /* 얇은 검정색 선 */
+  position: sticky;  /* 고정 */
+  top: 20px;
+  height: 50px;
+  box-sizing: border-box;
+  z-index: 9;
+}
+
+/* 정렬 버튼 스타일 */
+.sort-button {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #000000;
+  transition: color 0.3s;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* 하단 슬라이더 */
+.sort-button-wrapper {
+  position: absolute;
+  bottom: 2px; /* 얇은 선과 붙어있도록 */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* 슬라이더 초기 위치가 왼쪽으로 */
+  pointer-events: none; /* 클릭 불가능하게 */
+}
+
+.sort-button.active {
+  color: #000000; /* 선택된 버튼 색상 */
+}
+
+.active-indicator {
+  height: 4px;
+  width: 50px; /* 초기 너비 */
+  background-color: #000000;
+  border-radius: 2px;
+  transition: transform 0.3s, width 0.3s; /* 부드러운 이동 및 너비 조정 */
+  position: absolute;
+}
+
+/* 카테고리 태그 스타일 */
+.category-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: bold;
+}
+
+.category-tag.general {
+  background-color: #000000; /* 일반 */
+}
+
+.category-tag.humor {
+  background-color: #0044ff; /* 유머 */
+}
+
+.category-tag.market {
+  background-color: #ff6600; /* 시황 */
+}
+
+/* 게시글 목록 영역 */
+.board-posts {
+  width: 100%;
+  max-width: 500px; /* 게시글 카드의 최대 너비 고정 */
+  flex-grow: 1; /* 가능한 공간을 모두 차지 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: calc(100vh - 190px);
+  margin-bottom: 95px; /* 하단 네비게이션 높이만큼 여백 */
+}
+
+/* 게시글 카드 스타일 */
+.board-post {
+  display: grid;
+  grid-template-columns: 1fr 100px; /* 왼쪽은 유동, 오른쪽은 고정 크기 */
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 0.5px solid rgba(114, 112, 112, 0.23);
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  width: 90%;
+  margin: 10px auto; /* 세로 간격과 수평 중앙 정렬 */
+  max-width: 500px;
+}
+
+.board-post:hover {
+  transform: translateY(-5px);
+}
+
+.post-type-icon {
+  font-size: 2rem;
+  margin-right: 15px;
+}
+
+.post-content h4 {
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.post-content p {
+  margin: 0;
+  color: #333;
+}
+
+.post-content span {
+  display: block;
+  margin-top: 5px;
+  color: gray;
+  font-size: 0.9rem;
+}
+
+/* 버튼 스타일 */
+.load-more-button,
+.write-button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4EBBFF;
+  color: white;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.load-more-button:hover,
+.write-button:hover {
+  background-color: #0D29FF;
+  color: white;
+}
+
+/* 게시글 카드 */
+.board-post {
+  background-color: transparent; /* 배경 투명 */
+  border-radius: 0; /* 모서리 반경 제거 */
+  box-shadow: none; /* 그림자 제거 */
+  padding: 10px 0;
+  border-bottom: 0.5px solid rgba(114, 112, 112, 0.23); /* 아래쪽에만 얇은 선 */
+  display: grid;
+  grid-template-columns: 1fr 100px; /* 왼쪽은 유동, 오른쪽은 고정 크기 */
+  align-items: center;
+  margin: 0;
+  max-width: 90%;
+  margin-left: 20px;
+}
+
+/* 게시글 목록 스크롤 시 스크롤바 숨기기 */
+.board-posts::-webkit-scrollbar {
+  display: none; /* 스크롤바를 완전히 숨김 */
+}
+
+/* 왼쪽 콘텐츠 */
+.post-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 세로 간격을 자동으로 조절 */
+  min-height: 100px; /* 카드 높이를 일정하게 유지 */
+}
+
+/* 해시태그 스타일 */
+.post-tags {
+  height: 25px; /* 고정된 높이 */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 5px;
+  max-width: 100%;
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* ... 표시 */
+}
+
+.post-tag {
+  display: inline-block;
+  color: #ffffff; /* 해시태그 텍스트 색상 */
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 960px;
+  background-color: #000000;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+.post-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1px 0;
+  flex-grow: 1; /* 제목이 가운데 빈 공간을 차지하도록 */
+  white-space: nowrap; /* 줄 바꿈을 방지 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
+  max-width: 100%; /* 영역을 벗어나지 않도록 설정 */
+}
+
+.post-meta {
+  color: #000000;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto; /* 항상 맨 아래에 위치 */
+}
+
+/* 오른쪽 콘텐츠 */
+.post-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* 썸네일 */
+.post-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 3px;
+}
+
+/* 투명한 공간 */
+.post-thumbnail.placeholder {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px dashed #ddd;
+}
+
+/* 좋아요, 댓글 수 */
+.post-stats {
+  display: flex;
+  gap: 15px;
+  font-size: 0.7rem;
+  color: #000;
+  align-items: center;
+}
+
+.post-likes,
+.post-comments {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+}

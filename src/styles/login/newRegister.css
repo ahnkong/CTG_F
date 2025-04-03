@@ -1,0 +1,89 @@
+
+/* Container 스타일 */
+.register-container {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+
+/* Header 스타일 */
+.register-container .register-title h1 {
+  width: 100%;
+  padding-top: 25%;
+  padding-bottom: 20px;
+  text-align: left;
+  padding: 20% 5% 2% 5%;
+}
+
+/* Form 스타일 */
+.register-form {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  padding: 5% 10%;
+}
+
+/* 단계별 스타일 */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 왼쪽 정렬 */
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.step input {
+  border: none;
+  padding: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+
+/* 버튼 스타일 */
+.register-button,
+/* 버튼을 포함하는 부모 컨테이너 스타일 */
+.step-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* 부모 컨테이너 너비를 100%로 설정 */
+  margin-top: 2%; 
+}
+
+.step-buttons button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  
+}
+
+.step-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+
+
+/* 유효성 메시지 */
+.validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.validation-message.success {
+  color: green;
+}
+
+.validation-message.error {
+  color: red;
+}

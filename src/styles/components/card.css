@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.5;
+}

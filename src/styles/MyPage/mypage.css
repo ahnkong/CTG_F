@@ -1,0 +1,312 @@
+
+/*마이페이지*/
+/* Header */
+.mypage-header {
+    margin-top: 0%;
+    text-align: left;
+    align-items: left;
+}
+
+.mypage-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+    text-align: left;
+
+}
+
+.mypage-subtitle {
+    font-size: 1rem;
+    margin-top : 2%;
+    color: #555;
+}
+
+
+/*섹션 : 마이페이지 카드 */
+/* 카드 섹션 */
+.mypage-card-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 4%; /* 카드 간 간격 */
+  padding: 0%;
+}
+
+/* 카드 아이템 */
+.mypage-card-item {
+  flex: 1;
+  max-width: 600px; /* 카드의 최대 너비 */
+  text-align: center;
+  background-color: white;
+  border-radius: 20%;
+  padding: 2%;
+}
+
+/* 카드 제목 */
+.mypage-card-item h3 {
+  white-space: pre-line; /* \n을 줄바꿈으로 인식 */
+  font-size: 0.9rem;
+  text-align: left;
+  color: #333;
+  margin: 1% 10%;
+}
+
+.mypage-card-item .point {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: blue;
+  margin: 1rem 0rem 0rem 0.4rem;
+  text-align: left;
+}
+
+/* 카드 이미지 */
+.mypage-card-item img {
+  width: 70%; /* 이미지 너비 */
+  float: right;
+}
+
+
+    
+/*섹션 : Profile Section */
+.profile-section {
+  width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column; /* 세로로 쌓기 */
+    padding: 5%;
+    margin-top: 10px;
+    border-radius: 20px; /* 모서리 둥글게 */
+    background-color: white; /* 배경색 */
+    box-sizing: border-box;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  /* 첫 번째 줄 (이미지와 텍스트) */
+  .profile-top-row {
+    display: flex;
+    width: 100%;
+    flex-direction: row; /* 가로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+  }
+  
+  /* 프로필 이미지 */
+  .profile-avatar-wrapper {
+    flex-shrink: 0; /* 이미지 크기 고정 */
+    position: relative;  /* 부모 요소로 설정 */
+    display: inline-block; /* 크기를 유지하기 위해 사용 */
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-avatar {
+    width: 100%; /* 너비 설정 */
+    height: 100%; /* 높이를 동일하게 설정 */
+    border-radius: 50%; /* 동그랗게 만들기 */
+    object-fit: cover; /* 이미지를 비율 유지하며 잘라서 표시 */
+  }
+
+
+  .edit-icon-button {
+    position: absolute;  /* 아바타 이미지 위로 배치 */
+    bottom: 1%;  /* 하단 여백 조정 */
+    right: 1%;   /* 우측 여백 조정 */
+    width: 25%;
+    height: 25%;
+    background-image: url('assets/image/pen-circle.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 50%;  /* 버튼을 동그랗게 */
+    cursor: pointer;
+  }
+  
+  
+  /* 닉네임 및 이메일 */
+  .profile-info-wrapper {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    justify-content: center;
+    margin: 5%; /*카드 섹션과의 세로 여백값*/
+    gap: 5px; /* 텍스트 간 간격 */
+  }
+  
+  .profile-nickname {
+    font-size: 1.2rem; /* 폰트 크기 */
+    font-weight: bold; /* 굵게 */
+    margin: 0; /* 간격 제거 */
+  }
+  
+  .profile-email {
+    font-size: 0.9rem; /* 폰트 크기 */
+    color: #777; /* 회색 글씨 */
+    margin: 0; /* 간격 제거 */
+  }
+  
+
+  /* 두 번째 줄 (자기소개와 버튼) */
+ /* 프로필 하단 섹션 (세로 배치) */
+.profile-bottom-row {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    width: 100%; /* 전체 너비 */
+    padding : 4% 4% 0% 4%;
+  }
+  
+  .profile-bottom-row  p {
+    font-size: 0.9em;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 2%;
+    margin-bottom: 2%;    
+
+  }
+  .profile-info {
+    align-items: flex-start; /* 왼쪽 정렬 */
+    font-size: 1em; /* 자기소개 글 크기 */
+    color: #777; /* 어두운 회색 글씨 */
+    word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+  }
+  
+  /* 수정 버튼 스타일 */
+  .edit-button {
+    background: black;
+    border: none;
+    color: white;
+
+    border-radius: 30px;
+    padding : 2%;
+    width: 15%;
+    font-size: 0.8rem;
+    margin-left: auto;
+  }
+
+
+/* 자기소개 수정 입력 필드 */
+.edit-info-input {
+  width: 100%;
+  padding: 4%;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* 자기소개 수정하면서 버튼 컨테이너 */
+.edit-save-buttons {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  gap: 10px; /* 버튼 간 간격 */
+  margin-top: 3%; /* 위쪽 여백 */
+}
+
+/* 저장 버튼 */
+.save-button {
+  border-radius: 30px;
+  padding : 2%;
+  width: 15%;
+  font-size: 0.8rem;
+
+  border: none;
+  cursor: pointer;
+  background-color: #007bff; /* 파란색 배경 */
+  color: white;
+}
+
+.cancel-button {
+  border-radius: 30px;
+  padding : 2%;
+  width: 15%;
+  font-size: 0.8rem;
+
+  border: none;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #333;
+}
+
+
+/* Activity Section */
+.activity-section {
+    width: 100%;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5%;
+}
+
+.activity-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 4%;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3%;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item:hover {
+    background-color: #f5f5f5;
+}
+
+.activity-arrow {
+    font-size: 24px;
+    color: #555;
+}
+
+
+
+/*쿠폰함*/
+/* Activity Section */
+.mypage-gifticon-section {
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5%;
+}
+
+.mypage-gifticon-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 4%;
+}
+
+.mypage-gifticon-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3%;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.mypage-gifticon-item:last-child {
+  border-bottom: none;
+}
+
+.mypage-gifticon-item:hover {
+  background-color: #f5f5f5;
+}
+
+.mypage-gifticon-arrow {
+  font-size: 24px;
+  color: #555;
+}
+
+
+
+.mypage-logout {
+  font-size : 14px;
+  text-decoration: underline;
+  color : blue;
+}

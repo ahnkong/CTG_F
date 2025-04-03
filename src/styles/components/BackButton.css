@@ -1,0 +1,46 @@
+.back-button-top{
+  position: absolute; /* Page 내부에서 고정 */
+  left: 4vh; /*뒤로가기 버튼 고정 왼쪽*/
+  background-color: transparent;
+  justify-items: center;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* 로그인 폼 위에 배치 */
+}
+
+
+.back-button-top img {
+  width: 24px;  /* 아이콘 크기 */
+  height: auto;
+  border: none;
+  outline: none;
+}
+
+.back-button-top:hover {
+  opacity: 0.7; /* 호버 효과 */
+}
+
+
+/*---------back-button-middle --------*/
+.back-button-middle{
+  position:absolute;
+  left: 4vh; /*뒤로가기 버튼 고정 왼쪽*/
+  margin-top: 4vh;
+  background-color: transparent;
+  justify-items: center;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* 로그인 폼 위에 배치 */
+}
+
+
+.back-button-middle img {
+  width: 24px;  /* 아이콘 크기 */
+  height: auto;
+  border: none;
+  outline: none;
+}
+
+.back-button-middle:hover {
+  opacity: 0.7; /* 호버 효과 */
+}

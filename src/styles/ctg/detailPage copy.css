@@ -1,0 +1,232 @@
+/* ✅ 전체 페이지 스타일 */
+.detail-header {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    padding: 15px;
+    position: fixed;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    height: 60px;
+  }
+  
+  .detail-header .title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px; /* 최소 1rem, 최대 1.2rem */
+    font-weight: bold;
+    color: #f7f7f7;
+  }
+  
+  .detailMain-container {
+    width: 100%;
+    padding: 0% 7% 0% 7%;  /* ✅ 내부 여백 조절 */
+    margin-top: 80px;
+    overflow-wrap: break-word; /* 긴 단어도 줄바꿈 */
+    word-break: break-word; /* 단어가 너무 길면 강제 줄바꿈 */
+    white-space: normal; /* 텍스트가 부모 크기를 초과하면 자동 줄바꿈 */
+    box-sizing: border-box; /* ✅ 패딩 포함하여 크기 유지 */
+    overflow-x: hidden;  /* ✅ 가로 스크롤 제거 */
+    
+  }
+  
+  .shortcate-title{
+    font-size: clamp(1.3rem, 1.4rem, 1.4rem);
+    text-decoration: underline;
+  color: rgb(165, 165, 165);
+  margin: 0px 0px -10px 0px;
+
+
+}
+
+  .main-title {
+    font-size: clamp(1.2rem, 1.2rem, 1.3rem);
+    font-weight: bold;
+    display: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .main-title .pin{
+    font-size: clamp(1rem, 1rem, 1.2rem);
+    background-color: #404040; /* 노란색 강조 */
+    border-radius: 10px;
+    padding: 2% 4%;
+    line-height: 3;
+    margin-top: 0;
+    color: rgb(255, 255, 255);
+  }
+
+  .detailMain-answer-container{
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    padding: 15px;
+    align-items: center;
+  }
+  .detail-content {
+    min-height: 200px;
+    background: #f8f8f8;
+    padding: 8%;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
+
+  }
+  
+  .detail-answer {
+    font-weight: bold;
+    /* font-size: 1.2rem; */
+    font-size: clamp(1rem, 1.2rem, 1.5rem);
+  }
+  
+  .pin_moreExplain{
+    color: #3264b3f9;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: right;
+  }
+
+  .tag-container {
+    display: flex;
+    padding: 7%;
+    font-size: clamp(1rem, 1.2rem, 1.5rem);
+    flex-wrap: wrap;
+  }
+  
+  .verse-card {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+  }
+  
+  .verse-reference {
+    font-weight: bold;
+    color: blue;
+    font-size: clamp(1rem, 1.1rem, 1.3rem);
+
+  }
+  
+  .verse-text {
+    font-size: clamp(1rem, 1.1rem, 1.3rem);
+
+  }
+
+  .buttons-container{
+    padding: 7%;
+  }
+  .detail-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .prev-button{
+    padding: 10px 15px;
+    font-size: clamp(1rem, 1.1rem, 1.3rem);
+
+    width: 45%;
+    border: none;
+    background-color: rgb(244, 244, 244);
+    color: #404040;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .next-button {
+    font-size: clamp(1rem, 1.1rem, 1.3rem);
+    padding: 10px 15px;
+    width: 45%;
+    border: none;
+    background-color: #404040;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+
+  /*메뉴*/
+.menu-container {
+    position:relative;
+    display: inline-block;
+
+  }
+  
+  .IconMenu {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0) invert(1); /* 흰색 이미지일 경우 */
+
+  }
+  
+ /* ✅ 드롭다운 메뉴 스타일 (너비 조정) */
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 10;
+  width: 160px; /* ✅ 너비 조정 */
+  padding: 5px 0; /* ✅ 내부 여백 */
+}
+
+/* ✅ 버튼 스타일 */
+.dropdown-menu button {
+  display: flex; /* ✅ 아이콘과 텍스트 정렬 */
+  align-items: center; /* ✅ 수직 가운데 정렬 */
+  width: 100%; /* ✅ 버튼 너비 확장 */
+  padding: 10px 15px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: clamp(1rem, 1.1rem, 1.3rem);
+  font-weight: bold;
+  gap: 8px; /* ✅ 아이콘과 텍스트 간격 */
+}
+
+/* ✅ 호버 효과 */
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+/* ✅ 가로 스크롤 가능하도록 설정 */
+.verses-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+  
+  .verse-tag {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: ghostwhite;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .verse-tag.active, .verse-tag:hover {
+    background-color: #fdd835; /* 노란색 강조 */
+    font-weight: bold;
+  }
+  

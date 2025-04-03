@@ -1,0 +1,113 @@
+/* 메뉴 페이지 스타일 */
+/* 로그인 페이지가 부드럽게 나타나는 효과 */
+.menuPage {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    height: 100vh;
+    max-width: 400px;
+    box-sizing: border-box;
+    overflow: hidden; /* 스크롤 방지 */
+    padding-top: 15%;
+}
+
+/* 2x2 고정 배열을 위한 카드 섹션 */
+.menu-card-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열로 고정 */
+    grid-template-rows: repeat(2, auto); /* 2행으로 고정 */
+    gap: 20px; /* 카드 간격 */
+    width: 100%;
+    max-width: 600px; /* 최대 크기 */
+    padding: 10px;
+    justify-content: center; /* 가운데 정렬 */
+}
+
+/* 개별 카드 디자인 */
+.menu-card-grid {
+    background-color: #fff;
+    border-radius: 10%;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+    padding: 3%;
+    text-align: center;
+}
+
+.menu-card-grid:hover {
+    transform: scale(1.05);
+}
+
+/* 카드 이미지 스타일 */
+.menu-card-grid img {
+    display: flex;
+    align-items: left;
+    width: 40%; /* 고정 크기 */
+    height: auto;
+    margin: 5%;
+}
+
+/* 카드 제목 스타일 */
+.menu-card-grid h3 {
+    white-space: pre-line; /* \n을 줄바꿈으로 인식 */
+    text-align: left;
+    /* font-size: 1rem; */
+    font-size : 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 10% 12%;
+}
+
+/* 카드 설명 스타일 */
+.menu-card-grid p {
+    margin: 4% 12%;
+    text-align: left;
+    /* font-size: 0.8rem; */
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    white-space: pre-line;
+    
+}
+
+/* 하단 이미지 섹션 */
+.menu-image-section {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: flex-end; /* ✅ 하단에 붙이기 */
+    padding: 0; /* ✅ 기존 padding 제거 */
+    margin-bottom: -10%; /* ✅ 네비바와 겹치지 않게 조정 */
+}
+
+/* 하단 이미지 */
+.menu-image-section img {
+    max-width: 80%;
+    height: auto;
+    padding: 0; /* ✅ 기존 padding 제거 */
+    margin-bottom: -10vh; /* ✅ 여백 없애기 */
+
+}
+
+
+/*미디어 쿼리 동적 애니메이션 제어*/
+@keyframes fadeIn {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .menu-card-section {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .menu-image img {
+        max-width: 90px;
+    }
+}

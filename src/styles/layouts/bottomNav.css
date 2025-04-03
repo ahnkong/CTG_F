@@ -1,0 +1,44 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    opacity: 0.5; /*기본적으로 연하게 설정 */
+    transition: opacity 0.3s ease-in-out;
+  }
+  /* :불: 선택된 버튼만 진하게 */
+  .nav-item.active {
+    opacity: 1;
+    font-weight: bold;
+  }
+  /* 네비게이션 바 중앙 로고 버튼(항상 진하게 유지) */
+  .logo-button {
+    opacity: 1 !important; /* 항상 진하게 설정 */
+  }
+  /* 네비바 중앙 로고 아이콘 크기 설정 */
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+  }

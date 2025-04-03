@@ -1,0 +1,72 @@
+.catechism-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    position: fixed;
+    box-sizing: border-box;
+    background-color: rgb(47, 47, 47);
+
+
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(47, 47, 47);
+  }
+  
+  .header-container .h1{
+    flex-grow: 1; /* 자동 확장하여 가운데 정렬 */
+
+  }
+  .search-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    width: 80%;
+    padding: 8px;
+    height: 45px;
+    font-size: clamp(0.9rem, 1.1em, 1.1rem);
+  }
+  
+  .search-button {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .catechism-content {
+    padding: 1% 4% 0% 7%;
+    margin-top: 160px;
+    
+  }
+  
+  .catechism-title {
+    margin-top: 5px;
+    font-size: clamp(1rem, 1rem, 1.2rem);
+    margin-left: 10px;
+    font-weight: bold;  
+    color: rgb(224, 19, 19);
+  }
+  
+  .catechism-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .catechism-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    font-size: clamp(1em, 1em, 1.2rem);  
+
+  }
+  
+  .catechism-item:hover {
+    background-color: #f0f0f0;
+  }

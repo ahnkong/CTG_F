@@ -1,0 +1,136 @@
+
+/* 전체 페이지 스타일 */
+.pointLog-page {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+  
+  /* 상단 네비게이션 */
+  .pointLog-header {
+    width: 100%;
+    display: flex;
+    padding: 4%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .back-icon {
+    font-size: 24px;
+    max-width: 120px;
+    cursor: pointer;
+  }
+  
+  /* 포인트 잔액 */
+  .pointLog-balance {
+    text-align: center;
+  }
+  
+  .pointLog-icon {
+    margin-top: 0px;
+    width: 150px;
+  }
+  
+  .pointLog-label {
+    font-size: 18px;
+    color: gray;
+  }
+  
+  .pointLog-amount {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* 포인트 내역 */
+  .pointLog-history {
+    background: rgb(255, 253, 252);
+    border-radius: 30px;
+    padding: 15px;
+  }
+  
+  .history-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ebebeb;
+  }
+  
+  .history-item:last-child {
+    border-bottom: none;
+  }
+  
+  .history-text {
+    font-size: 16px;
+  }
+  
+  .history-points {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .plus {
+    color: blue;
+  }
+  
+  .minus {
+    color: red;
+  }
+  
+  .pointLog-notice{
+    margin-top: 0px;
+    text-align: right;
+    color : gray;
+    font-size: 14px;
+  }
+
+
+.pointLog-card-section {
+  display: flex;
+  justify-content: center; /* ✅ 중앙 정렬 */
+  gap: 10px; /* ✅ 카드 간격 조정 */
+  flex-wrap: nowrap; /* ✅ 강제로 한 줄 유지 */
+  width: 100%; /* ✅ 부모 요소의 크기 명확하게 설정 */
+  max-width: 100%; /* ✅ 전체 화면 너비 사용 */
+  padding: 10px 0;
+}
+
+  
+
+.poingLog-card-item {
+  flex: 1;
+  width: 80px;
+  height: 120px;
+  max-width: 100px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;  /* ✅ flexbox 사용 */
+  flex-direction: column; /* ✅ 세로 방향으로 정렬 */
+  justify-content: center; /* ✅ 전체적으로 중앙 수직 정렬 */
+  box-sizing: border-box;
+  padding-left: 10px ;
+}
+
+
+/* 카드 제목 */
+.poingLog-card-item h3 {
+  white-space: pre-line; /* \n을 줄바꿈으로 인식 */
+  font-size: 0.9rem;
+  text-align: left; /* ✅ 제목도 중앙 정렬 */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #333;
+}
+
+/* 카드 이미지 */
+.poingLog-card-item img {
+  width: 70%; /* 이미지 너비 */
+  max-height: 70%; /* ✅ 카드 내부에 맞게 크기 조정 */
+  object-fit: contain; /* ✅ 이미지 비율 유지하면서 안 잘리게 조정 */
+}

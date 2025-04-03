@@ -1,0 +1,72 @@
+.initPage-header{
+    color : #1b1b1b;
+    font-size: clamp(2rem, 2rem, 2rem);
+    font-weight: bold;
+    text-align: left;
+    padding: 7%;
+    margin-top: 10vh;
+}
+
+.initPage-image-container{
+    width: 100%;
+    display: flex;  /* Flexbox 활성화 */
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;  /* 세로 중앙 정렬 */
+    margin-top: 10vh;
+
+
+}
+
+.initPage-image-container .initPage-image{
+    width: 50vw;
+    height: auto;
+    align-items: center;
+    justify-items: center;
+}
+
+.initPage-footer{
+    text-align: left;
+    font-size: clamp(1.3rem, 1.3rem, 1.5rem);
+    color : #404040;
+    font-weight: bold;
+    padding: 7%;
+    margin-top: 10vh;
+
+}
+
+
+
+/* 키프레임  */
+
+/* ✅ 페이지 전체에 페이드 인 애니메이션 적용 */
+.initPage-container {
+    animation: fadeIn 0.8s ease-in-out; /* 0.8초 동안 부드럽게 나타남 */
+}
+
+/* ✅ 페이드 인 효과 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* 10px 아래에서 시작 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* 원래 위치로 이동 */
+    }
+}
+
+/* ✅ 페이지가 사라질 때 페이드 아웃 */
+.fadeOut {
+    animation: fadeOut 0.8s ease-in-out forwards; /* 0.5초 동안 사라짐 */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px); /* 위로 살짝 올라가면서 사라짐 */
+    }
+}
