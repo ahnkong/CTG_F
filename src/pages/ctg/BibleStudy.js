@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "styles/ctg/bibleStudy.css";
 import Page from "components/styles/Page";
 import Background from "context/Background.jsx";
 import HeartIcon from "assets/image/imageHeart.png";
 import BibleIcon from "assets/image/imageBible.png";
 import ImageBook from "assets/image/imageBook.png";
-import "styles/ctg/bibleStudy.css";
-
+import BottomNav from "layouts/BottomNav";
 /** ✅ 문답 카드 데이터 */
 const catechismCards = [
   {
@@ -95,6 +95,7 @@ const BibleStudy = () => {
                <p>©codequest.ahncoco 2025 Christian to God. </p>
               </footer>
       </div>
+      <BottomNav/>
     </Background>
   );
 };

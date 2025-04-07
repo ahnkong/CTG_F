@@ -8,6 +8,13 @@ import White from "assets/background/background_white.png"
 import Sheep from "assets/background/background_sheep.png"
 import Default_blur from "assets/background/background_blur10.png"
 import Sparkle from "assets/background/background_sparkle.gif"
+import Grass from "assets/background/background_grass.png"
+import blur_green from "assets/background/background_blur_green.png"
+import Tree from "assets/background/background_tree.png"
+
+
+
+
 import { orange } from "@mui/material/colors";
 const Background = ({ type = "default", children }) => {
   const inlineStyles = {
@@ -23,6 +30,7 @@ const Background = ({ type = "default", children }) => {
     },
     gray: {
       backgroundColor: "#F5F5F5",
+      // backgroundColor: "#D3D3D3",
       minHeight: "100vh",
     },
     coin: {
@@ -49,7 +57,23 @@ const Background = ({ type = "default", children }) => {
     orange : {
       backgroundColor: "#ffa07a",
       minHeight: "100vh",
-    }
+    },
+    grass: {
+      backgroundImage: `url(${Grass})`,
+      backgroundSize: "cover",
+      minHeight: "100vh",
+    },
+    tree: {
+      backgroundImage: `url(${Tree})`,
+      backgroundSize: "cover",
+      minHeight: "100vh",
+    },
+    blur_green: {
+      backgroundImage: `url(${blur_green})`,
+      backgroundSize: "cover",
+      minHeight: "100vh",
+    },
+    
   };
 
   return (

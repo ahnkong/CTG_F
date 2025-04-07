@@ -1,0 +1,63 @@
+/* 검색 페이지 전체 배경 */
+  
+  /* 검색창 */
+  .search-header {
+    display: flex;
+    width: 100%;
+    max-width: 480px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  
+  .search-button {
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #555;
+  }
+  
+  /* 문답 리스트 */
+  .question-list {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+  }
+  
+  .question-item {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  
+  .question-item:last-child {
+    border-bottom: none;
+  }
+  
+  .question-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+  }
+  
+  .question-answer {
+    color: #666;
+    font-size: 14px;
+  }
+  

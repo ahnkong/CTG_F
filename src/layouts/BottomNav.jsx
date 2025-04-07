@@ -8,6 +8,7 @@ import IconShopping from "assets/icon/IconShopping.png";
 import Logo_positive from "assets/logo/logo_positive.png";
 import Logo_negative from "assets/logo/logo_negative.png";
 import IconSearch from "assets/icon/IconSearch.png"
+import IconStudy from "assets/icon/IconStudyButton.png"
 
 const BottomNav = ({ onLogoClick }) => {
   const navigate = useNavigate();
@@ -18,10 +19,12 @@ const BottomNav = ({ onLogoClick }) => {
 
   const navItems = [
     { name: "메뉴", path: "/menu", icon: IconMenu },
+    { name: "성경공부", path: "/BibleStudy", icon: IconStudy},
     { name: "검색", path: "/search", icon: IconSearch },
-    { name: "", path: "/menu", icon: isPositiveLogo ? Logo_positive : Logo_negative }, // ✅ 로고 변경
+    // { name: "", path: "/menu", icon: isPositiveLogo ? Logo_positive : Logo_negative }, // ✅ 로고 변경
     { name: "쇼핑", path: "/pointMarket", icon: IconShopping },
     // { name: "", path: "/main", icon: isPositiveLogo ? Logo_positive : Logo_negative },
+    // { name: "메뉴", path: "/menu", icon: IconMenu },
     // { name: "메뉴", path: "/menu", icon: IconMenu },
     { name: "마이페이지", path: "/mypage", icon: IconUser },
   ];

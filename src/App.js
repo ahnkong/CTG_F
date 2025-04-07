@@ -38,13 +38,13 @@ import CheckPassword from 'components/mypage/CheckPassword';
 import ActiveLog from 'pages/MyPage/ActiveLog';
 import PointLog from 'pages/MyPage/PointLog'
 
-
 import InitPage from 'pages/login/InitPage';
 
 import BibleStudy from 'pages/ctg/BibleStudy';
 import Search from "pages/ctg/Search";
 import ShorterCate from 'pages/ctg/ShorterCate';
 import DetailPage from 'pages/ctg/detailPage';
+import Hearder_ChuchType from 'layouts/Hearder_ChurchType';
 import CatechismPage from "pages/ctg/CatechismPage";
 import Header from "components/styles/Header";
 

@@ -56,7 +56,7 @@ const Menu = () => {
   };
 
   return (
-    <Background type="white">
+    <Background type="blur_green">
       <Page id="menuPage" className="menuPage" scrollable={false}>
         {/* 카드 섹션 */}
         <section className="menu-card-section">
@@ -76,7 +76,7 @@ const Menu = () => {
 
         {/* 하단 이미지 섹션 */}
         {/* <section className="menu-image-section">
-          <img src={sheep} alt="people" />
+          <img src={sheep} alt="sheep" />
         </section> */}
       </Page>
       <BottomNav />

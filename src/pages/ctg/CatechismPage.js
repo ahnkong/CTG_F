@@ -52,7 +52,7 @@ const CatechismPage = () => {
                             src={IconBackButton}
                             alt="뒤로 가기"
                             className="back-button"
-                            onClick={() => navigate(-1)}
+                            onClick={() => navigate("/bibleStudy")}
                         />
                         <h1 className="title">Christian to God</h1>
                         <div className="menu-container">
@@ -64,7 +64,7 @@ const CatechismPage = () => {
                             />
                             {menuOpen && (
                                 <div className="dropdown-menu">
-                                    <button onClick={() => navigate("/home")}>🏠 홈으로</button>
+                                    <button onClick={() => navigate("/bibleStudy")}>🏠 홈으로</button>
                                     <button onClick={() => navigate(`/${type}`)}>🔍 검색</button>
                                 </div>
                             )}

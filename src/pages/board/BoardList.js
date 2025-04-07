@@ -6,6 +6,11 @@ import "../../styles/board/boardList.css";
 import BottomNav from "layouts/BottomNav";
 import IconHeart from "assets/icon/IconHeart.png"; // 좋아요 아이콘
 import IconComment from "assets/icon/IconCommentWhite.png"; // 댓글 아이콘
+
+import Hearder_ChuchType from "layouts/Hearder_ChurchType";
+
+
+
 const BoardList = () => {
   const navigate = useNavigate();
   const { boardId } = useParams();
@@ -33,8 +38,8 @@ const BoardList = () => {
         sortOption === "likesLast7Days"
           ? 7
           : sortOption === "likesLast30Days"
-          ? 30
-          : null;
+            ? 30
+            : null;
       const params = {
         type: currentType,
         page: pageNumber,
@@ -101,30 +106,30 @@ const BoardList = () => {
   // 좋아요 개수
   const fetchLikeCount = async (boardId) => {
     try {
-        const response = await axios.get(`/api/v1/likes/BOARD/${boardId}/count`);
-        console.log(`게시글 ${boardId} 좋아요 개수 응답:`, response.data);
+      const response = await axios.get(`/api/v1/likes/BOARD/${boardId}/count`);
+      console.log(`게시글 ${boardId} 좋아요 개수 응답:`, response.data);
 
-        setLikeCounts((prevCounts) => ({
-            ...prevCounts,
-            [boardId]: response.data, // 개별 게시글 ID를 키로 저장
-        }));
+      setLikeCounts((prevCounts) => ({
+        ...prevCounts,
+        [boardId]: response.data, // 개별 게시글 ID를 키로 저장
+      }));
     } catch (error) {
-        console.error(`게시글 ${boardId} 좋아요 개수 가져오기 실패`, error);
+      console.error(`게시글 ${boardId} 좋아요 개수 가져오기 실패`, error);
     }
-  };  
+  };
 
   // 댓글 갯수 (댓글 수 + 대댓글 수)
   const fetchCommentCount = async (boardId) => {
     try {
-        const response = await axios.get(`/api/v1/comments/count/${boardId}`);
-        console.log(`게시글 ${boardId} 총 댓글 개수 응답:`, response.data);
+      const response = await axios.get(`/api/v1/comments/count/${boardId}`);
+      console.log(`게시글 ${boardId} 총 댓글 개수 응답:`, response.data);
 
-        setCommentCounts((prevCounts) => ({
-            ...prevCounts,
-            [boardId]: response.data, // 개별 게시글 ID를 키로 저장
-        }));
+      setCommentCounts((prevCounts) => ({
+        ...prevCounts,
+        [boardId]: response.data, // 개별 게시글 ID를 키로 저장
+      }));
     } catch (error) {
-        console.error(`게시글 ${boardId} 총 댓글 개수 가져오기 실패`, error);
+      console.error(`게시글 ${boardId} 총 댓글 개수 가져오기 실패`, error);
     }
   };
 
@@ -140,94 +145,99 @@ const BoardList = () => {
     }
   }, []);
   return (
-    <div className={`board-list-container ${currentType.toLowerCase()}`}>
-      <h1 className="logo-text-wrapper">
-        <span className="logo-text static">ctg</span>
-        <span className={`logo-text dynamic ${currentType.toLowerCase()}`}>
-          ctg
-        </span>
-      </h1>
-      {/* 정렬 옵션 버튼 */}
-      <div className="board-sort-options">
-        {["latest", "likesLast7Days", "likesLast30Days"].map((sort, index) => (
-          <button
-            key={sort}
-            className={`sort-button ${sortOption === sort ? "active" : ""}`}
-            onClick={() => handleSortChange(sort, index)}
-            ref={(el) => (buttonRefs.current[index] = el)}
-          >
-            {sort === "latest"
-              ? "오늘의 훌훌"
-              : sort === "likesLast7Days"
-              ? "주간 베스트"
-              : "월간 베스트"}
-          </button>
-        ))}
-        <div className="sort-button-wrapper">
-          <div className="active-indicator"></div>
-        </div>
+    <div>
+      <div className="BoardList_header">
+        <Hearder_ChuchType />
       </div>
-      <div className="board-posts">
-        {posts.map((post) => (
-          <div
-            key={post.boardId}
-            className="board-post"
-            onClick={() => navigate(`/board/${post.boardId}`)}
-          >
-            {/* 왼쪽 컨텐츠 */}
-            <div className="post-left">
-              <div className="post-tags">
-              {post.hashTag &&
-                post.hashTag.split(" ").map((tag, index) => (
-                    <span key={index} className="post-tag">
+      <div className={`board-list-container ${currentType.toLowerCase()}`}>
+        {/* <h1 className="logo-text-wrapper">
+          <span className="logo-text static">ctg</span>
+          <span className={`logo-text dynamic ${currentType.toLowerCase()}`}>
+            ctg
+          </span>
+        </h1> */}
+        {/* 정렬 옵션 버튼 */}
+        <section className="board-sort-options">
+          {["latest", "likesLast7Days", "likesLast30Days"].map((sort, index) => (
+            <button
+              key={sort}
+              className={`sort-button ${sortOption === sort ? "active" : ""}`}
+              onClick={() => handleSortChange(sort, index)}
+              ref={(el) => (buttonRefs.current[index] = el)}
+            >
+              {sort === "latest"
+                ? "오늘의 게시글"
+                : sort === "likesLast7Days"
+                  ? "인기글"
+                  : "교회 공지사항"}
+            </button>
+          ))}
+          <div className="sort-button-wrapper">
+            <div className="active-indicator"></div>
+          </div>
+        </section>
+        <section className="board-posts">
+          {posts.map((post) => (
+            <div
+              key={post.boardId}
+              className="board-post"
+              onClick={() => navigate(`/board/${post.boardId}`)}
+            >
+              {/* 왼쪽 컨텐츠 */}
+              <div className="post-left">
+                <div className="post-tags">
+                  {post.hashTag &&
+                    post.hashTag.split(" ").map((tag, index) => (
+                      <span key={index} className="post-tag">
                         <span
-                            className="hashtag-symbol"
-                            style={{
-                                color:
-                                    currentType === "POSITIVE"
-                                        ? "#1133F6"
-                                        : "#FD1919",
-                            }}
+                          className="hashtag-symbol"
+                          style={{
+                            color:
+                              currentType === "POSITIVE"
+                                ? "#1133F6"
+                                : "#FD1919",
+                          }}
                         >
-                            #&nbsp;
+                          #&nbsp;
                         </span>
                         {tag.substring(1)}
-                    </span>
-              ))}
+                      </span>
+                    ))}
+                </div>
+                <h4 className="post-title">{post.title}</h4>
+                <div className="post-meta">
+                  <span>{formatDate(post.cDate)}</span>
+                  <span> | 조회 {post.view || 0}</span>
+                </div>
               </div>
-              <h4 className="post-title">{post.title}</h4>
-              <div className="post-meta">
-                <span>{formatDate(post.cDate)}</span>
-                <span> | 조회 {post.view || 0}</span>
+              {/* 오른쪽 컨텐츠 */}
+              <div className="post-right">
+                {post.images && post.images.length > 0 ? (
+                  <img
+                    src={`http://localhost:8080/uploads/${post.images[0].fileName}`}
+                    alt="썸네일"
+                    className="post-thumbnail"
+                  />
+                ) : (
+                  <div className="post-thumbnail transparent"></div>
+                )}
+                <div className="post-stats">
+                  <span className="post-likes">
+                    <img src={IconHeart} alt="좋아요" className="icon" />
+                    {likeCounts[post.boardId] || 0}
+                  </span>
+                  <span className="post-comments">
+                    <img src={IconComment} alt="댓글" className="icon" />
+                    {commentCounts[post.boardId] || 0}
+                  </span>
+                </div>
               </div>
             </div>
-            {/* 오른쪽 컨텐츠 */}
-            <div className="post-right">
-              {post.images && post.images.length > 0 ? (
-                      <img
-                          src={`http://localhost:8080/uploads/${post.images[0].fileName}`}
-                          alt="썸네일"
-                          className="post-thumbnail"
-                      />
-                  ) : (
-                      <div className="post-thumbnail transparent"></div>
-                  )}
-              <div className="post-stats">
-                <span className="post-likes">
-                  <img src={IconHeart} alt="좋아요" className="icon" />
-                  {likeCounts[post.boardId] || 0}
-                </span>
-                <span className="post-comments">
-                  <img src={IconComment} alt="댓글" className="icon" />
-                  {commentCounts[post.boardId] || 0}
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </section>
+        <BottomNav onLogoClick={(type) => setCurrentType(type)} />
       </div>
-      <BottomNav onLogoClick={(type) => setCurrentType(type)} />
-      </div>
+    </div>
   );
 };
 export default BoardList;

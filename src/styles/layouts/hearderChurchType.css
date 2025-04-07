@@ -1,0 +1,30 @@
+/* styles/layouts/church_type.css */
+
+.chuch-header-wrapper {
+    background-color: #fd9956;
+    padding: 10px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: clamp(1.2rem, 1.2rem, 1.2rem);
+    box-sizing: border-box;
+    text-align: left;
+
+  }
+  
+  .chuch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 1.1rem;
+  }
+  
+  .chuch-title {
+    font-weight: bold;
+  }
+  
+  .chuch-menu {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
