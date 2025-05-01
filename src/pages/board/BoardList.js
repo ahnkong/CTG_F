@@ -45,6 +45,7 @@ const BoardList = () => {
         page: pageNumber,
         sort: sortOption === "latest" ? "cDate,desc" : null,
         filterDate: filterDate || undefined,
+        sort: sortOption !== "latest" ? sortOption : "cDate,desc", // ✅ 이 부분 수정!
       };
       const response = await axios.get(
         "http://localhost:8080/api/v1/boards",

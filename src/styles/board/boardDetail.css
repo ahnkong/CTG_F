@@ -19,7 +19,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 95%;
+  width: 100%;
   height: 60px;
   z-index: 20;
   padding: 0 10px;
@@ -28,30 +28,31 @@
   justify-content: space-between;
   background: transparent;
   margin-top: 15px;
+  padding: 7%;
   box-sizing: border-box;
 }
 .header-left-icons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 .board-header .back-icon {
   content: url('assets/icon/ArrowBack.png');
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 .board-header .home-icon {
   content: url('assets/icon/IconHome.png');
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 .board-header .menu-icon {
   content: url('assets/icon/IconMenuDotsVertical.png');
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   margin-right: 5px;
 }
 .carousel-indicators {

@@ -18,13 +18,9 @@ import Tree from "assets/background/background_tree.png"
 import { orange } from "@mui/material/colors";
 const Background = ({ type = "default", children }) => {
   const inlineStyles = {
-    default: {
-      backgroundImage: `url(${Default})`,
-      backgroundSize: "cover", // ✅ 필요하면 "contain"으로 테스트
-      minHeight: "100vh", // ✅ 내부 요소에 맞춰 높이 자동 조정
-    },
-    default_blur: {
-      backgroundImage: `url(${Default_blur})`,
+    white: {
+      // backgroundImage: `url(${White})`,
+      backgroundColor : "#FAFAF8",
       backgroundSize: "cover",
       minHeight: "100vh",
     },
@@ -35,12 +31,6 @@ const Background = ({ type = "default", children }) => {
     },
     coin: {
       backgroundImage: `url(${Coin})`,
-      backgroundSize: "cover",
-      minHeight: "100vh",
-    },
-    white: {
-      backgroundImage: `url(${White})`,
-      // backgroundColor : "#FAFAF8",
       backgroundSize: "cover",
       minHeight: "100vh",
     },
