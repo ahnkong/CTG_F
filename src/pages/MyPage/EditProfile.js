@@ -12,6 +12,7 @@ const fieldNames = {
   tell: "휴대폰 번호",
   email: "이메일 주소",
   birth: "생년월일",
+  churchName: "교회이름",
 };
 
 const EditProfile = () => {

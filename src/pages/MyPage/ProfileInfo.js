@@ -29,6 +29,7 @@ const ProfileInfo = () => {
     name: "",
     tell: "",
     birth: "",
+    churchName: "",
     info: "안녕하세요! 사용자 정보를 불러오는 중입니다.",
     profileImage: "https://via.placeholder.com/150",
     marketing: false, // ✅ 초기값 설정
@@ -92,6 +93,7 @@ const ProfileInfo = () => {
           name: userData.name || "이름이 없음",
           tell: userData.tell || "번호가 없음",
           birth: userData.birth || "생년월일이 없음",
+          churchName: userData.churchName || "교회가 없음",
           profileImage: userData.profileImage || "https://via.placeholder.com/150",
           marketing: userData.marketing || "", // ✅ 초기값 설정
 

@@ -11,25 +11,9 @@ import "styles/MyPage/mypage.css";
 import coin from "assets/image/coin.png";
 import smile from "assets/image/smile.png";
 import pig from "assets/image/pig.png"
-
+import church from "assets/image/imageJesus.png"
 
 import defaultProfile from "assets/image/default-profile-image.png"
-const cardData = [
-  {
-    image: coin,
-    title: "포인트",
-  },
-  {
-    image: smile,
-    title: "개인정보\n수정",  // \n을 사용하여 줄바꿈
-
-  },
-  {
-    image: pig,
-    title: "기프티콘\n보관함",
-
-  },
-];
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -40,6 +24,7 @@ const MyPage = () => {
     email: "",
     info: "안녕하세요! 자기소개를 해주세요",
     profileImage: defaultProfile,
+    churchName : "",
   });
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false); // 비밀번호 확인 모달 상ㅌ
@@ -52,7 +37,23 @@ const MyPage = () => {
   const [imageRefreshKey, setImageRefreshKey] = useState(0); // 🔁 이미지 강제 새로고침을 위한 키 +3.21
   
 
-
+  const cardData = [
+    {
+      image: church,
+      title: userData.churchName,
+    },
+    {
+      image: smile,
+      title: "개인정보\n수정",  // \n을 사용하여 줄바꿈
+  
+    },
+    {
+      image: pig,
+      title: "기프티콘\n보관함",
+  
+    },
+  ];
+  
 
   //+안코코 
   // 3.21 로그인후 localstroage에서 token과 userId가 없어 
@@ -113,6 +114,7 @@ const MyPage = () => {
             marketing: userData.marketing === 1,
             point : userData.point,
             password: "", 
+            churchName: userData.churchName || "교회가 없음",
           });
           
           setLoading(false); // 로딩 상태 해제
@@ -361,7 +363,7 @@ const MyPage = () => {
     
     
     const handleNavigate = () => {
-      navigate("/ActiveLog");
+      navigate("/MyBoardList");
     };
     
     if (!userId) return <div>로그인이 필요합니다.</div>;
@@ -469,7 +471,7 @@ const MyPage = () => {
 
           {/* 쿠폰함 */}
          <section className="mypage-gifticon-section">
-           <h2 className="mypage-gifticon-title">포인트 사용 내역</h2>
+           {/* <h2 className="mypage-gifticon-title">포인트 사용 내역</h2>
               <div className="mypage-gifticon-item" onClick={() => handleNavigate("내가 쓴 글")}>
              <span>💴 쿠폰함</span>
              <span className="mypage-gifticon-arrow">›</span>
@@ -477,7 +479,7 @@ const MyPage = () => {
            <div className="mypage-gifticon-item" onClick={() => handleNavigate("내가 쓴 댓글")}>
              <span>🔎 포인트 사용 로그</span>
              <span className="mypage-gifticon-arrow">›</span>
-           </div>
+           </div> */}
            <h2 className="mypage-gifticon-title"> 활동 </h2>
            <div className="mypage-gifticon-item" onClick={handleLogout}>
              <span>🧤 로그아웃</span>

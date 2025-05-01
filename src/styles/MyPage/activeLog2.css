@@ -5,7 +5,8 @@
 
 .activeLog-backbutton{
   position: absolute;
-  top : 7vh;
+  top : 9vh;
+  left: 0vw;
 
 }
 /* 헤더 (제목) */
