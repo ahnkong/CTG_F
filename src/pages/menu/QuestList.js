@@ -28,7 +28,7 @@ const imageMap = {
 const QuestList = () => {
     const [quests, setQuests] = useState([]);
     const navigate = useNavigate();
-    const userData = JSON.parse(localStorage.getItem("user")); // user = { userId: "ahncoco", ... }
+    const userData = JSON.parse(localStorage.getItem("user")); 
     const userId = userData?.userId;
 
     // ✅ 퀘스트 목록 불러오기 (userId 포함)

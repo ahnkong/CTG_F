@@ -1,11 +1,10 @@
-/* styles/layouts/church_type.css */
 
 .chuch-header-wrapper {
+    position: relative;
     background-color: #fd9956;
-    padding: 10px 20px;
-    max-width: 500px;
+    padding: 10px 40px;
+    max-width: 600px;
     margin: 0 auto;
-    font-size: clamp(1.2rem, 1.2rem, 1.2rem);
     box-sizing: border-box;
     text-align: left;
 
@@ -16,15 +15,48 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .chuch-title {
     font-weight: bold;
   }
   
-  .chuch-menu {
-    font-size: 1.5rem;
+  /* 아이콘을 감싸는 부모 (오른쪽 정렬) */
+  .chuch-icons {
+    display: flex;
+    gap: 20px; /* 아이콘 간격 */
+    align-items: center;
+  }
+  
+  /* 공통 아이콘 버튼 스타일 */
+  .icon-button {
+    width: 22px;
+    height: 22px;
     cursor: pointer;
+    filter: brightness(0) invert(1); /* 흰색처럼 보이게 */
+
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 0.8rem; /* ✅ 여기서 최소 크기 보장 */
+    z-index: 1000;
+  }
+  
+  .dropdown-menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.8rem; /* ✅ 부모의 font-size 상속 */
+    padding: 4px 0;
+    color: #333;
   }
   

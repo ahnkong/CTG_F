@@ -1,483 +1,211 @@
-#board-form-wrapper{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(assets/background/blur_ver1.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.board-form-container {
-    width: 90%;
-    max-width: 400px;
+#board-form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    padding: 2%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  .board-form-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4% 5%;
-    position: relative; /* 가상 요소를 위한 위치 설정 */
-}
-
-.board-form-container::after {
-    content: ""; /* 가상 요소 */
+    width: 100%;
+    padding-bottom: 16px;
+    position: relative;
+  }
+  
+  .board-form-container::after {
+    content: "";
     position: absolute;
-    bottom: 0; /* 컨테이너의 아래쪽에 위치 */
-    left: 0; /* 왼쪽 시작 */
-    width: 100%; /* 보더의 가로 길이 */
-    height: 0.5px; /* 보더 두께 */
-    background-color: rgba(114, 112, 112, 0.23); /* 보더 색상과 투명도 */
-}
-
-.board-form-cross-btn {
-    width: 5%;
-    max-width: 22px;
-    height: auto;
-    aspect-ratio: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(114, 112, 112, 0.23);
+  }
+  
+  .board-form-cross-btn {
+    width: 22px;
+    height: 22px;
     background-image: url(assets/image/cross.png);
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-}
-
-.board-form-name {
+  }
+  
+  .board-form-name {
     font-size: 1.2rem;
     font-weight: bold;
-}
-
-.board-form-submit-btn {
+  }
+  
+  .board-form-submit-btn {
     font-size: 1rem;
     cursor: pointer;
-    color: #000000;
-}
-
-/* 게시판 선택 */
-.board-form-type {
-    margin: 2% 0;
-    padding: 0 5%;
+    color: #000;
+  }
+  
+  .board-form-type {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative; /* 가상 요소를 위한 위치 설정 */
-}
-
-.board-form-type::after {
-    content: ""; /* 가상 요소 */
+    position: relative;
+  }
+  
+  .board-form-type::after {
+    content: "";
     position: absolute;
-    bottom: -6px; /* 컨테이너의 아래쪽에 위치 */
-    left: 5%; /* 왼쪽 시작 */
-    width: 90%; /* 보더의 가로 길이 */
-    height: 0.5px; /* 보더 두께 */
-    background-color: rgba(114, 112, 112, 0.23); /* 보더 색상과 투명도 */
-}
-
-.board-form-type-select {
-    font-size: 17px;
-    width: 50%;
-    margin-left: 2%;
-}
-
-.board-form-type-container {
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(114, 112, 112, 0.23);
+  }
+  
+  .board-form-type-select {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .board-form-type-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 40%;
-    height: 45%;
-    max-height: 35px;
-    background-color: #D9D9D9;
-    border-radius: 1000px;
-    padding: 0.5%; /* 간격 조정 */
-    margin-right: 2%;
-}
-
-.type-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48%;
-    height: 80%;
-    background-color: #D9D9D9;
+    background-color: #eee;
+    border-radius: 30px;
+    padding: 5px;
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .type-btn {
+    flex: 1;
+    padding: 12px 0;
+    background-color: transparent;
     border: none;
-    border-radius: 1000px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
     cursor: pointer;
-    transition: all 0.3s;
-}
-  
-.type-btn.active {
-    background-color: #FFFFFF; /* 활성화된 버튼의 색상 */
-    color: #000000;
-}
-  
-.type-icon-positive {
-    width: 20%; /* 아이콘 크기 */
-    max-width: 23px;
-    height: auto;
-    aspect-ratio: 1;
-    margin-right: 5px; /* 텍스트와의 간격 */
-    background-image: url(assets/image/happy.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-size: 16px;
-}
-  
-.type-icon-negative {
-    width: 20%; /* 아이콘 크기 */
-    max-width: 23px;
-    height: auto;
-    aspect-ratio: 1;
-    margin-right: 5px; /* 텍스트와의 간격 */
-    background-image: url(assets/image/sad.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-size: 16px;
-}
-
-/* 제목 입력 */
-.board-form-title input {
-    width: 100%;
-    background-color: transparent; /* 배경 투명 */
-    border: none; /* 테두리 제거 */
-    color: #303030; /* 폰트 색상 */
-    font-size: 1.1rem; /* 폰트 크기 */
-    padding: 1% 2%;
-    outline: none; /* 포커스 시 기본 테두리 제거 */
-}
-
-/* 포커스 및 활성화 상태의 스타일 제거 */
-.board-form-title input:focus,
-.board-form-title input:active {
-    box-shadow: none; /* 포커스 시 박스 그림자 제거 */
-}
-
-.board-form-title {
-    margin: 2% 0;
-    width: 100%;
-    position: relative; /* 가상 요소를 위한 위치 설정 */
-}
-
-.board-form-title::after {
-    content: ""; /* 가상 요소 */
-    position: absolute;
-    bottom: -1%; /* 컨테이너의 아래쪽에 위치 */
-    left: 5%; /* 왼쪽 시작 */
-    width: 90%; /* 보더의 가로 길이 */
-    height: 0.5px; /* 보더 두께 */
-    background-color: rgba(114, 112, 112, 0.23); /* 보더 색상과 투명도 */
-}
-
-/* 콘텐츠 입력 */
-.board-form-content textarea {
-    width: 100%;
-    min-height: 450px;
-    max-height: 450px;
-    background-color: transparent; /* 배경 투명 */
-    border: none; /* 테두리 제거 */
-    color: #303030; /* 폰트 색상 */
-    font-size: 1.1rem; /* 폰트 크기 */
-    padding: 1% 2%;
-    outline: none; /* 포커스 시 기본 테두리 제거 */
-    /* resize: vertical; */
-}
-
-/* 포커스 및 활성화 상태의 스타일 제거 */
-.board-form-content textarea:focus,
-.board-form-content textarea:active {
-    box-shadow: none; /* 포커스 시 박스 그림자 제거 */
-}
-
-.board-form-content {
-    margin: 2% 0;
-    width: 100%;
-    position: relative; /* 가상 요소를 위한 위치 설정 */
-}
-
-.board-form-content::after {
-    content: ""; /* 가상 요소 */
-    position: absolute;
-    bottom: -1%; /* 컨테이너의 아래쪽에 위치 */
-    left: 5%; /* 왼쪽 시작 */
-    width: 90%; /* 보더의 가로 길이 */
-    height: 0.5px; /* 보더 두께 */
-    background-color: rgba(114, 112, 112, 0.23); /* 보더 색상과 투명도 */
-}
-
-.board-form-actions {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.action-container {
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .type-btn.active {
+    background-color: #ffd6a0;
+    color: #333;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .type-icon-positive,
+  .type-icon-negative {
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .type-icon-positive {
+    background-image: url(assets/image/happy.png);
+  }
+  
+  .type-icon-negative {
+    background-image: url(assets/image/sad.png);
+  }
+  
+  .board-form-title {
+    width: 100%;
+    margin: 24px 0;
+    position: relative;
+  }
+  
+  .board-form-title::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(114, 112, 112, 0.23);
+  }
+  
+  .board-form-title input {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: #303030;
+    outline: none;
+  }
+  
+  .board-form-content {
+    width: 100%;
+    margin: 24px 0;
+    position: relative;
+  }
+  
+  .board-form-content::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(114, 112, 112, 0.23);
+  }
+  
+  .board-form-content textarea {
+    width: 100%;
+    min-height: 400px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: #303030;
+    padding: 12px;
+    outline: none;
+    resize: vertical;
+  }
+  
+  .board-form-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 30px;
+    padding-left: 2%;
+  }
+  
+  .action-container {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
-}
-
-.image-icon,
-.tag-icon {
-    width: 26px;
-    height: 26px;
+  }
+  
+  .image-icon,
+  .tag-icon {
+    width: 22px;
+    height: 22px;
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.image-icon {
+  }
+  
+  .image-icon {
     background-image: url(assets/image/picture.png);
-}
-
-.tag-icon {
+  }
+  
+  .tag-icon {
     background-image: url(assets/image/hastag.png);
-}
-
-.action-text {
-    font-size: 17px; /* 텍스트 크기 */
-    color: #757575; /* 색상 변경 */
-    font-weight: 500; /* 텍스트 두께 */
-}
-
-.tag-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    background-color: transparent;
-    border-radius: 15px;
-    padding: 5px 10px;
-    margin-bottom: 20px;
-}
+  }
   
-.tag {
-    background-color: #EAEAEA; /* 랙탱글 배경색 */
-    border-radius: 15px; /* 라운드 처리 */
-    width: 72px; /* 고정 너비 */
-    height: 33px; /* 고정 높이 */
-    display: flex;
-    justify-content: center; /* 가운데 정렬 */
-    align-items: center;
-    color: #757575; /* 태그 텍스트 색상 */
-    font-size: 14px;
+  .action-text {
+    font-size: 1rem;
+    color: #757575;
     font-weight: 500;
-    position: relative; /* 삭제 버튼 위치 조정 */
-    padding-left: 2%;
-}
-
-.tag-delete {
-    width: 5px;
-    height: 5px;
-    background-image: url(assets/image/small-cross.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    background-color: transparent; /* 주황색 배경 제거 */
-    border: none;
-    margin-left: 6%;
-}
-
-.tag-error {
-    color: red;
-    font-size: 0.8rem;
-    padding-left: 10px; /* 입력창과의 간격 */
-    position: absolute; /* 아래 위치 고정 */
-    top: 70%; /* 인풋 아래 */
-    left: 2%; /* 왼쪽 정렬 */
-}
-
-.tag-input-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    padding: 5px 10px;
-    background-color: transparent; /* 배경 투명 */
-    border-radius: 15px;
-    position: relative; /* 에러 메시지 정렬을 위한 기준 */
-}
-
-.tag-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* 입력창과 버튼 간격 */
-    width: 100%;
-}
-
-.tag-input-section input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    background-color: transparent; /* 입력창 배경 투명 */
-    line-height: 1.5; /* 입력창 내 텍스트 정렬 */
-    margin: 0;
-}
-
-.tag-input-section button {
-    background: transparent; /* 입력 버튼 배경 투명 */
-    border: none;
-    color: #757575; /* 버튼 텍스트11                                                                                                         색상 */
-    font-size: 14px;
-    cursor: pointer;
-    padding: 5px 8px; /* 버튼 내부 여백 맞춤 */
-    height: 40px;
-    box-shadow: none; /* 그림자 제거 */
-    display: flex; /* 버튼 내용 정렬 */
-    align-items: center; /* 수직 정렬 */
-    justify-content: center; /* 수평 정렬 */
-}
-
-/* 태그 입력창 포커스 및 활성화 상태 스타일 제거 */
-.tag-input-section input:focus,
-.tag-input-section input:active {
-    outline: none; /* 기본 outline 제거 */
-    box-shadow: none; /* 박스 그림자 제거 */
-}
-
-/* 입력 버튼 포커스 및 활성화 상태 스타일 제거 */
-.tag-input-section button:focus,
-.tag-input-section button:active {
-    background: transparent; /* 포커스 시 배경 제거 */
-    box-shadow: none; /* 포커스 시 그림자 제거 */
-    outline: none; /* 포커스 테두리 제거 */
-}
-
-/* 사진 미리보기 */
-.image-previews {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    margin-top: 1rem;
-    justify-content: flex-start;
-}
-
-/* 미리보기 전체 컨테이너 */
-.image-preview-container {
-    position: relative;
-    display: inline-flex; /* 미리보기와 삭제 버튼을 나란히 배치 */
-    align-items: center; /* 삭제 버튼 정렬 */
-    margin: 5px; /* 미리보기 간격 */
-}
+  }
   
-.image-preview {
-    width: 76px;
-    height: 76px;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-}
-
-.image-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 삭제 버튼 */
-.image-delete {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 21px;
-    height: 21px;
-    background-color: rgba(0, 0, 0, 0.6); /* 검정 반투명 배경 */
-    border-radius: 50%; /* 동그라미 모양 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 2; /* 삭제 버튼이 항상 위에 표시되도록 */
-}
-  
-/* 휴지통 아이콘 */
-.image-delete::before {
-    content: "";
-    width: 12px; /* 휴지통 아이콘 크기 */
-    height: 12px;
-    background-image: url(assets/image/trash.png); /* 휴지통 아이콘 경로 */
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.board-form-modal {
-    position: fixed; /* 화면 전체에 위치 */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(117, 117, 117, 0.70); /* 어두운 반투명 배경 */
-    display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    z-index: 1000; /* 다른 요소 위로 */
-}
-  
-.board-form-modal-content {
-    background-color: #fff; /* 흰색 배경 */
-    padding: 20px;
-    border-radius: 10px; /* 모서리 둥글게 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 약간의 그림자 */
-    width: 90%;
-    max-width: 250px; /* 최대 너비 제한 */
-    max-height: 200px;
-    text-align: center;
-}
-
-.board-form-modal-content h3 {
-    color: #303030;
-    margin-bottom: 10px;
-}
-
-.board-form-modal-content p {
-    color: #b2b2b2;
-    font-size: 0.82rem;
-    margin-bottom: 20px;
-}
-
-.board-form-modal-content span {
-    font-size: 0.6rem;
-}
-
-.board-form-modal-actions {
-    display: flex;
-    flex-direction: column; /* 버튼 위아래 정렬 */
-}
-  
-.board-form-modal-btn-confirm {
-    background: none;
-    border: none;
-    color: #4EBBFF; /* "임시 저장" 버튼 폰트 색상 */
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0; /* 버튼 사이 구분선 */
-}
-  
-.board-form-modal-btn-cancel {
-    background: none;
-    border: none;
-    color: #ff5c5c; /* "삭제" 버튼 폰트 색상 */
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px 0;
-}
-
-/* 포커스 및 클릭 시 배경 제거 */
-.board-form-modal-btn-confirm:focus,
-.board-form-modal-btn-confirm:active,
-.board-form-modal-btn-cancel:focus,
-.board-form-modal-btn-cancel:active {
-  background: none; /* 배경색 제거 */
-  outline: none; /* 테두리 제거 */
-  box-shadow: none; /* 그림자 제거 */
-}
 
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {

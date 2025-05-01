@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import "../../styles/board/boardForm.css";
-
+import "styles/board/boardForm.css";
+import Background from "context/Background";
+import Page from "components/styles/Page";
 const BoardForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -190,6 +191,8 @@ const handleModalConfirm = async () => {
   };
 
   return (
+    <Background type="white">
+    <Page className="login-page" scrollable={true} >
     <div id="board-form-wrapper">
       <div className="board-form-container">
         <div className="board-form-cross-btn" onClick={() => setShowModal(true)} />
@@ -198,21 +201,21 @@ const handleModalConfirm = async () => {
       </div>
 
       <div className="board-form-type">
-        <div className="board-form-type-select">게시판을 선택해주세요</div>
+        <div className="board-form-type-select"></div>
         <div className="board-form-type-container">
           <button
             className={`type-btn ${type === "POSITIVE" ? "active" : ""}`}
             onClick={() => setType("POSITIVE")}
           >
             <div className="type-icon-positive"></div>
-            긍정
+            일반
           </button>
           <button
             className={`type-btn ${type === "NEGATIVE" ? "active" : ""}`}
             onClick={() => setType("NEGATIVE")}
           >
             <div className="type-icon-negative"></div>
-            부정
+            공지
           </button>
         </div>
       </div>
@@ -236,7 +239,7 @@ const handleModalConfirm = async () => {
             ))}
         </div>
         <textarea
-          placeholder="회원들과 마음을 나눠보세요"
+          placeholder="본문 내용을 입력하세요"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
@@ -310,6 +313,8 @@ const handleModalConfirm = async () => {
          </div>
       )}
     </div>
+    </Page>
+    </Background>
   );
 };
 
