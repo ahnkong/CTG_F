@@ -16,18 +16,18 @@ import people from "assets/image/people.png"; // 하단 이미지
 import bible from "assets/image/imageBible.png";
 import sheep from "assets/image/imageSheep.png"
 const cardData = [
-  {
-    image: money,
-    title: "퀘스트",
-    description: "오늘의 퀘스트\n 목록을 확인해\n 주세요!",
-    url : "/questList",
-  },
-  {
-    image: note,
-    title: "심리테스트",
-    description: "자신에 대해서\n알아봅시다.",
-    url : "/questPage",
-  },
+  // {
+  //   image: money,
+  //   title: "퀘스트",
+  //   description: "오늘의 퀘스트\n 목록을 확인해\n 주세요!",
+  //   url : "/questList",
+  // },
+  // {
+  //   image: note,
+  //   title: "심리테스트",
+  //   description: "자신에 대해서\n알아봅시다.",
+  //   url : "/questPage",
+  // },
   // {
   //   image: cart,
   //   title: "쇼핑",

@@ -19,12 +19,15 @@ const BoardDetail = () => {
     const [activeMenu, setActiveMenu] = useState(null);
     const [editMode, setEditMode] = useState(null);
     const [editText, setEditText] = useState({});
+    const [submittingReply, setSubmittingReply] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const navigate = useNavigate();
 
 
     // Redux에서 userId 가져오기
     const userId = useSelector((state) => state.auth.userId);
+    console.log("현재 로그인 유저 ID:", userId);
 
     useEffect(() => {
         fetchBoardDetail();
@@ -44,6 +47,7 @@ const BoardDetail = () => {
             console.error("게시글 상세 정보 가져오기 실패", error);
         }
     };
+    
 
     // 댓글 목록 가져오기
     const fetchComments = async () => {
@@ -67,6 +71,7 @@ const BoardDetail = () => {
                             };
                         })
                     );
+                    console.log("서버에서 받은 대댓글:", comment.reComments);
 
                     return {
                         ...comment,
@@ -252,8 +257,28 @@ const BoardDetail = () => {
     };
 
 
+    // const handleCommentSubmit = async () => {
+    //     if (!commentText.trim()) return;
+    //     try {
+    //         await axios.post(`/api/v1/comments`, {
+    //             boardId,
+    //             userId,
+    //             content: commentText
+    //         });
+    //         setCommentText("");
+    //         fetchComments();
+    //     } catch (error) {
+    //         console.error("댓글 등록 실패", error);
+    //     }
+    // };
+
+
+    let isSubmitting = false;
+
     const handleCommentSubmit = async () => {
-        if (!commentText.trim()) return;
+        if (!commentText.trim() || isSubmitting) return;
+
+        isSubmitting = true; // 🔐 중복 방지
         try {
             await axios.post(`/api/v1/comments`, {
                 boardId,
@@ -264,27 +289,61 @@ const BoardDetail = () => {
             fetchComments();
         } catch (error) {
             console.error("댓글 등록 실패", error);
+        } finally {
+            isSubmitting = false;
         }
     };
+
+    // const handleReplySubmit = async (commentId) => {
+    //     if (!replyText[commentId]?.trim()) return; // 입력값이 비어있으면 실행 안 함.
+
+    //     try {
+    //         const response = await axios.post(`/api/v1/recomments`, {
+    //             commentId,  // 원 댓글 ID (대댓글의 부모)
+    //             userId,
+    //             content: replyText[commentId]
+    //         });
+
+    //         console.log("대댓글 등록 성공:", response.data);
+
+    //         setReplyText((prev) => ({ ...prev, [commentId]: "" })); // 입력창 초기화
+    //         fetchComments(); // 댓글 목록 다시 불러오기
+    //     } catch (error) {
+    //         console.error("대댓글 등록 실패", error);
+    //     }
+    // };
 
     const handleReplySubmit = async (commentId) => {
-        if (!replyText[commentId]?.trim()) return; // 입력값이 비어있으면 실행 안 함.
+        if (!replyText[commentId]?.trim() || submittingReply) return; // ✅ 중복 방지
 
+        setSubmittingReply(true);
         try {
             const response = await axios.post(`/api/v1/recomments`, {
-                commentId,  // 원 댓글 ID (대댓글의 부모)
-                userId,
-                content: replyText[commentId]
+              commentId,
+              userId,
+              content: replyText[commentId]
             });
-
-            console.log("대댓글 등록 성공:", response.data);
-
-            setReplyText((prev) => ({ ...prev, [commentId]: "" })); // 입력창 초기화
-            fetchComments(); // 댓글 목록 다시 불러오기
-        } catch (error) {
+        
+            const newReComment = response.data;
+        
+            setComments(prevComments =>
+              prevComments.map(comment =>
+                comment.commentId === commentId
+                  ? {
+                      ...comment,
+                      reComments: [...comment.reComments, newReComment]
+                    }
+                  : comment
+              )
+            );
+        
+            setReplyText((prev) => ({ ...prev, [commentId]: "" }));
+          } catch (error) {
             console.error("대댓글 등록 실패", error);
-        }
-    };
+          } finally {
+            setSubmittingReply(false);
+          }
+        };
 
     const handleMenuToggle = (commentId) => {
         setActiveMenu((prev) => (prev === commentId ? null : commentId));
@@ -346,6 +405,7 @@ const BoardDetail = () => {
                             ))}
                         </div>
                     )}
+                    
                     <h1 className="Detail-logo-text-wrapper">
                         <span className="logo-text static">ctg</span>
                         <span className={`logo-text dynamic ${board.type.toLowerCase()}`}>
@@ -432,26 +492,7 @@ const BoardDetail = () => {
                                         <span className="comment-nickname">{comment.userNickname}</span>
                                         <span className="comment-time">{formatDate(comment.coCDate)}</span>
 
-                                        <div className="comment-actions">
-                                            {/* 좋아요 버튼 */}
-                                            <button className={`comment-like-button ${comment.liked ? "liked" : ""}`} onClick={() => toggleCommentLike(comment.commentId)} />
-                                            <span className="like-count-text">{comment.likeCount === 0 ? "좋아요" : comment.likeCount}</span>
 
-                                            {/* 댓글 버튼 (대댓글 입력 토글) */}
-                                            <button
-                                                className="reply-button"
-                                                onClick={() => setReplyText((prev) =>
-                                                    prev[comment.commentId] !== undefined
-                                                        ? Object.fromEntries(Object.entries(prev).filter(([key]) => key !== String(comment.commentId)))
-                                                        : { ...prev, [comment.commentId]: "" }
-                                                )}
-                                            >
-                                                <span className="reply-icon" />
-                                            </button>
-                                            <span className="reply-count-text">
-                                                {comment.reComments.length > 0 ? comment.reComments.length : "댓글 달기"}
-                                            </span>
-                                        </div>
                                     </div>
 
                                     {/* 🔹 오른쪽 (메뉴 버튼) */}
@@ -486,7 +527,29 @@ const BoardDetail = () => {
                                     </p>
                                 )}
 
+                                <div className="comment-actions">
+                                    {/* 좋아요 버튼 */}
+                                    <button className={`comment-like-button ${comment.liked ? "liked" : ""}`} onClick={() => toggleCommentLike(comment.commentId)} />
+                                    <span className="like-count-text">{comment.likeCount === 0 ? "좋아요" : comment.likeCount}</span>
+
+                                    {/* 댓글 버튼 (대댓글 입력 토글) */}
+                                    <button
+                                        className="reply-button"
+                                        onClick={() => setReplyText((prev) =>
+                                            prev[comment.commentId] !== undefined
+                                                ? Object.fromEntries(Object.entries(prev).filter(([key]) => key !== String(comment.commentId)))
+                                                : { ...prev, [comment.commentId]: "" }
+                                        )}
+                                    >
+                                        <span className="reply-icon" />
+                                    </button>
+                                    <span className="reply-count-text">
+                                        {comment.reComments.length > 0 ? comment.reComments.length : "댓글 달기"}
+                                    </span>
+                                </div>
+
                                 {/* ✅ 대댓글 입력창 (토글) */}
+                                <div className="reply-input-section">
                                 {replyText[comment.commentId] !== undefined && (
                                     <div className="reply-input">
                                         <input
@@ -501,9 +564,10 @@ const BoardDetail = () => {
                                             }}
                                             placeholder="답글을 입력하세요..."
                                         />
-                                        <button onClick={() => handleReplySubmit(comment.commentId)}>등록</button>
+                                        <button className="recomment-input" onClick={() => handleReplySubmit(comment.commentId)}>등록</button>
                                     </div>
                                 )}
+                                </div>
 
                                 {/* 🔹 대댓글 목록 */}
                                 {comment.reComments && comment.reComments.length > 0 && (
@@ -512,8 +576,10 @@ const BoardDetail = () => {
                                             <div key={reComment.reCommentId} className="recomment">
                                                 <div className="comment-user">
                                                     <img src={reComment.userProfileImage || IMAGES.DEFAULT_PROFILE} alt="Profile" className="comment-profile-img" />
-                                                    <span className="comment-nickname">{reComment.userNickname}</span>
+                                                    <div className="nickname-time-wrapper">
+                                                      <span className="comment-nickname">{reComment.userNickname}</span>
                                                     <span className="comment-time">{formatDate(reComment.reCDate)}</span>
+                                                    </div>
                                                 </div>
                                                 <p className="comment-content">{reComment.content}</p>
 

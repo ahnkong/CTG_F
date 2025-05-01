@@ -31,11 +31,11 @@ import ProfileInfo from 'pages/MyPage/ProfileInfo';
 import EditProfile from 'pages/MyPage/EditProfile';
 import PointMarket from 'pages/pointMarket/PointMarket';
 import ProductDetail from 'pages/pointMarket/ProductDetail';
-
+import MyBoardList from 'pages/MyPage/MyBoardList';
 
 import BottomNav from 'layouts/BottomNav';
 import CheckPassword from 'components/mypage/CheckPassword';
-import ActiveLog from 'pages/MyPage/ActiveLog';
+// import ActiveLog from 'pages/MyPage/ActiveLog';
 import PointLog from 'pages/MyPage/PointLog'
 
 import InitPage from 'pages/login/InitPage';
@@ -94,6 +94,9 @@ function App() {
             <Route path="/LoadingToMain" element={<LoadingToMain />} />
             <Route path="/ProfileInfo" element={<ProfileInfo />} />
             <Route path="/EditProfile" element={<EditProfile />} />
+
+
+            <Route path="/MyBoardList" element={<MyBoardList />} />
             {/* <Route path="/my-posts" element={<MyPosts/>}/> */}
             {/* <Route path="/my-comments" element={<MyComments/>}/> */}
             {/* 기본 경로 */}
@@ -107,7 +110,7 @@ function App() {
             <Route path="/PointMarket" element={<PointMarket />} />
             <Route path="/check-password" element={<CheckPassword />} />
             <Route path="/edit-profile/:field" element={<EditProfile />} />
-            <Route path="/ActiveLog" element={<ActiveLog />} />
+            {/* <Route path="/ActiveLog" element={<ActiveLog />} /> */}
             <Route path="/PointLog" element={<PointLog />} />
             <Route path="/PointMarket" element={<PointMarket />} />
             <Route path="/pointMarket/product/:id" element={<ProductDetail />} /> {/* 상세 페이지 추가 */}
