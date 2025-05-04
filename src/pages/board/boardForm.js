@@ -195,7 +195,8 @@ const handleModalConfirm = async () => {
     <Page className="login-page" scrollable={true} >
     <div id="board-form-wrapper">
       <div className="board-form-container">
-        <div className="board-form-cross-btn" onClick={() => setShowModal(true)} />
+        {/* <div className="board-form-cross-btn" onClick={() => setShowModal(true)} /> */}
+        <div className="board-form-cross-btn" onClick={() => navigate(-1)} />
         <div className="board-form-name">{id ? "게시글 수정" : "글 올리기"}</div>
         <div className="board-form-submit-btn" onClick={handleSubmit}>등록</div>
       </div>
@@ -241,8 +242,8 @@ const handleModalConfirm = async () => {
         <textarea
           placeholder="본문 내용을 입력하세요"
           value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
+          onChange={(e) => setContent(e.target.value)}>
+        </textarea>
         <div className="image-previews">
         {imagePreviews.map((preview, index) => (
             <div key={index} className="image-preview-container">
@@ -250,7 +251,6 @@ const handleModalConfirm = async () => {
             <div className="image-preview">
                 <img src={preview} alt={`Preview ${index}`} />
             </div>
-
             {/* 삭제 아이콘 */}
             <div
                 className="image-delete"
@@ -276,8 +276,8 @@ const handleModalConfirm = async () => {
           </div>
         )}
       </div>
-
-      <div className="board-form-actions">
+      {/* 🔽 푸터 고정 버튼 영역 */}
+      <div className="board-form-footer">
         <div className="action-container" onClick={() => document.getElementById("file-input").click()}>
           <div className="image-icon"></div>
           <span className="action-text">사진</span>
@@ -286,15 +286,16 @@ const handleModalConfirm = async () => {
           <div className="tag-icon"></div>
           <span className="action-text">태그</span>
         </div>
-      </div>
 
-      <input
-        id="file-input"
-        type="file"
-        multiple
-        style={{ display: "none" }}
-        onChange={handleImageUpload}
-      />
+        {/* 숨겨진 이미지 업로드 input */}
+        <input
+          id="file-input"
+          type="file"
+          multiple
+          style={{ display: "none" }}
+          onChange={handleImageUpload}
+        />
+      </div>
 
       {showModal && (
          <div className="board-form-modal">

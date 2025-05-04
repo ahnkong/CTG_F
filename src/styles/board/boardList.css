@@ -209,14 +209,14 @@
   background-color: transparent; /* 배경 투명 */
   border-radius: 0; /* 모서리 반경 제거 */
   box-shadow: none; /* 그림자 제거 */
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 0.5px solid rgba(114, 112, 112, 0.23); /* 아래쪽에만 얇은 선 */
   display: grid;
   grid-template-columns: 1fr 100px; /* 왼쪽은 유동, 오른쪽은 고정 크기 */
   align-items: center;
   margin: 0;
-  max-width: 90%;
-  margin-left: 20px;
+  max-width: 100%;
+  margin-left: 25px;
 }
 
 /* 게시글 목록 스크롤 시 스크롤바 숨기기 */
@@ -322,3 +322,5 @@
   width: 14px;
   height: 14px;
 }
+
+

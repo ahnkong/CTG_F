@@ -23,6 +23,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    localStorage.removeItem("persist:root"); // ✅ Redux persist 저장값 초기화
     setInProp(false); // 로그인 시 애니메이션 종료
  
 
@@ -35,8 +36,35 @@ const LoginPage = () => {
           { withCredentials: true }
         );
         if (response.data.token) {
+          console.log("✅ 로그인 성공, 받아온 데이터:", response.data); // 👈 콘솔로 확인해보기
+
+          // ✅ 이전 로그인 정보 초기화
+          localStorage.removeItem("persist:root");
+          localStorage.removeItem("user");
+          console.log("🧹 삭제 후 localStorage 상태:");
+          console.log("persist:root →", localStorage.getItem("persist:root"));
+          console.log("user →", localStorage.getItem("user"));
+
+
+          // ✅ 새 로그인 정보 저장
           localStorage.setItem("token", response.data.token);
-          dispatch({ type: "SET_USER_ID", payload: response.data.userId });
+          localStorage.setItem("userId", response.data.userId); // ✅ userId도 저장
+          localStorage.setItem("nickname", response.data.nickname || ""); // 선택사항
+
+          console.log("💾 저장 후 localStorage 상태:");
+          console.log("token →", localStorage.getItem("token"));
+          console.log("userId →", localStorage.getItem("userId"));
+          console.log("nickname →", localStorage.getItem("nickname"));
+
+          // ✅ Redux 상태도 업데이트
+          dispatch({ 
+            type: "SET_USER_ID", 
+            payload: {
+              userId: response.data.userId,
+              nickname: response.data.nickname,
+              token: response.data.token,
+              }
+          });
           navigate("/Menu");
         } else {
           alert("로그인 실패");

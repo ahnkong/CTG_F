@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Page from "components/styles/Page";
 import Background from "context/Background.jsx";
@@ -7,6 +7,7 @@ import IconPen from "assets/icon/IconPen.png"
 import "styles/menu/menu.css"; // Menu 전용 스타일
 // import "styles/page.css"; // 공통 스타일
 import Hearder_ChuchType from "layouts/Hearder_ChurchType";
+import CloseIcon from "assets/icon/IconClose.png"; // 닫기 아이콘
 
 /* 이미지 import */
 import money from "assets/image/money.png";
@@ -44,7 +45,7 @@ const cardData = [
     image: notice,
     title: "교회 공지",
     description: "교회 공지를\n확인하세요~!",
-    url : "/bibleStudy",
+    url : "/boardNotice",
   },
   {
     image: sheep,
@@ -55,16 +56,23 @@ const cardData = [
 ];
 
 const Menu = () => {
+  const [showModal, setShowModal] = useState(false); // 모달 상태 추가
   const navigate = useNavigate(); // ✅ 네비게이션 함수 사용
 
   const handleCardClick = (url) => {
     navigate(url); // ✅ 해당 URL로 이동
   };
 
+  const handleWriteClick = (type) => {
+    navigate(`/create?type=${type}`);
+    setShowModal(false); // 모달 닫기
+  };
+
+
   return (
     <Background type="white">
       <Hearder_ChuchType />
-        <Page id="menuPage" className="menuPage" scrollable={false}>
+        <Page id="menuPage" className="menuPage" scrollable={true}>
           <section className="menu-church-section">
             <div className="menu-church-img"><img src={churchImage} alt="교회 대표 이미지"/></div>
           </section>
@@ -89,6 +97,33 @@ const Menu = () => {
             <img src={sheep} alt="sheep" />
           </section> */}
         </Page>
+
+        {/* 플로팅 글쓰기 버튼 */}
+        {/* <button className="floating-write-btn" onClick={() => navigate("/create")}>
+          <img src={IconPen} alt="글쓰기" />
+        </button> */}
+          {/* 플로팅 버튼 */}
+          <button
+            className="floating-write-btn"
+            onClick={() => setShowModal(!showModal)}
+          >
+            <img
+              src={showModal ? CloseIcon : IconPen}
+              alt={showModal ? "닫기" : "글쓰기"}
+            />
+          </button>
+
+          {/* 모달 */}
+          {showModal && (
+            <div className="write-modal-overlay" onClick={() => setShowModal(false)}>
+              <div className="write-modal" onClick={(e) => e.stopPropagation()}>
+                {/* <h3>글쓰기 종류 선택</h3> */}
+                <button onClick={() => handleWriteClick("board")}>게시판 글쓰기</button>
+                <button onClick={() => handleWriteClick("notice")}>공지 글쓰기</button>
+                <button onClick={() => handleWriteClick("worship")}>예배 영상 글쓰기</button>
+              </div>
+            </div>
+          )}
       <BottomNav />
     </Background>
   );

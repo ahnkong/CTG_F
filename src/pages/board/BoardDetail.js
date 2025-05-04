@@ -68,6 +68,8 @@ const BoardDetail = () => {
                             return {
                                 ...reComment,
                                 likeCount: reCommentLikeCount,
+                                liked: reComment.liked, // ✅ 이 줄 추가, 새로고침 누르면 좋아요 체크가 안되어 잇어서, 이부분 추가
+
                             };
                         })
                     );
@@ -76,6 +78,7 @@ const BoardDetail = () => {
                     return {
                         ...comment,
                         likeCount: commentLikeCount,
+                        liked: comment.liked, // ✅ 이 줄 추가 - 새로고침 누르면 좋아요 체크가 안되어 잇어서, 이부분 추가
                         reComments: reCommentsWithLikes,
                     };
                 })

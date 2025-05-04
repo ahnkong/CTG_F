@@ -10,12 +10,14 @@ import LoadingToMain from 'pages/login/LoadingToMain';
 import InitScreen from 'pages/login/InitScreen';
 // 메뉴페이지
 import Menu from 'pages/menu/menu'
-import QuestList from 'pages/menu/QuestList';
-
 // import Board from './components/board/Board';
+
+
+
 import BoardForm from 'pages/board/boardForm';
 import BoardList from 'pages/board/BoardList';
 import BoardDetail from 'pages/board/BoardDetail';
+import BoardNotice from 'pages/board/BoardNotice';
 
 import AuthCheck from 'utils/AuthCheck';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -85,7 +87,6 @@ function App() {
             {/* <Route path="/main" element={<Main />} /> */}
             {/* <Route path="/YoutubeLive" element={<YoutubeLive />} /> */}
             <Route path="/menu" element={<Menu />} /> {/* 상세 페이지 추가 */}
-            <Route path="/questList" element={<QuestList />} /> {/* 상세 페이지 추가 */}
 
 
             <Route path="/MyPage" element={<MyPage />} />
@@ -105,6 +106,7 @@ function App() {
             {/* <Route path="/register" element={<Register />} />     */}
             {/* <Route path="/test" element={<Test/>} />     */}
             {/* <Route path="/feed" element={<Feed/>} /> */}
+            <Route path="/boardNotice" element={<BoardNotice />} />
 
 
             <Route path="/PointMarket" element={<PointMarket />} />

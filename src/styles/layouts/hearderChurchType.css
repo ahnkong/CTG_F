@@ -1,5 +1,5 @@
 
-.chuch-header-wrapper {
+.church-header-wrapper {
     position: relative;
     background-color: #fd9956;
     padding: 10px 40px;
@@ -10,7 +10,7 @@
 
   }
   
-  .chuch-header {
+  .church-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,12 +18,12 @@
     font-size: 1.2rem;
   }
   
-  .chuch-title {
+  .church-title {
     font-weight: bold;
   }
   
   /* 아이콘을 감싸는 부모 (오른쪽 정렬) */
-  .chuch-icons {
+  .church-icons {
     display: flex;
     gap: 20px; /* 아이콘 간격 */
     align-items: center;
