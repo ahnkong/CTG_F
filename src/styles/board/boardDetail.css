@@ -1,7 +1,5 @@
 /* ✅ 공통 배경 및 전체 컨테이너 */
 .board-detail-container {
-  min-height: 100vh;
-  padding-bottom: 5vh;
   width: 100%;
   height: 100vh;
   overflow-y: auto;
@@ -65,6 +63,7 @@
   z-index: 2;
 }
 
+
 .carousel-indicator-wrapper {
   position: absolute;
   bottom: 10px;
@@ -87,7 +86,7 @@
 .carousel-indicator.active {
   background-color: #007bff;
 }
-/* 이미지 캐로셀 */
+/* 이미지 캐로셀 */         
 .board-image-carousel {
   width: 100%;
   height: calc(100vh - 80px); /* 필요 시 높이 조정 */
@@ -103,9 +102,10 @@
   scroll-behavior: smooth;
   /* scrollbar-width: none;           ✅ Firefox */
   touch-action: pan-x; /* ✅ 터치 스와이프 허용 */
-
-
+  z-index: 5;
 }
+
+
 .board-image-carousel::-webkit-scrollbar {
   display: none;
 }
@@ -123,6 +123,11 @@
   scroll-snap-align: start;     /* 스냅 단위 시작점 */
   scroll-snap-stop: always;     /* ← 이 한 줄만 추가하세요 */
 
+}
+
+.board-no-image-spacer{
+  margin-top: 0%;
+  background-color: #000;
 }
 
 .Detail-logo-text-wrapper {
@@ -162,8 +167,8 @@
   min-height: 60px;
 }
 .profile-image {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
@@ -180,17 +185,16 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  min-height: 60px;
+  min-height: 20px;
   gap: 2px;
 }
 .author-name {
   font-weight: bold;
   font-size: 1rem;
-  margin: 0;
-  line-height: 1.2;
+  padding: 0px 0px 0px 20px;
 }
 .post-date {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: rgb(34, 34, 34);
   display: flex;
   justify-content: center;
@@ -231,25 +235,32 @@
 .board-content-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 10px 0;
+}
+
+.board-content {
+  font-size: clamp(1rem, 1rem, 1.2rem);
+  font-weight: normal;
+  margin: 10px 0;
 }
 .board-tag {
   display: inline-block;
-  margin: 5px;
+  margin: 0px 5px 40px 0px;
   padding: 5px 10px;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(242, 242, 242);
   color: #000;
   font-weight: bold;
 }
 .board-stats {
+  font-size: 0.8rem;
   color: gray;
   margin-top: 50px;
 }
 
+
 /* ✅ 댓글 목록 */
 .board-comment-container {
-  background-color: #ffffff;
   padding: 24px;
   margin: 10px;
   max-width: 700px;

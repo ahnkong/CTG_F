@@ -98,19 +98,19 @@
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
   
-  .type-icon-general,
-  .type-icon-notice {
+  .type-icon-positive,
+  .type-icon-negative {
     width: 18px;
     height: 18px;
     background-size: contain;
     background-repeat: no-repeat;
   }
   
-  .type-icon-general {
+  .type-icon-positive {
     background-image: url(assets/image/happy.png);
   }
   
-  .type-icon-notice {
+  .type-icon-negative {
     background-image: url(assets/image/sad.png);
   }
   
@@ -131,6 +131,7 @@
   }
   
   .board-form-title input {
+    width: 100%;
     padding: 12px;
     background-color: transparent;
     border: none;
@@ -204,69 +205,24 @@
     color: #757575;
     font-weight: 500;
   }
-  .board-form-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-width: 500px; /* 또는 600px */
-    height: 60px;
-    margin: 0 auto;
-    background-color: #ffaf7e;
-    border-top: 1px solid #e7e7e7;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .action-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-  }
-  
-  .image-icon,
-  .tag-icon {
-    width: 18px;
-    height: 18px;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
-  .image-icon {
-    background-image: url(assets/image/picture.png);
-  }
-  
-  .tag-icon {
-    background-image: url(assets/image/hastag.png);
-  }
-  
-  .action-text {
-    font-size: 1rem;
-    color: #000000;
-  }
   
 
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
     .board-form-container {
-        padding: 2%;
+        padding: 6% 4%;
     }
 
     .board-form-type-container {
-        width: 100%;
-        height: 40px;
+        width: 50%;
     }
 
     .type-btn {
-        font-size: 1.4rem;
+        font-size: 0.8rem;
     }
 
-    .type-icon-general,
-    .type-icon-notice {
+    .type-icon-positive,
+    .type-icon-negative {
         max-width: 18px;
     }
 }
@@ -284,103 +240,9 @@
         font-size: 0.7rem;
     }
 
-    .type-icon-general,
-    .type-icon-notice {
+    .type-icon-positive,
+    .type-icon-negative {
         max-width: 15px;
     }
 }
-
-.image-previews {
-  display: flex;
-  flex-wrap: nowrap; /* 한 줄에만 보여줌 */
-  overflow-x: auto;  /* 넘치면 스크롤 가능 */
-  gap: 8px;
-  padding: 10px 0;
-}
-
-.image-preview-container {
-  position: relative;
-  flex: 0 0 auto;
-  width: 100px;
-  height: 100px;
-}
-
-.image-preview {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #ccc;
-}
-
-.image-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 이미지 삭제 버튼 스타일 (원하는 위치와 아이콘으로 바꿔도 됨) */
-.image-delete {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 16px;
-  height: 16px;
-  background: red;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.tag-input-section {
-  width: 100%;
-  margin-top: 16px;
-}
-
-.tag-input-wrapper {
-  display: flex;          /* ✅ flex로 정렬 */
-  align-items: center;    /* 세로 정렬 */
-  justify-content: center;
-  width: 100%;
-  height: 60px;
-  gap: 8px;               /* 간격 추가 */
-}
-
-.tag-input-bar {
-  flex: 1;                /* ✅ 너비 자동 확장 */
-  padding: 10px 16px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  outline: none;
-}
-
-.tag-input-bar:active {
-  flex: 1;                /* ✅ 너비 자동 확장 */
-  padding: 10px 16px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  outline: none;
-}
-
-.tag-input-btn {
-  padding: 10px 16px;
-  background-color: #ec4646e4;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.tag-input-btn:active {
-  padding: 10px 16px;
-  background-color: #ec4646e4;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 

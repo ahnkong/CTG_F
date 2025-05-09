@@ -66,11 +66,11 @@ const Hearder_ChuchType = () => {
   }, [dispatch]);
 
   return (
-    <div className="chuch-header-wrapper">
-     <div className="chuch-header">
-        <p className="chuch-title">{userData.churchName || "교회 이름"}</p>
+    <div className="church-header-wrapper">
+     <div className="church-header">
+        <p className="church-title">{userData.churchName || "교회 이름"}</p>
 
-        <div className="chuch-icons">
+        <div className="church-icons">
           <img
             src={IconHome}
             alt="홈"

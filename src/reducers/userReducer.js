@@ -1,7 +1,6 @@
 const initialState = {
   userId: null,
   nickname: null,
-  point: null,
   isAuthenticated: false,
   nickname: null,
   profilePicture: null,

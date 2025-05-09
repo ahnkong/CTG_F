@@ -68,6 +68,8 @@ const BoardDetail = () => {
                             return {
                                 ...reComment,
                                 likeCount: reCommentLikeCount,
+                                liked: reComment.liked, // ✅ 이 줄 추가, 새로고침 누르면 좋아요 체크가 안되어 잇어서, 이부분 추가
+
                             };
                         })
                     );
@@ -76,6 +78,7 @@ const BoardDetail = () => {
                     return {
                         ...comment,
                         likeCount: commentLikeCount,
+                        liked: comment.liked, // ✅ 이 줄 추가 - 새로고침 누르면 좋아요 체크가 안되어 잇어서, 이부분 추가
                         reComments: reCommentsWithLikes,
                     };
                 })
@@ -382,10 +385,10 @@ const BoardDetail = () => {
     };
 
     return (
-        <Background type="gray">
+        <Background type="white">
             <div className={containerClass}>
                 <div className="board-content-wrapper">
-                    {/* <div className="board-container"> */}
+                    <div className="board-container">
                     <div className="board-header">
                         <div className="header-left-icons">
                             <div className="back-icon" onClick={() => navigate(-1)} />
@@ -405,7 +408,21 @@ const BoardDetail = () => {
                             ))}
                         </div>
                     )}
-                    
+                    {/* 이미지 없으면 없게! */}
+                    {/* {board.images && board.images.length > 0 ? (
+                    <div className="board-image-carousel">
+                        {board.images.map((image, index) => (
+                        <img
+                            key={index}
+                            src={`http://localhost:3000/uploads/${encodeURIComponent(image.fileName)}`}
+                            alt={`Board Image ${index + 1}`}
+                            className="board-carousel-image"
+                        />
+                        ))}
+                    </div>
+                    ) : (
+                    <div className="board-no-image-spacer" />
+                    )} */}
                     <h1 className="Detail-logo-text-wrapper">
                         <span className="logo-text static">ctg</span>
                         <span className={`logo-text dynamic ${board.type.toLowerCase()}`}>
@@ -572,8 +589,11 @@ const BoardDetail = () => {
                                 {/* 🔹 대댓글 목록 */}
                                 {comment.reComments && comment.reComments.length > 0 && (
                                     <div className="recomment-section">
-                                        {comment.reComments.map(reComment => (
-                                            <div key={reComment.reCommentId} className="recomment">
+                                        {comment.reComments.map((reComment, index) => (
+                                        <div
+                                            key={reComment.reCommentId || `fallback-${index}`}
+                                            className="recomment"
+                                        >
                                                 <div className="comment-user">
                                                     <img src={reComment.userProfileImage || IMAGES.DEFAULT_PROFILE} alt="Profile" className="comment-profile-img" />
                                                     <div className="nickname-time-wrapper">
@@ -585,13 +605,15 @@ const BoardDetail = () => {
 
                                                 {/* 🔹 대댓글 좋아요 버튼 */}
                                                 <button className={`comment-like-button ${reComment.liked ? "liked" : ""}`} onClick={() => toggleReCommentLike(reComment.recommentId)} />
-                                                <span className="like-count-text">{reComment.likeCount === 0 ? "좋아요" : reComment.likeCount}</span>
+                                                {/* <span className="like-count-text">{reComment.likeCount === 0 ? "좋아요" : reComment.likeCount}</span> */}
+                                                <span className="like-count-text">  {reComment.likeCount > 0 ? reComment.likeCount : '좋아요'}</span>
                                             </div>
                                         ))}
                                     </div>
                                 )}
                             </div>
                         ))}
+                        </div>
                     </div> {/* comment-section */}
                 </div>
             </div>
