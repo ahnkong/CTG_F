@@ -15,7 +15,7 @@ const BoardList = () => {
   const navigate = useNavigate();
   const { boardId } = useParams();
   const [posts, setPosts] = useState([]);
-  const [currentType, setCurrentType] = useState("POSITIVE");
+  const [currentType, setCurrentType] = useState("GENERAL");
   const [sortOption, setSortOption] = useState("latest");
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +45,7 @@ const BoardList = () => {
         page: pageNumber,
         sort: sortOption === "latest" ? "cDate,desc" : null,
         filterDate: filterDate || undefined,
-        sort: sortOption !== "latest" ? sortOption : "cDate,desc", // ✅ 이 부분 수정!
+        sort: sortOption !== "latest" ? sortOption : "cDate,desc", // ✅ 내림차순
       };
       const response = await axios.get(
         "http://localhost:8080/api/v1/boards",
@@ -166,12 +166,8 @@ const BoardList = () => {
               onClick={() => handleSortChange(sort, index)}
               ref={(el) => (buttonRefs.current[index] = el)}
             >
-              {sort === "latest"
-                ? "오늘의 게시글"
-                : sort === "likesLast7Days"
-                  ? "인기글"
-                  : "교회 공지사항"}
-            </button>
+              {sort === "latest" ? "오늘의 게시글" : sort === "likesLast7Days" ? "주간 인기글"  : "월간 인기글"}
+              </button>
           ))}
           <div className="sort-button-wrapper">
             <div className="active-indicator"></div>
@@ -194,7 +190,7 @@ const BoardList = () => {
                           className="hashtag-symbol"
                           style={{
                             color:
-                              currentType === "POSITIVE"
+                              currentType === "GENERAL"
                                 ? "#1133F6"
                                 : "#FD1919",
                           }}

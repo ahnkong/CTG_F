@@ -76,6 +76,16 @@ const BoardForm = () => {
     setImages((prev) => [...prev, ...files]);
   };
 
+  const TAG_OPTIONS = ["일상", "묵상", "말씀", "기도", "질문"];
+
+  const TAG_COLORS = {
+    일상: "#7ED321",
+    묵상: "#F5A623",
+    말씀: "#9013FE",
+    기도: "#4A90E2",
+    질문: "#D0021B",
+  };
+
   const handleTagAdd = () => {
     const newTags = tagInput
       .split(',')
@@ -157,7 +167,7 @@ const handleModalConfirm = async () => {
     title: title || "", // 제목이 없으면 빈 문자열로
     content: content || "", // 내용이 없으면 빈 문자열로
     hashTag: tags.length > 0 ? tags.join(",") : null, // 태그 처리
-    type: type || "POSITIVE", // 기본 값
+    type: type || "GENERAL", // 기본 값
     commentId: 0, // 초기값
   };
 
@@ -187,7 +197,7 @@ const handleModalConfirm = async () => {
 
   const handleModalCancel = () => {
     setShowModal(false);
-    navigate("/main");
+    navigate(-1);
   };
 
   return (
@@ -205,17 +215,17 @@ const handleModalConfirm = async () => {
         <div className="board-form-type-select"></div>
         <div className="board-form-type-container">
           <button
-            className={`type-btn ${type === "POSITIVE" ? "active" : ""}`}
-            onClick={() => setType("POSITIVE")}
+            className={`type-btn ${type === "GENERAL" ? "active" : ""}`}
+            onClick={() => setType("GENERAL")}
           >
-            <div className="type-icon-positive"></div>
+            <div className="type-icon-GENERAL"></div>
             일반
           </button>
           <button
-            className={`type-btn ${type === "NEGATIVE" ? "active" : ""}`}
-            onClick={() => setType("NEGATIVE")}
+            className={`type-btn ${type === "NOTICE" ? "active" : ""}`}
+            onClick={() => setType("NOTICE")}
           >
-            <div className="type-icon-negative"></div>
+            <div className="type-icon-notice"></div>
             공지
           </button>
         </div>
@@ -264,11 +274,14 @@ const handleModalConfirm = async () => {
               <div className="tag-input-wrapper">
                   <input
                       type="text"
-                      placeholder="#태그를 입력하세요 (#으로 구분, 최대 5개)"
+                      className="tag-input-bar"
+                      placeholder="#태그를 입력하세요"
                       value={tagInput}
                       onChange={(e) => setTagInput(e.target.value)}
                   />
-                  <button onClick={handleTagAdd} disabled={tags.length >= 5}>
+                  <button 
+                      className="tag-input-btn"
+                      onClick={handleTagAdd} disabled={tags.length >= 5}>
                       입력
                   </button>
               </div>

@@ -27,7 +27,7 @@ const Background = ({ type = "default", children }) => {
     gray: {
       backgroundColor: "#F5F5F5",
       // backgroundColor: "#D3D3D3",
-      minHeight: "100vh",
+      minHeight: "100dvh",
     },
     coin: {
       backgroundImage: `url(${Coin})`,

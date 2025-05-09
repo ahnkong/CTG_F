@@ -15,7 +15,7 @@ const BoardNotice = () => {
   const navigate = useNavigate();
   const { boardId } = useParams();
   const [posts, setPosts] = useState([]);
-  const [currentType, setCurrentType] = useState("POSITIVE");
+  const [currentType, setCurrentType] = useState("NOTICE");
   const [sortOption, setSortOption] = useState("latest");
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -166,11 +166,7 @@ const BoardNotice = () => {
               onClick={() => handleSortChange(sort, index)}
               ref={(el) => (buttonRefs.current[index] = el)}
             >
-              {sort === "latest"
-                ? "오늘의 게시글"
-                : sort === "likesLast7Days"
-                  ? "인기글"
-                  : "교회 공지사항"}
+              {sort === "latest" ? "숭신교회 공지사항" : sort === "likesLast7Days" ? "주간 공지사항"  : "월간 인기글"}
             </button>
           ))}
           <div className="sort-button-wrapper">
@@ -194,7 +190,7 @@ const BoardNotice = () => {
                           className="hashtag-symbol"
                           style={{
                             color:
-                              currentType === "POSITIVE"
+                              currentType === "NOTICE"
                                 ? "#1133F6"
                                 : "#FD1919",
                           }}

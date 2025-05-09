@@ -31,14 +31,10 @@ import FloatingButton from 'components/floatingButton/FloatingButton';
 import MyPage from 'pages/MyPage/MyPage';
 import ProfileInfo from 'pages/MyPage/ProfileInfo';
 import EditProfile from 'pages/MyPage/EditProfile';
-import PointMarket from 'pages/pointMarket/PointMarket';
-import ProductDetail from 'pages/pointMarket/ProductDetail';
 import MyBoardList from 'pages/MyPage/MyBoardList';
-
+import ChurchInfo from 'pages/MyPage/ChurchInfo'
 import BottomNav from 'layouts/BottomNav';
 import CheckPassword from 'components/mypage/CheckPassword';
-// import ActiveLog from 'pages/MyPage/ActiveLog';
-import PointLog from 'pages/MyPage/PointLog'
 
 import InitPage from 'pages/login/InitPage';
 
@@ -64,7 +60,6 @@ function App() {
         payload: {
           userId: storedUser.userId,
           nickname: storedUser.nickname,
-          point: storedUser.point,
           isAuthenticated: true,
         },
       });
@@ -75,17 +70,14 @@ function App() {
   return (
 
     <Provider store={store}>
-      <PersistGate loading={<div>로딩 중...</div>} persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         <AuthCheck />
         <Router>
           <Routes>
             <Route path="/" element={<InitPage />} />
             <Route path="/InitScreen" element={<InitScreen />} />
             <Route path="/NewRegister" element={<NewRegister />} />
-            {/* <Route path="/Login" element={<Login />} /> */}
             <Route path="/create" element={<BoardForm />} />
-            {/* <Route path="/main" element={<Main />} /> */}
-            {/* <Route path="/YoutubeLive" element={<YoutubeLive />} /> */}
             <Route path="/menu" element={<Menu />} /> {/* 상세 페이지 추가 */}
 
 
@@ -95,27 +87,19 @@ function App() {
             <Route path="/LoadingToMain" element={<LoadingToMain />} />
             <Route path="/ProfileInfo" element={<ProfileInfo />} />
             <Route path="/EditProfile" element={<EditProfile />} />
+            <Route path="/ChurchInfo" element={<ChurchInfo />} />
 
 
             <Route path="/MyBoardList" element={<MyBoardList />} />
-            {/* <Route path="/my-posts" element={<MyPosts/>}/> */}
-            {/* <Route path="/my-comments" element={<MyComments/>}/> */}
             {/* 기본 경로 */}
             <Route path="/main" element={<BoardList />} />
             <Route path="/board/:boardId" element={<BoardDetail />} />
-            {/* <Route path="/register" element={<Register />} />     */}
-            {/* <Route path="/test" element={<Test/>} />     */}
-            {/* <Route path="/feed" element={<Feed/>} /> */}
             <Route path="/boardNotice" element={<BoardNotice />} />
 
 
-            <Route path="/PointMarket" element={<PointMarket />} />
             <Route path="/check-password" element={<CheckPassword />} />
             <Route path="/edit-profile/:field" element={<EditProfile />} />
-            {/* <Route path="/ActiveLog" element={<ActiveLog />} /> */}
-            <Route path="/PointLog" element={<PointLog />} />
-            <Route path="/PointMarket" element={<PointMarket />} />
-            <Route path="/pointMarket/product/:id" element={<ProductDetail />} /> {/* 상세 페이지 추가 */}
+
 
 
             <Route path="/BibleStudy" element={<BibleStudy />} />
@@ -123,12 +107,6 @@ function App() {
             <Route path="/:type" element={<CatechismPage />} />  {/* ✅ 통합된 페이지 */}
             <Route path="/:type" element={<CatechismPage />} />
             <Route path="/:type/:id" element={<DetailPage />} />  {/* ✅ 디테일 페이지 라우트 확인 */}
-           {/* <Route path="/shorter-catechism" element={<ShorterCate />} />  */}
-        {/* <Route path="/shorter-catechism/:id" element={<DetailPage />} />  */}
-        {/* <Route path="/larger-catechism" element={<LargerCate />} /> */}
-        {/* <Route path="/larger-catechism/:id" element={<DetailPage />} />  */}
-
-
 
 
           </Routes>

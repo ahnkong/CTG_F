@@ -234,7 +234,7 @@
 
 /* 해시태그 스타일 */
 .post-tags {
-  height: 25px; /* 고정된 높이 */
+  height: 24px; /* 고정된 높이 */
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -247,12 +247,12 @@
 
 .post-tag {
   display: inline-block;
-  color: #ffffff; /* 해시태그 텍스트 색상 */
+  color: #535353; /* 해시태그 텍스트 색상 */
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding: 4px 8px;
-  border-radius: 960px;
-  background-color: #000000;
+  border-radius: 40px;
+  background-color: #dddddd;
   white-space: nowrap;
   margin-right: 2px;
 }

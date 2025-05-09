@@ -98,19 +98,19 @@
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
   
-  .type-icon-positive,
-  .type-icon-negative {
+  .type-icon-general,
+  .type-icon-notice {
     width: 18px;
     height: 18px;
     background-size: contain;
     background-repeat: no-repeat;
   }
   
-  .type-icon-positive {
+  .type-icon-general {
     background-image: url(assets/image/happy.png);
   }
   
-  .type-icon-negative {
+  .type-icon-notice {
     background-image: url(assets/image/sad.png);
   }
   
@@ -131,7 +131,6 @@
   }
   
   .board-form-title input {
-    width: 100%;
     padding: 12px;
     background-color: transparent;
     border: none;
@@ -259,14 +258,15 @@
 
     .board-form-type-container {
         width: 100%;
+        height: 40px;
     }
 
     .type-btn {
         font-size: 1.4rem;
     }
 
-    .type-icon-positive,
-    .type-icon-negative {
+    .type-icon-general,
+    .type-icon-notice {
         max-width: 18px;
     }
 }
@@ -284,8 +284,8 @@
         font-size: 0.7rem;
     }
 
-    .type-icon-positive,
-    .type-icon-negative {
+    .type-icon-general,
+    .type-icon-notice {
         max-width: 15px;
     }
 }
@@ -330,4 +330,57 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.tag-input-section {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.tag-input-wrapper {
+  display: flex;          /* ✅ flex로 정렬 */
+  align-items: center;    /* 세로 정렬 */
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  gap: 8px;               /* 간격 추가 */
+}
+
+.tag-input-bar {
+  flex: 1;                /* ✅ 너비 자동 확장 */
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.tag-input-bar:active {
+  flex: 1;                /* ✅ 너비 자동 확장 */
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.tag-input-btn {
+  padding: 10px 16px;
+  background-color: #ec4646e4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tag-input-btn:active {
+  padding: 10px 16px;
+  background-color: #ec4646e4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
