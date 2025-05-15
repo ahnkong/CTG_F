@@ -93,6 +93,7 @@ function App() {
 
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/newsletter/:id" element={<NewsletterDetail />} />
+            <Route path="/churchVideo" element={<videoList />}/>
 
             <Route path="/MyPage" element={<MyPage />} />
             <Route path="/LoginPage" element={<LoginPage />} />
@@ -101,7 +102,6 @@ function App() {
             <Route path="/ProfileInfo" element={<ProfileInfo />} />
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/ChurchInfo" element={<ChurchInfo />} />
-            <Route path="/ChurchVideo" element={<videoList />}/>
 
 
             <Route path="/MyBoardList" element={<MyBoardList />} />
