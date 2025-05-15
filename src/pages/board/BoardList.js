@@ -23,6 +23,8 @@ const BoardList = () => {
   const buttonRefs = useRef([]);
   const [likeCounts, setLikeCounts] = useState(0);
   const [commentCounts, setCommentCounts] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+
 
   useEffect(() => {
     setPosts([]);

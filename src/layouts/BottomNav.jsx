@@ -1,62 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "styles/layouts/bottomNav.css";
-import IconHome from "assets/icon/IconHome.png";
 import IconMenu from "assets/icon/IconMenu.png";
 import IconUser from "assets/icon/IconUser.png";
-import IconShopping from "assets/icon/IconShopping.png";
-import Logo_positive from "assets/logo/logo_positive.png";
-import Logo_negative from "assets/logo/logo_negative.png";
 import IconSearch from "assets/icon/IconSearch.png"
 import IconStudy from "assets/icon/IconStudyButton.png"
+import IconCompany from "assets/icon/IconCompany.png"
 
-const BottomNav = ({ onLogoClick }) => {
+const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // ✅ 로고 상태를 관리 (true: Positive, false: Negative)
-  const [isPositiveLogo, setIsPositiveLogo] = useState(true);
 
   const navItems = [
     { name: "메뉴", path: "/menu", icon: IconMenu },
     { name: "성경공부", path: "/BibleStudy", icon: IconStudy},
     { name: "검색", path: "/search", icon: IconSearch },
-    { name: "검색", path: "/search", icon: IconSearch },
+    { name: "회사소개", path: "/company", icon: IconCompany },
     { name: "마이페이지", path: "/mypage", icon: IconUser },
   ];
-
-  // ✅ 로고 클릭 시 상태 변경 (Positive ↔ Negative)
-
-  const toggleLogo = () => {
-    setIsPositiveLogo((prev) => !prev);
-    if (typeof onLogoClick === "function") {
-      onLogoClick(isPositiveLogo ? "NEGATIVE" : "POSITIVE");
-    } else {
-      console.error("❌ onLogoClick is not a function!");
-    }
-  };
-  
 
   return (
     <nav className="bottom-nav">
       {navItems.map((item, index) => (
         <button
           key={index}
-          className={`nav-item
-            ${item.icon === Logo_positive || item.icon === Logo_negative ? "logo-button" : ""}
-            ${location.pathname === item.path ? "active" : ""}`}
-          onClick={() => {
-            if (item.name === "") {
-              toggleLogo();
-            } else {
-              navigate(item.path);
-            }
-          }}
+          className={`nav-item ${location.pathname === item.path ? "active" : ""}`}
+          onClick={() => navigate(item.path)}
         >
           <img
             src={item.icon}
             alt={item.name}
-            className={`nav-icon ${item.icon === Logo_positive || item.icon === Logo_negative ? "logo-icon" : ""}`}
+            className="nav-icon"
           />
         </button>
       ))}

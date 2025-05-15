@@ -247,6 +247,22 @@ const MyBoardList = () => {
   const [userId, setUserId] = useState("");
   const navigate = useNavigate();
 
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "날짜 없음";
+    const now = new Date();
+    const date = new Date(dateString);
+    const diff = now - date;
+    const minutes = Math.floor(diff / (1000 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    if (now.toDateString() === date.toDateString()) {
+      if (minutes < 60) return `${minutes}분 전`;
+      return `${hours}시간 전`;
+    } else {
+      return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -291,6 +307,7 @@ const MyBoardList = () => {
       const response = await axios.get("http://localhost:8080/api/v1/comments/myComments", {
         params: { userId }
       });
+      console.log("댓글 데이터:", response.data);
       setPosts(response.data || []);
     } catch (error) {
       console.error("내 댓글 불러오기 실패", error);
@@ -340,11 +357,25 @@ const MyBoardList = () => {
                 className="post-item"
                 onClick={() => handlePostClick(post)}
               >
-                <span className="category">{post.category || post.type || "기타"}</span>
-                <p className="post-title">{post.title || post.content}</p>
-                <p className="post-info">
-                  {formatDate(post.cDate || post.coCDate)} 조회 {post.view || post.views || 0}
-                </p>
+                <div className="post-left">
+                  <span className="category">{post.category || post.type || "기타"}</span>
+                  <p className="post-title">{post.title || post.content}</p>
+                  <p className="post-info">
+                    {formatDate(post.cDate || post.coCDate || post.createDate)} 조회 {post.view || post.views || 0}
+                  </p>
+
+                </div>
+                <div className="post-right">
+                  {post.images && post.images.length > 0 ? (
+                    <img
+                      src={`http://localhost:8080/uploads/${post.images[0].fileName}`}
+                      alt="썸네일"
+                      className="post-thumbnail"
+                    />
+                  ) : (
+                    <div className="post-thumbnail transparent"></div>
+                  )}
+                </div>
                 <hr className="post-item-hr" />
               </div>
             ))
@@ -358,19 +389,6 @@ const MyBoardList = () => {
   );
 };
 
-const formatDate = (dateString) => {
-  if (!dateString) return "날짜 없음";
-  const now = new Date();
-  const date = new Date(dateString);
-  const diff = now - date;
-  const minutes = Math.floor(diff / (1000 * 60));
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  if (now.toDateString() === date.toDateString()) {
-    if (minutes < 60) return `${minutes}분 전`;
-    return `${hours}시간 전`;
-  } else {
-    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
-  }
-};
+
 
 export default MyBoardList;

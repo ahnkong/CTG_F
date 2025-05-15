@@ -166,7 +166,7 @@ const BoardNotice = () => {
               onClick={() => handleSortChange(sort, index)}
               ref={(el) => (buttonRefs.current[index] = el)}
             >
-              {sort === "latest" ? "숭신교회 공지사항" : sort === "likesLast7Days" ? "주간 공지사항"  : "월간 인기글"}
+              {sort === "latest" ? "숭신교회 공지사항" : sort === "likesLast7Days" ? "주간 공지사항"  : "월간 공지사항"}
             </button>
           ))}
           <div className="sort-button-wrapper">

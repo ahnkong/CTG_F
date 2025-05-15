@@ -24,12 +24,14 @@ const AuthCheck = () => {
         });
 
         // 인증 성공 시 사용자 데이터를 Redux에 저장
-        if (response.data) {
+        if (response.data && response.data.email) { // email 값이 있는지 확인
+          const userData = await axios.get(`http://localhost:8080/api/v1/users/profile/${response.data.email}`);
+          
           dispatch(
             setUser({
-              userId: response.data.userId,
-              nickname: response.data.nickname,
-              profileImage: response.data.profileImage,
+              email: userData.data.email,
+              nickname: userData.data.nickname,
+              profileImage: userData.data.profileImage,
             })
           );
         }
@@ -38,11 +40,10 @@ const AuthCheck = () => {
       }
     };
 
-
     checkAuth();
   }, [dispatch]);
 
-  return null; // 이 컴포넌트는 렌더링되지 않음
+  return null;
 };
 
 export default AuthCheck;

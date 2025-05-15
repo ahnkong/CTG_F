@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Background from "context/Background";
 import Page from "components/styles/Page";
-import "styles/ctg/search.css";
+import "styles/ctg/.css";
 
 
 
