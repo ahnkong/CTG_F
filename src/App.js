@@ -38,6 +38,8 @@ import CheckPassword from 'components/mypage/CheckPassword';
 
 import InitPage from 'pages/login/InitPage';
 
+import videoList from 'pages/video/VideoList';
+
 import BibleStudy from 'pages/ctg/BibleStudy';
 import Search from "pages/board/Search";
 import ShorterCate from 'pages/ctg/ShorterCate';
@@ -99,6 +101,7 @@ function App() {
             <Route path="/ProfileInfo" element={<ProfileInfo />} />
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/ChurchInfo" element={<ChurchInfo />} />
+            <Route path="/ChurchVideo" element={<videoList />}/>
 
 
             <Route path="/MyBoardList" element={<MyBoardList />} />

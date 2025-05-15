@@ -1,0 +1,173 @@
+/* videoList.jsx 스타일 */
+
+.video-list-wrapper {
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff9d6c;
+  padding: 18px 18px 12px 18px;
+  border-radius: 0 0 18px 18px;
+}
+
+.video-church-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.video-menu-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.video-youtube-card {
+  display: flex;
+  align-items: center;
+  background: #ffe1d0;
+  border-radius: 16px;
+  margin: 18px 18px 12px 18px;
+  padding: 16px 18px;
+  gap: 16px;
+}
+
+.video-youtube-icon {
+  font-size: 2.2rem;
+  color: #ff6d00;
+}
+
+.video-youtube-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.video-youtube-desc {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.video-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 18px 80px 18px;
+}
+
+.video-card {
+  border: 2px solid #ff9d6c;
+  border-radius: 16px;
+  padding: 16px 18px 12px 18px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(255, 157, 108, 0.07);
+}
+
+.video-card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.video-card-title {
+  font-size: 1.08rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.video-card-icon {
+  font-size: 1.5rem;
+}
+
+.video-card-subtitle {
+  font-size: 0.98rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.video-card-info-row {
+  display: flex;
+  gap: 18px;
+}
+
+.video-card-info-left {
+  color: #888;
+  font-size: 0.97rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.video-card-info-right {
+  color: #222;
+  font-size: 0.97rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.video-card-preacher {
+  font-weight: bold;
+  color: #222;
+}
+
+.video-bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #fff;
+  border-top: 1.5px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 56px;
+  z-index: 100;
+}
+
+.video-nav-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.video-nav-btn.active {
+  color: #ff9d6c;
+}
+
+.video-card-actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.video-like-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  background-image: url('/src/assets/icon/empty_pray.png');
+  transition: background-image 0.2s;
+}
+
+.video-like-icon.liked {
+  background-image: url('/src/assets/icon/color_pray.png');
+} 
