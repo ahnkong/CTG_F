@@ -36,8 +36,9 @@
     grid-template-rows: repeat(2, auto); /* 2행으로 고정 */
     gap: 20px; /* 30 → 20 또는 10 */
     width: 100%;
-    max-width: 600px; /* 최대 크기 */
+    max-width: 800px; /* 최대 크기 */
     justify-content: center; /* 가운데 정렬 */
+    
 }
 
 /* 개별 카드 디자인 */
@@ -45,7 +46,7 @@
     background-color: #fdfdfd;
     border-radius: 10%;
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
-    padding: 5%;
+    padding: 6%;
     text-align: center;
 }
 
@@ -199,8 +200,7 @@
 
 /* 교회공지 */
 .menu-notice-preview {
-  padding: 0 10px;
-  margin-top: 0px;
+  margin-top: -1rem;
 }
 
 .notice-title {

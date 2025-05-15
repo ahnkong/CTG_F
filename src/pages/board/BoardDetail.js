@@ -476,7 +476,7 @@ const BoardDetail = () => {
                     {/* 댓글 입력 필드 */}
                     {/* 댓글 입력 필드 - 하단 고정 */}
                     <div className="fixed-comment-input">
-                        <input
+                        <textarea
                             type="text"
                             value={commentText}
                             onChange={(e) => setCommentText(e.target.value)}
@@ -569,7 +569,7 @@ const BoardDetail = () => {
                                 <div className="reply-input-section">
                                 {replyText[comment.commentId] !== undefined && (
                                     <div className="reply-input">
-                                        <input
+                                        <textarea
                                             type="text"
                                             value={replyText[comment.commentId] || ""}
                                             onChange={(e) => setReplyText((prev) => ({ ...prev, [comment.commentId]: e.target.value }))}

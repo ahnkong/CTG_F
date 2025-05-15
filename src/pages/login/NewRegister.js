@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux"; // Redux 사용
 import Page from "components/styles/Page";
 import BackButton from "components/Buttons/BackButton";
 
-import defaultProfileIamge from "assets/image/default-profile-image.png";
+import defaultProfileImage from "assets/image/default-profile-image.png";
 
 //안코코
 const NavigationButtons = ({ onPrev, onNext, nextDisabled, isFinalStep }) => {
@@ -40,6 +40,13 @@ const NewRegister = () => {
   const [selectedOption, setSelectedOption] = useState("gmail.com"); // 기본 선택값
   const options = ["gmail.com", "naver.com", "daum.net", "hanmail.net", "직접입력"];
 
+  // 개인정보 및 마케팅 동의 상태 추가
+  const [agreements, setAgreements] = useState({
+    agreeToTerms: false, // 필수
+    agreeToMarketing: false // 선택
+  });
+  
+
   // 2. 드롭다운 열기/닫기 함수
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -58,16 +65,20 @@ const NewRegister = () => {
     }
   };
   const [formData, setFormData] = useState({
-    userId: "",
+    email: "",
     password: "",
     confirmPassword: "",
     name: "",
     tell: "",
-    email: "",
     churchName: "",
-    grade: "",
     nickname: "",
     profileImage: "",
+    birth: "",
+    agreeToTerms: false,
+    agreeToMarketing: false,
+    local: 0,
+    createdAt: new Date().toISOString(),
+    profileImage: defaultProfileImage,
   });
   const [validationMessages, setValidationMessages] = useState({});
   const navigate = useNavigate();
@@ -91,9 +102,11 @@ const NewRegister = () => {
 
       // ✅ Redux & localStorage 업데이트
       dispatch({ type: "SET_USER", payload: loginData }); // Redux에 저장
-      dispatch({ type: "SET_USER_ID", payload: response.data.userId }); // 회원가입 정보 리스트 받아 보기 위함.
+      dispatch({ type: "SET_USER_EMAIL", payload: response.data.email }); // 회원가입 정보 리스트 받아 보기 위함.
+      dispatch({ type: "SET_USER_ID", payload: loginData.userId }); // userId 저장
       console.log("📡 로그인 API 응답:", response.data);
       localStorage.setItem("token", loginData.token);
+      localStorage.setItem("userId", loginData.userId); // userId 저장
 
       localStorage.setItem("userData", JSON.stringify(loginData));
 
@@ -110,6 +123,12 @@ const NewRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 개인정보 동의 체크 확인
+    if (!agreements.agreeToTerms) {
+      alert("개인정보 수집 및 이용에 동의해주세요.");
+      return;
+    }
+
     console.log("🚀 회원가입 버튼 클릭됨!"); // 1️⃣ 확인: 버튼이 눌렸는지
 
     if (formData.password !== formData.confirmPassword) {
@@ -117,23 +136,21 @@ const NewRegister = () => {
       return;
     }
 
-
-    // const defaultProfileImageURL = defaultProfileIamge; // ✅ 문자열 URL
-    const defaultProfileImageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"; // 기본 프로필 이미지
-
-
     const requestData = {
-      userId: formData.userId,
+      email: formData.email,
       password: formData.password,
       name: formData.name,
       tell: formData.tell,
-      email: formData.email,
       churchName: formData.churchName,
-      grade: formData.grade,
       nickname: formData.nickname,
-      profileImage: formData.profileImage || defaultProfileImageURL,
+      profileImage: formData.profileImage || defaultProfileImage,
+      birth: formData.birth, // Send as YYYY-MM-DD string
+      agreeToTerms: agreements.agreeToTerms,
+      agreeToMarketing: agreements.agreeToMarketing,
+      createdAt: new Date().toISOString(),
+      local: 0,
     };
-
+    console.log("🐶 profileImage 값:", requestData.profileImage);
     console.log("📡 전송할 회원가입 데이터:", requestData); // 2️⃣ 확인: 데이터가 올바른지
 
     try {
@@ -157,6 +174,8 @@ const NewRegister = () => {
         console.error("❌ 회원가입 실패 응답:", errorData);
         alert(`회원가입 실패: ${errorData.message || "알 수 없는 오류"}`);
       }
+      console.log("✅ 서버에 보낼 회원가입 requestData:", requestData);
+
     } catch (error) {
       console.error("❌ 회원가입 요청 실패:", error);
       alert("회원가입 요청 중 오류가 발생했습니다.");
@@ -176,10 +195,16 @@ const NewRegister = () => {
 
   // formData.email은 병합된 값으로 저장
   useEffect(() => {
+    const fullEmail = emailId && emailDomain ? `${emailId}@${emailDomain}` : "";
     setFormData((prev) => ({
       ...prev,
-      email: emailId && emailDomain ? `${emailId}@${emailDomain}` : "",
+      email: fullEmail,
     }));
+    
+    // 이메일이 변경될 때마다 유효성 검사 실행
+    if (fullEmail) {
+      validateField("email", fullEmail);
+    }
   }, [emailId, emailDomain]);
 
 
@@ -193,19 +218,20 @@ const NewRegister = () => {
       return;
     }
 
-    if (field === "userId") {
+    if (field === "email") {
+      // 이메일 아이디 부분 검사 (@ 앞부분)
+      const idPart = value.split('@')[0];
       const idRegex = /^[a-z0-9]{6,}$/;
-      if (!idRegex.test(value)) {
+      if (!idRegex.test(idPart)) {
         setValidationMessages((prev) => ({
           ...prev,
-          id: "소문자 6글자 이상 입력해 주세요.",
+          email: "아이디는 소문자와 숫자로 6글자 이상 입력해 주세요.",
         }));
         return;
       }
-    }
 
-    if (field === "email") {
-      const emailRegex = /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/;
+      // 전체 이메일 형식 검사
+      const emailRegex = /^[a-z0-9]{6,}@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
       if (!emailRegex.test(value)) {
         setValidationMessages((prev) => ({
           ...prev,
@@ -229,9 +255,7 @@ const NewRegister = () => {
     let isAvailable = false;
 
     try {
-      if (field === "userId") {
-        isAvailable = await checkId(value);
-      } else if (field === "email") {
+      if (field === "email") {
         isAvailable = await checkEmail(value);
       } else if (field === "nickname") {
         isAvailable = await checkNickname(value);
@@ -262,7 +286,7 @@ const NewRegister = () => {
     });
 
 
-    if (["userId", "email", "nickname", "tell"].includes(name)) {
+    if (["email", "nickname", "tell"].includes(name)) {
       validateField(name, value); // 아이디, 이메일, 닉네임 중복 확인
     }
 
@@ -275,21 +299,14 @@ const NewRegister = () => {
     }
   };
 
-
-
-  const checkId = async (userId) => {
-    try {
-      const response = await fetch(`/api/v1/auth/checkId?userId=${userId}`);
-      if (response.ok) {
-        return await response.json(); // true: 사용 가능, false: 중복
-      }
-      return false;
-    } catch (error) {
-      console.error("아이디 중복 확인 요청 실패:", error);
-      return false;
-    }
+  // 동의 체크박스 핸들러
+  const handleAgreementChange = (e) => {
+    const { name, checked } = e.target;
+    setAgreements(prev => ({
+      ...prev,
+      [name]: checked
+    }));
   };
-
 
   const checkEmail = async (email) => {
     try {
@@ -297,7 +314,7 @@ const NewRegister = () => {
       if (response.ok) {
         return await response.json(); // true: 사용 가능, false: 중복
       }
-      return false;
+      return true;
     } catch (error) {
       console.error("이메일 중복 확인 요청 실패:", error);
       return false;
@@ -306,18 +323,16 @@ const NewRegister = () => {
 
   const checkNickname = async (nickname) => {
     try {
-      const response = await fetch(`/api/v1/auth/checkNickName?nickname=${nickname}`);
+      const response = await fetch(`/api/v1/auth/checkNickname?nickname=${nickname}`);
       if (response.ok) {
         return await response.json(); // true: 사용 가능, false: 중복
       }
-      return false;
+      return true;
     } catch (error) {
       console.error("닉네임 중복 확인 요청 실패:", error);
       return false;
     }
   };
-
-
 
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*\W).{8,}$/;
@@ -375,9 +390,6 @@ const NewRegister = () => {
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-
-
-
   return (
     <Background type="white">
       <Page scrollable={false}>
@@ -390,27 +402,51 @@ const NewRegister = () => {
             <h1>회원가입</h1>
           </div>
           <form className="register-form" onSubmit={handleSubmit}>
-            {step === 1 && (
+          {step === 1 && (
               <div className="step">
-                <label htmlFor="userId">아이디</label>
-                <input
-                  type="text"
-                  id="userId"
-                  name="userId"
-                  value={formData.userId}
-                  onChange={handleChange}
-                  onKeyPress={handleKeyPress} // 엔터키 감지
-                  ref={inputRef} // ✅ 포커스 설정
-                  placeholder="아이디를 입력하세요"
-                  required
-                />
-                <p className={`validation-message ${validationMessages.userId?.includes("사용할 수 있는") ? "success" : "error"}`}>
-                  {validationMessages.userId}
+                <label htmlFor="emailId">이메일</label>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <input
+                    type="text"
+                    id="emailId"
+                    name="emailId"
+                    value={emailId}
+                    onChange={(e) => setEmailId(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="이메일 아이디"
+                    required
+                    ref={inputRef}
+                  />
+                  <span>@</span>
+                  <div className="custom-select-wrapper">
+                    <div className="custom-select-box" onClick={toggleDropdown}>
+                      {selectedOption}
+                      <span className="arrow"> </span>
+                    </div>
+                    {isOpen && (
+                      <ul className="custom-dropdown">
+                        {options.map((option) => (
+                          <li key={option} onClick={() => handleSelect(option)}>
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  {emailDomain === "직접입력" && (
+                    <input
+                      type="text"
+                      placeholder="도메인 직접입력"
+                      value={emailDomain}
+                      onChange={(e) => setEmailDomain(e.target.value)}
+                      style={{ width: "120px", borderRadius: "30px", padding: "10px" }}
+                    />
+                  )}
+                </div>
+                <p className={`validation-message ${validationMessages.email?.includes("사용할 수 있는") ? "success" : "error"}`}>
+                  {validationMessages.email}
                 </p>
-                <NavigationButtons
-                  onNext={nextStep}
-                  nextDisabled={!validationMessages.userId?.includes("사용할 수 있는")}
-                />
+                <NavigationButtons onPrev={prevStep} onNext={nextStep} />
               </div>
             )}
             {step === 2 && (
@@ -471,6 +507,26 @@ const NewRegister = () => {
             )}
             {step === 4 && (
               <div className="step">
+                <label htmlFor="birth">생년월일</label>
+                <input
+                  type="date"
+                  id="birth"
+                  name="birth"
+                  value={formData.birth}
+                  onChange={handleChange}
+                  ref={inputRef}
+                  onKeyPress={handleKeyPress}
+                  required
+                />
+                <NavigationButtons
+                  onPrev={prevStep}
+                  onNext={nextStep}
+                  nextDisabled={!formData.birth}
+                />
+              </div>
+            )}
+            {step === 5 && (
+              <div className="step">
                 <label htmlFor="tell">핸드폰 번호</label>
                 <input
                   type="text"
@@ -493,54 +549,6 @@ const NewRegister = () => {
                 />
               </div>
             )}
-            {step === 5 && (
-              <div className="step">
-                <label htmlFor="emailId">이메일</label>
-                <div style={{ display: "flex", gap: "8px" }}>
-                  <input
-                    type="text"
-                    id="emailId"
-                    name="emailId"
-                    value={emailId}
-                    onChange={(e) => setEmailId(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="이메일 아이디"
-                    required
-                    ref={inputRef}
-                  />
-                  <span>@</span>
-                  <div className="custom-select-wrapper">
-                    <div className="custom-select-box" onClick={toggleDropdown}>
-                      {selectedOption}
-                      <span className="arrow"> </span>
-                    </div>
-                    {isOpen && (
-                      <ul className="custom-dropdown">
-                        {options.map((option) => (
-                          <li key={option} onClick={() => handleSelect(option)}>
-                            {option}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  {emailDomain === "직접입력" && (
-                    <input
-                      type="text"
-                      placeholder="도메인 직접입력"
-                      value={emailDomain}
-                      onChange={(e) => setEmailDomain(e.target.value)}
-                      style={{ width: "120px", borderRadius: "30px", padding: "10px" }}
-                    />
-                  )}
-                </div>
-                <p className={`validation-message ${validationMessages.email?.includes("사용할 수 있는") ? "success" : "error"}`}>
-                  {validationMessages.email}
-                </p>
-                <NavigationButtons onPrev={prevStep} onNext={nextStep} />
-              </div>
-            )}
-
 
             {step === 6 && (
               <div className="step">
@@ -562,30 +570,7 @@ const NewRegister = () => {
               </div>
             )}
 
-
             {step === 7 && (
-              <div className="step">
-                <label htmlFor="grade">교회에서 직분</label>
-                <input
-                  type="text"
-                  id="grade"
-                  name="grade"
-                  value={formData.grade}
-                  onChange={handleChange} // ✅ 이게 맞음
-                  onKeyPress={handleKeyPress}
-                  ref={inputRef}
-                  placeholder="직분을 입력하세요"
-                />
-
-                {/* <p className={`validation-message ${validationMessages.nickname?.includes("사용할 수 있는") ? "success" : "error"}`}>
-                  {validationMessages.nickname}
-                </p> */}
-                <NavigationButtons onPrev={prevStep} onNext={nextStep} />
-              </div>
-            )}
-
-
-            {step === 8 && (
               <div className="step">
                 <label htmlFor="nickname">닉네임</label>
                 <input
@@ -600,11 +585,38 @@ const NewRegister = () => {
                 <p className={`validation-message ${validationMessages.nickname?.includes("사용할 수 있는") ? "success" : "error"}`}>
                   {validationMessages.nickname}
                 </p>
+
+                {/* 개인정보 및 마케팅 동의 체크박스 */}
+                <div className="agreements">
+                  <div className="agreement-item">
+                    <input
+                      type="checkbox"
+                      id="agreeToTerms"
+                      name="agreeToTerms" // ✅ 수정
+                      checked={agreements.agreeToTerms}
+                      onChange={handleAgreementChange}
+                      required
+                    />
+                    <label htmlFor="agreeToTerms">개인정보 수집 및 이용에 동의합니다. (필수)</label>
+                  </div>
+                  <div className="agreement-item">
+                    <input
+                      type="checkbox"
+                      id="agreeToMarketing"
+                      name="agreeToMarketing" // ✅ 수정
+                      checked={agreements.agreeToMarketing}
+                      onChange={handleAgreementChange}
+                    />
+                    <label htmlFor="agreeToMarketing">마케팅 정보 수신에 동의합니다. (선택)</label>
+                  </div>
+                </div>
+
+
                 <NavigationButtons
                   onPrev={prevStep}
                   onNext={handleSubmit} // 🔥 마지막 단계에서 handleSubmit 실행
                   isFinalStep={true} // 마지막 단계이므로 회원가입 버튼 활성화
-                  nextDisabled={!validationMessages.nickname?.includes("사용할 수 있는")}
+                  nextDisabled={!validationMessages.nickname?.includes("사용할 수 있는") || !agreements.agreeToTerms}
                 />
               </div>
             )}

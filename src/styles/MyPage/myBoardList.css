@@ -11,8 +11,8 @@
   }
   /* 헤더 (제목) */
   .header {
-    padding: 2vh 2vw; /* 화면 크기에 따라 조정 */
-    font-size: 2rem; /* 상대적인 크기 */
+    padding: 0vh 5vw; /* 화면 크기에 따라 조정 */
+    font-size: 1.8rem; /* 상대적인 크기 */
     font-weight: bold;
     text-align: left;
     padding-bottom: 0;
@@ -28,18 +28,18 @@
   }
   
   .filter-button {
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 30px;
-    background-color: white;
+    padding: 0.3rem 0.8rem;
+    background-color: rgb(230, 230, 230);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-size: 0.8rem;
   }
   
   .filter-button.selected {
-    background-color: black;
-    color: white;
-    border-color: black;
+    background-color: #ffa66e;
+    color: rgb(0, 0, 0);
   }
   
   /* 포스트 목록 섹션 */
@@ -50,16 +50,36 @@
   }
   
   .post-item {
-    padding: 0h;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .post-left {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .post-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
   }
   
   .category {
     display: inline-block;
+    width: 30%;
+    text-align: center;
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
     color : white;
     background-color: black;
     border-radius: 20rem;
+    box-sizing: border-box;
   }
   
   /* 제목 */
@@ -82,10 +102,6 @@
     border-top: 2px solid rgb(221, 225, 228); /* 구분선 색상 지정 */
   }
 
-
-  
-  
-  
   /* 프로필 아바타 (오른쪽 정렬) */
   .post-avatar {
     display: flex;
@@ -101,3 +117,13 @@
     border-radius: 50%;
   }
   
+  .post-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .post-thumbnail.transparent {
+    background-color: #f5f5f5;
+  }

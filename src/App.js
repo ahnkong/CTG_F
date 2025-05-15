@@ -17,7 +17,7 @@ import Menu from 'pages/menu/menu'
 import BoardForm from 'pages/board/boardForm';
 import BoardList from 'pages/board/BoardList';
 import BoardDetail from 'pages/board/BoardDetail';
-import BoardNotice from 'pages/board/BoardNotice';
+import BoardNotice from 'pages/notice/BoardNotice';
 
 import AuthCheck from 'utils/AuthCheck';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -39,13 +39,19 @@ import CheckPassword from 'components/mypage/CheckPassword';
 import InitPage from 'pages/login/InitPage';
 
 import BibleStudy from 'pages/ctg/BibleStudy';
-import Search from "pages/ctg/Search";
+import Search from "pages/board/Search";
 import ShorterCate from 'pages/ctg/ShorterCate';
 import DetailPage from 'pages/ctg/detailPage';
 import Hearder_ChuchType from 'layouts/Hearder_ChurchType';
 import CatechismPage from "pages/ctg/CatechismPage";
 import Header from "components/styles/Header";
 
+
+
+import Newsletter from 'pages/newsletter/newsletter';
+import NewsletterDetail from 'pages/newsletter/NewsletterDetail';
+import Video from 'pages/video/Video';
+import VideoDetail from 'pages/video/VideoDetail';
 function App() {
   //+3/21안코코 리덕스가 로컬스토리지 기반으로 초기 상태 복원하도록,
   const dispatch = useDispatch();
@@ -79,7 +85,12 @@ function App() {
             <Route path="/NewRegister" element={<NewRegister />} />
             <Route path="/create" element={<BoardForm />} />
             <Route path="/menu" element={<Menu />} /> {/* 상세 페이지 추가 */}
+              
+            <Route path="/Video" element={<Video />} /> {/* 상세 페이지 추가 */}
+            <Route path="/Video/:videoId" element={<VideoDetail />} /> {/* 상세 페이지 추가 */}
 
+            <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/newsletter/:id" element={<NewsletterDetail />} />
 
             <Route path="/MyPage" element={<MyPage />} />
             <Route path="/LoginPage" element={<LoginPage />} />

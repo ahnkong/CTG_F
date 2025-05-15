@@ -1,0 +1,80 @@
+.video-detail-container {
+  padding: 20px;
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.video-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8em;
+}
+
+.bookmark-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+.bookmark-btn.bookmarked {
+  color: #ffd700;
+}
+
+.youtube-thumbnail {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.youtube-thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoDetail-info {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 1.1em;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-weight: bold;
+  min-width: 100px;
+  color: #444;
+}

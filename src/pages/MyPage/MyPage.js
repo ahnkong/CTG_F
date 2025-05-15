@@ -20,6 +20,7 @@ const MyPage = () => {
   const dispatch = useDispatch(); // Redux의 dispatch 함수 가져오기 
   const userId = useSelector((state) => state.auth?.userId || null); // Redux에서 userId 가져오기
   const [userData, setUserData] = useState({
+    userId: "",
     nickname: "",
     email: "",
     info: "안녕하세요! 자기소개를 해주세요",
@@ -106,10 +107,11 @@ const MyPage = () => {
     
           const userData = await userResponse.json();
           setUserData({
+            userId: userData.userId,
             nickname: userData.nickname || "닉네임 없음",
             email: userData.email || "이메일 없음",
             info: userData.info || "자기소개가 없습니다.",
-            profileImage: userData.profileImage || "https://via.placeholder.com/150",
+            profileImage: userData.profileImage || defaultProfile,
             tell: userData.tell || "",
             marketing: userData.marketing === 1,
             password: "", 
@@ -460,27 +462,18 @@ const MyPage = () => {
               <span>✍️ 내가 쓴 글</span>
               <span className="activity-arrow">›</span>
             </div>
-            <div className="activity-item" onClick={() => handleNavigate("내가 쓴 댓글")}>
+            {/* <div className="activity-item" onClick={() => handleNavigate("내가 쓴 댓글")}>
               <span>💬 내가 쓴 댓글</span>
               <span className="activity-arrow">›</span>
             </div>
             <div className="activity-item" onClick={() => handleNavigate("스크랩 한 글")}>
               <span>📌 스크랩한 댓글</span>
               <span className="activity-arrow">›</span>
-            </div>
+            </div> */}
           </section>
 
           {/* 쿠폰함 */}
          <section className="mypage-gifticon-section">
-           {/* <h2 className="mypage-gifticon-title">포인트 사용 내역</h2>
-              <div className="mypage-gifticon-item" onClick={() => handleNavigate("내가 쓴 글")}>
-             <span>💴 쿠폰함</span>
-             <span className="mypage-gifticon-arrow">›</span>
-           </div>
-           <div className="mypage-gifticon-item" onClick={() => handleNavigate("내가 쓴 댓글")}>
-             <span>🔎 포인트 사용 로그</span>
-             <span className="mypage-gifticon-arrow">›</span>
-           </div> */}
            <h2 className="mypage-gifticon-title"> 활동 </h2>
            <div className="mypage-gifticon-item" onClick={handleLogout}>
              <span>🧤 로그아웃</span>

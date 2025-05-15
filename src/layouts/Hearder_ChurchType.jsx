@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import IconMenu from "assets/icon/IconBurger.png";
+import IconSearch from "assets/icon/IconSearch.png";
 import IconHome from "assets/icon/IconHome.png";
 import IconPen from "assets/icon/IconPen.png";
 import "styles/layouts/hearderChurchType.css";
@@ -84,11 +84,10 @@ const Hearder_ChuchType = () => {
             onClick={() => navigate("/create")}
           />
           <img
-            src={IconMenu}
-            alt="메뉴"
+            src={IconSearch}
+            alt="검색"
             className="icon-button"
-            onClick={() => setMenuOpen(!menuOpen)}
-          />
+            onClick={() => navigate("/search")}          />
         </div>
       </div>
 

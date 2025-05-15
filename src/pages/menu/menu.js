@@ -52,7 +52,13 @@ const cardData = [
     image: sheep,
     title: "예배 영상",
     description: "예배 영상을\n 확인해 주세요!\n",
-    url : "/questList",
+    url : "/video",
+  },
+  {
+    image: notice,
+    title: "주보",
+    description: "주보를\n 확인해 주세요!\n",
+    url : "/newsletter",
   },
 ];
 
@@ -107,10 +113,6 @@ const Menu = () => {
     <Background type="white">
       <Hearder_ChuchType />
         <Page id="menuPage" className="menuPage" scrollable={true}>
-          <section className="menu-church-section">
-            <div className="menu-church-img"><img src={churchImage} alt="교회 대표 이미지"/></div>
-          </section>
-
           {/* 교회 공지 */}
           <section className="menu-notice-preview">
             <h3 className="notice-title">📢 최신 공지</h3>
@@ -122,6 +124,10 @@ const Menu = () => {
                   </li>
               ))}
             </ul>
+          <section className="menu-church-section">
+            <div className="menu-church-img"><img src={churchImage} alt="교회 대표 이미지"/></div>
+          </section>
+
           </section>
           {/* 카드 섹션 */}
           <section className="menu-card-section">
