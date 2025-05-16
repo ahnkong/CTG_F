@@ -52,7 +52,7 @@ const cardData = [
     image: sheep,
     title: "예배 영상",
     description: "예배 영상을\n 확인해 주세요!\n",
-    url : "/video",
+    url : "/churchVideo",
   },
   {
     image: notice,

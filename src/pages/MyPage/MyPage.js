@@ -25,7 +25,7 @@ const MyPage = () => {
     email: "",
     info: "안녕하세요! 자기소개를 해주세요",
     profileImage: defaultProfile,
-    churchName : "",
+    domainName : "",
   });
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false); // 비밀번호 확인 모달 상ㅌ
@@ -41,7 +41,7 @@ const MyPage = () => {
   const cardData = [
     {
       image: church,
-      title: `${userData.churchName} \n정보`
+      title: `${userData.domainName} \n정보`
     },
     {
       image: smile,
@@ -115,7 +115,8 @@ const MyPage = () => {
             tell: userData.tell || "",
             marketing: userData.marketing === 1,
             password: "", 
-            churchName: userData.churchName || "교회가 없음",
+            domainName: userData.domainName || "교회가 없음",
+            role: userData.role || "직분",
           });
           
           setLoading(false); // 로딩 상태 해제

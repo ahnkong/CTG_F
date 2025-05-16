@@ -8,29 +8,6 @@
   position: relative;
 }
 
-.video-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ff9d6c;
-  padding: 18px 18px 12px 18px;
-  border-radius: 0 0 18px 18px;
-}
-
-.video-church-name {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.video-menu-btn {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-}
-
 .video-youtube-card {
   display: flex;
   align-items: center;
@@ -97,7 +74,7 @@
 
 .video-card-info-row {
   display: flex;
-  gap: 18px;
+  gap: 45%;
 }
 
 .video-card-info-left {
@@ -115,6 +92,11 @@
   flex-direction: column;
   gap: 6px;
   font-weight: 500;
+  text-align: right;
+}
+
+.video-card-info-right div:nth-child(1), .video-card-info-right div:nth-child(2) {
+  color: gray;
 }
 
 .video-card-preacher {
@@ -158,8 +140,8 @@
 
 .video-like-icon {
   display: inline-block;
-  width: 28px;
-  height: 28px;
+  width: 50px;
+  height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

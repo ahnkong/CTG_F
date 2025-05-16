@@ -81,6 +81,7 @@ const LoginPage = () => {
               nickname: response.data.nickname,
               token: response.data.token,
               profileImage: response.data.profileImage, // 선택
+              domainId: response.data.domainId,
             })
           );
 

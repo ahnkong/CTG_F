@@ -3,6 +3,7 @@ const initialState = {
   nickname: null,
   isAuthenticated: false,
   profilePicture: null,
+  domainId: 0,
 };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,6 +13,7 @@ const userReducer = (state = initialState, action) => {
         userId: action.payload.userId,
         nickname: action.payload.nickname,
         profilePicture: action.payload.profileImage,
+        domainId: action.payload.domainId,
         isAuthenticated: true,
       };
     case 'SET_USER_ID':              // ← 이 부분 추가

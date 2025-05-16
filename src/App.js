@@ -38,7 +38,8 @@ import CheckPassword from 'components/mypage/CheckPassword';
 
 import InitPage from 'pages/login/InitPage';
 
-import videoList from 'pages/video/VideoList';
+import VideoList from 'pages/video/VideoList';
+import VideoForm from 'pages/video/VideoForm';
 
 import BibleStudy from 'pages/ctg/BibleStudy';
 import Search from "pages/board/Search";
@@ -93,7 +94,9 @@ function App() {
 
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/newsletter/:id" element={<NewsletterDetail />} />
-            <Route path="/churchVideo" element={<videoList />}/>
+            
+            <Route path="/churchVideo" element={<VideoList />}/>
+            <Route path="/videoForm" element={<VideoForm />}/>
 
             <Route path="/MyPage" element={<MyPage />} />
             <Route path="/LoginPage" element={<LoginPage />} />
