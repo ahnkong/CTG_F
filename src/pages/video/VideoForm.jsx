@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -16,6 +16,36 @@ const VideoForm = () => {
     peacher: '',
     videoUrl: ''
   });
+
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [showThumbnail, setShowThumbnail] = useState(false);
+
+  // 유튜브 URL에서 비디오 ID를 추출하는 함수
+  const extractYoutubeId = (url) => {
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.hostname.includes('youtube.com')) {
+        return urlObj.searchParams.get('v');
+      } else if (urlObj.hostname.includes('youtu.be')) {
+        return urlObj.pathname.slice(1);
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  };
+
+  // videoUrl이 변경될 때마다 썸네일 URL 업데이트
+  useEffect(() => {
+    const videoId = extractYoutubeId(formData.videoUrl);
+    if (videoId) {
+      setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`);
+      setShowThumbnail(true);
+    } else {
+      setThumbnailUrl('');
+      setShowThumbnail(false);
+    }
+  }, [formData.videoUrl]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,11 +85,14 @@ const VideoForm = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigate('/churchVideo');
+  };
+
   return (
     <div className="video-form-page">
       <div className="video-form-wrapper">
         <div className="video-form-container">
-          <h2>예배 영상 등록</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="title">제목</label>
@@ -74,31 +107,7 @@ const VideoForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="subTitle">부제목</label>
-              <input
-                type="text"
-                id="subTitle"
-                name="subTitle"
-                value={formData.subTitle}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="reference">참고 구절</label>
-              <input
-                type="text"
-                id="reference"
-                name="reference"
-                value={formData.reference}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="videoDate">예배 날짜</label>
+              <label htmlFor="videoDate">예배 일자</label>
               <input
                 type="date"
                 id="videoDate"
@@ -122,26 +131,67 @@ const VideoForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="videoUrl">비디오 URL</label>
+              <label htmlFor="reference">성경 말씀</label>
               <input
-                type="url"
-                id="videoUrl"
-                name="videoUrl"
-                value={formData.videoUrl}
+                type="text"
+                id="reference"
+                name="reference"
+                value={formData.reference}
+                onChange={handleChange}
+                placeholder="성경 말씀을 입력하세요"
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="subTitle">설교 제목</label>
+              <input
+                type="text"
+                id="subTitle"
+                name="subTitle"
+                value={formData.subTitle}
                 onChange={handleChange}
                 required
               />
             </div>
 
-            <div className="form-buttons">
-              <button type="button" onClick={() => navigate('/video')} className="cancel-button">
-                취소
-              </button>
-              <button type="submit" className="submit-button">
-                등록
-              </button>
+            <div className="form-group">
+              <label htmlFor="videoUrl">URL</label>
+              <input    
+                type="url"
+                id="videoUrl"
+                name="videoUrl"
+                value={formData.videoUrl}
+                onChange={handleChange}
+                placeholder="유튜브 URL을 입력하세요"
+                required
+              />
             </div>
+
+            {showThumbnail && (
+              <div className="thumbnail-preview">
+                <img src={thumbnailUrl} alt="비디오 썸네일" />
+                <button
+                  type="button"
+                  className="thumbnail-cancel"
+                  onClick={() => setShowThumbnail(false)}
+                >
+                  ✕
+                </button>
+              </div>
+            )}
           </form>
+        </div>
+      </div>
+      <div className="video-form-footer">
+        <div className="footer-buttons">
+          <button className="cancel-button" onClick={handleCancel}>
+            <span className="button-icon">✕</span>
+            <span>취소</span>
+          </button>
+          <button className="submit-button" onClick={handleSubmit}>
+            글 등록
+          </button>
         </div>
       </div>
     </div>

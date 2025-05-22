@@ -13,6 +13,7 @@ const VideoList = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [youtubeUrl, setYoutubeUrl] = useState('');
 
   const fetchVideos = useCallback(async () => {
     if (!domainId) return;
@@ -21,18 +22,16 @@ const VideoList = () => {
       const response = await axios.get('/api/videos', {
         params: {
           domainId,
-          page: currentPage,
-          size: 10,
-          sort: 'videoDate'
+          sort: 'videoDate',
+          userId
         }
       });
       if (response.data) {
         if (currentPage === 0) {
-          setVideos(response.data.content);
+          setVideos(response.data);
         } else {
-          setVideos(prev => [...prev, ...response.data.content]);
+          setVideos(prev => [...prev, ...response.data]);
         }
-        setTotalPages(response.data.totalPages);
       }
     } catch (error) {
       console.error('Error fetching videos:', error);
@@ -44,6 +43,16 @@ const VideoList = () => {
   useEffect(() => {
     fetchVideos();
   }, [fetchVideos]);
+
+  useEffect(() => {
+    if (!domainId) return;
+    axios.get(`/api/v1/domain/${domainId}`)
+      .then(res => {
+        setYoutubeUrl(res.data.youtubeUrl || '');
+        console.log(res.data.youtubeUrl);
+      })
+      .catch(() => setYoutubeUrl(''));
+  }, [domainId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,19 +68,25 @@ const VideoList = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loading, currentPage, totalPages]);
 
-  const handleLike = async (videoId) => {
+  const handleLike = async (boardId) => {
     if (!userId) {
       alert('로그인이 필요합니다.');
       navigate('/login');
       return;
     }
     try {
-      const response = await axios.post(`/api/videos/${videoId}/like`, null, {
-        params: { userId }
-      });
-      if (response.status === 200) {
-        setCurrentPage(0); // 좋아요 후 목록 새로고침
-      }
+      await axios.patch(
+        `/api/v1/likes/VIDEO/${boardId}`,
+        { userId }
+      );
+      // 프론트에서 바로 isLiked 토글
+    setVideos(prev =>
+      prev.map(video =>
+        video.boardId === boardId
+          ? { ...video, liked: !video.liked }
+          : video
+      )
+    );
     } catch (error) {
       console.error('Error liking video:', error);
       if (error.response?.status === 403) {
@@ -102,33 +117,52 @@ const VideoList = () => {
       <Hearder_ChuchType />
       <div className="video-list-wrapper">
         <div className="video-list-container">
-          <div className="video-list-header">
-            <h2>예배 영상</h2>
+          <div
+            className="video-youtube-card"
+            onClick={() => {
+              window.open(youtubeUrl || 'https://www.youtube.com/', '_blank');
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <span className="video-youtube-icon" />
+            <div>
+              <div className="video-youtube-title">숭신교회</div>
+              <div className="video-youtube-desc">유튜브 채널 바로가기</div>
+            </div>
           </div>
           {loading && videos.length === 0 ? (
             <div className="loading">로딩 중...</div>
           ) : (
             <div className="video-list">
               {videos.map((video) => (
-                <div key={video.boardId} className="video-card">
-                  <div className="video-card-info">
-                    <h3>{video.title}</h3>
-                    <div className="video-likes" onClick={() => handleLike(video.boardId)}>
-                      <span className={`video-like-icon${video.isLiked ? ' liked' : ''}`}></span>
+                <div
+                  key={video.boardId}
+                  className="video-card"
+                  onClick={() => {
+                    if (video.videoUrl) {
+                      window.open(video.videoUrl, '_blank');
+                    }
+                  }}
+                  style={{ cursor: video.videoUrl ? 'pointer' : 'default' }}
+                >
+                  <div className="video-card-title-row">
+                    <h3 className="video-card-title">{video.title}</h3>
+                    <div className="video-likes" onClick={e => { e.stopPropagation(); handleLike(video.boardId); }}>
+                      <span className={`video-like-icon${video.liked ? ' liked' : ''}`}></span>
                     </div>
-                    <div className="video-card-info-row">
-                      <div className="video-card-info-left">
-                        <div>본문</div>
-                        <div>예배일</div>
-                        <div>설교자</div>
-                      </div>
-                      <div className="video-card-info-right">
-                        <div>{video.reference}</div>
-                        <div>{formatDate(video.videoDate)}</div>
-                        <div className="video-card-preacher">{video.peacher}</div>
-                      </div>
+                  </div>
+                  {video.subTitle && <div className="video-card-subtitle">{video.subTitle}</div>}
+                  <div className="video-card-info-row">
+                    <div className="video-card-info-left">
+                      <div>본문</div>
+                      <div>예배일</div>
+                      <div>설교자</div>
                     </div>
-                    {video.subTitle && <div className="video-card-subtitle">{video.subTitle}</div>}
+                    <div className="video-card-info-right">
+                      <div>{video.reference}</div>
+                      <div>{formatDate(video.videoDate)}</div>
+                      <div className="video-card-preacher">{video.peacher}</div>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -2,86 +2,152 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+}
+
+.video-form-header {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.header-title {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.header-title h2 {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
 }
 
 .video-form-wrapper {
   flex: 1;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 20px 15px;
   width: 100%;
+  margin-bottom: 60px; /* footer height */
 }
 
 .video-form-container {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.video-form-container h2 {
-  margin-bottom: 30px;
-  color: #333;
-  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 0;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #555;
+  width: 80px;
+  flex-shrink: 0;
+  color: #333;
+  font-size: 0.95rem;
   font-weight: 500;
+  margin-right: 16px;
 }
 
 .form-group input {
-  width: 100%;
+  flex: 1;
   padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f5f5f5;
+  color: #333;
+  min-width: 0; /* 입력창이 너무 작아지는 것 방지 */
+}
+
+.form-group input::placeholder {
+  color: #999;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #4a90e2;
+  background-color: #f0f0f0;
 }
 
-.form-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 30px;
+/* 썸네일 미리보기 스타일 */
+.thumbnail-preview {
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
 }
 
-.cancel-button,
-.submit-button {
-  padding: 12px 24px;
+.thumbnail-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.thumbnail-cancel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* 하단 버튼 스타일 */
+.video-form-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top: 1px solid #eeeeee;
+}
+
+.footer-buttons {
+  display: flex;
+  align-items: stretch;
+  height: 50px;
 }
 
 .cancel-button {
-  background-color: #e0e0e0;
-  color: #333;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  background-color: #f1f1f1;
+  color: #666;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.button-icon {
+  font-size: 0.9rem;
+  margin-right: 2px;
 }
 
 .submit-button {
-  background-color: #4a90e2;
+  flex: 1;
+  border: none;
+  background-color: #fd9956;
   color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.cancel-button:hover {
-  background-color: #d0d0d0;
-}
-
-.submit-button:hover {
-  background-color: #357abd;
+.submit-button:active {
+  background-color: #fd9956;
 } 
