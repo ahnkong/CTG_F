@@ -33,6 +33,21 @@
   color: white;
 }
 
+html,
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  /* 안전하게 전체 뷰포트 크기 확보 */
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .App-link {
   color: #61dafb;
 }

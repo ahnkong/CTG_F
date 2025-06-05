@@ -14,7 +14,7 @@ const VideoList = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [youtubeUrl, setYoutubeUrl] = useState('');
-
+  const [domainName, setDomainName] = useState('');
   const fetchVideos = useCallback(async () => {
     if (!domainId) return;
     try {
@@ -49,9 +49,12 @@ const VideoList = () => {
     axios.get(`/api/v1/domain/${domainId}`)
       .then(res => {
         setYoutubeUrl(res.data.youtubeUrl || '');
-        console.log(res.data.youtubeUrl);
+        setDomainName(res.data.domainName || '');
       })
-      .catch(() => setYoutubeUrl(''));
+      .catch(() => {
+        setYoutubeUrl('')
+        setDomainName('')
+      });
   }, [domainId]);
 
   useEffect(() => {
@@ -126,7 +129,7 @@ const VideoList = () => {
           >
             <span className="video-youtube-icon" />
             <div>
-              <div className="video-youtube-title">숭신교회</div>
+              <div className="video-youtube-title">{domainName}</div>
               <div className="video-youtube-desc">유튜브 채널 바로가기</div>
             </div>
           </div>

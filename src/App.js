@@ -41,6 +41,8 @@ import InitPage from 'pages/login/InitPage';
 import VideoList from 'pages/video/VideoList';
 import VideoForm from 'pages/video/VideoForm';
 
+import CommunityForm from 'pages/community/CommunityForm';
+
 import BibleStudy from 'pages/ctg/BibleStudy';
 import Search from "pages/board/Search";
 import ShorterCate from 'pages/ctg/ShorterCate';
@@ -97,6 +99,8 @@ function App() {
             
             <Route path="/churchVideo" element={<VideoList />}/>
             <Route path="/videoForm" element={<VideoForm />}/>
+
+            <Route path="/communityForm" element={<CommunityForm />} />
 
             <Route path="/MyPage" element={<MyPage />} />
             <Route path="/LoginPage" element={<LoginPage />} />
