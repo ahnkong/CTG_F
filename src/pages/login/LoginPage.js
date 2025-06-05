@@ -61,6 +61,7 @@ const LoginPage = () => {
           "http://localhost:8080/api/v1/auth/login",
           { email, password },
           { withCredentials: true }
+          
         );
 
         if (response.data.token) {
@@ -90,6 +91,7 @@ const LoginPage = () => {
           alert("로그인 실패");
         }
       } catch (error) {
+        
         console.error("❌ 로그인 에러:", error);
       }
     }, 500); // 애니메이션 대기

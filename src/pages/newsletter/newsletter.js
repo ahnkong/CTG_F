@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import 'styles/newsletter/newsletter.css';
 import Background from 'context/Background';
 import Page from 'components/styles/Page';
 import Hearder_ChuchType from 'layouts/Hearder_ChurchType';
 import BottomNav from 'layouts/BottomNav';
+
 const Newsletter = () => {
   const navigate = useNavigate();
-  const [newsletters] = useState([
-    {
-      id: 1,
-      date: '2024-03-24',
-      title: '2024년 3월 24일 주보',
-      imageUrl: '/newsletters/20240324.jpg'
-    },
-    {
-      id: 2,
-      date: '2024-03-17',
-      title: '2024년 3월 17일 주보',
-      imageUrl: '/newsletters/20240317.jpg'
-    }
-  ]);
+  const [newsletters, setNewsletters] = useState([]);
+
+  useEffect(() => {
+    const fetchNewsletters = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/bulletins');
+        const formatted = response.data.map((item) => ({
+          id: item.boardId,
+          date: item.createdAt?.split('T')[0], // ISO 문자열에서 날짜만
+          title: item.title,
+          imageUrl: item.images?.[0]?.filePath || '/images/default-thumbnail.jpg', // 썸네일 기본 처리
+        }));
+        setNewsletters(formatted);
+      } catch (error) {
+        console.error('주보 목록을 불러오는 데 실패했습니다:', error);
+      }
+    };
+
+    fetchNewsletters();
+  }, []);
 
   const handleNewsletterClick = (newsletterId) => {
     navigate(`/newsletter/${newsletterId}`);

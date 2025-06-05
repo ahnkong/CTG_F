@@ -1,0 +1,31 @@
+.section-list-container {
+    padding: 1rem;
+  }
+  .back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .chapter-header {
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 1rem 0;
+  }
+  .section-list {
+    list-style: none;
+    padding: 0;
+  }
+  .section-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+  .section-item:hover {
+    background: #fafafa;
+  }
+  .section-title-preview {
+    margin-left: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
