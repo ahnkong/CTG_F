@@ -103,6 +103,11 @@ const Menu = () => {
   };
 
   const handleWriteClick = (type) => {
+    if (type === 'newsletter') {
+      // 주보는 작성 폼이 아니라 조회(목록) 페이지로
+      navigate('/newsletter/write');
+      return;
+    }
     navigate(`/create?type=${type}`);
     setShowModal(false); // 모달 닫기
   };
@@ -174,6 +179,7 @@ const Menu = () => {
                 <button onClick={() => handleWriteClick("board")}>게시판 글쓰기</button>
                 <button onClick={() => handleWriteClick("notice")}>공지 글쓰기</button>
                 <button onClick={() => handleWriteClick("worship")}>예배 영상 글쓰기</button>
+                <button onClick={() => handleWriteClick("newsletter")}>주보 올리기</button>
               </div>
             </div>
           )}

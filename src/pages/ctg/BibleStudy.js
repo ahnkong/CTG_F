@@ -22,12 +22,12 @@ const catechismCards = [
   {
     id: 2,
     category: "웨스터민스터",
-    title: "대요리 문답",
+    title: "표준 신앙고백서",
     number: "196",
     description: "목회자와 평신도들을 위한 문답",
     background: "blue",
     icon: BibleIcon,
-    url: "/larger-catechism"
+    url: "/confession"
   },
   {
     id: 3,

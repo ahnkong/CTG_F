@@ -48,6 +48,8 @@ import Search from "pages/board/Search";
 import ShorterCate from 'pages/ctg/ShorterCate';
 import DetailPage from 'pages/ctg/detailPage';
 import Hearder_ChuchType from 'layouts/Hearder_ChurchType';
+import SectionListPage from "pages/ctg/SectionListPage";
+import SectionDetailPage from "pages/ctg/SectionDetailPage";
 import CatechismPage from "pages/ctg/CatechismPage";
 import Header from "components/styles/Header";
 
@@ -55,6 +57,7 @@ import Header from "components/styles/Header";
 
 import Newsletter from 'pages/newsletter/newsletter';
 import NewsletterDetail from 'pages/newsletter/NewsletterDetail';
+import NewsletterUploadForm from 'pages/newsletter/NewsletterUploadForm';
 import Video from 'pages/video/Video';
 import VideoDetail from 'pages/video/VideoDetail';
 function App() {
@@ -95,6 +98,7 @@ function App() {
             <Route path="/Video/:videoId" element={<VideoDetail />} /> {/* 상세 페이지 추가 */}
 
             <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/newsletter/write" element={<NewsletterUploadForm />} />
             <Route path="/newsletter/:id" element={<NewsletterDetail />} />
             
             <Route path="/churchVideo" element={<VideoList />}/>
@@ -125,9 +129,12 @@ function App() {
 
             <Route path="/BibleStudy" element={<BibleStudy />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/:type" element={<CatechismPage />} />  {/* ✅ 통합된 페이지 */}
-            <Route path="/:type" element={<CatechismPage />} />
-            <Route path="/:type/:id" element={<DetailPage />} />  {/* ✅ 디테일 페이지 라우트 확인 */}
+            <Route path="/confession" element={<CatechismPage />} />
+            <Route path="/confession/:chapter" element={<SectionListPage />} />
+            <Route
+              path="/confession/:chapter/:section"
+              element={<SectionDetailPage />}
+            />
 
 
           </Routes>

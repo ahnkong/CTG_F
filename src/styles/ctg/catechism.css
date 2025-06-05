@@ -2,9 +2,9 @@
   width: 100%;
   max-width: 500px;
   height: auto;
-  position: fixed;
+  /* position: fixed; */
   box-sizing: border-box;
-  background-color: rgb(47, 47, 47);
+  /* background-color: rgb(47, 47, 47); */
 
 
 }
@@ -12,6 +12,10 @@
 .header-container {
   align-items: center;
   width: 100%;
+  /* height: 100px; */
+  padding-top: 5%;
+  padding-bottom: 5%;
+  
   background-color: rgb(47, 47, 47);
 }
 
@@ -22,10 +26,14 @@
 }
 
 .search-container {
+  
   width: 100%;
+  height: 84px;
   display: flex;
   align-items: center;
   padding: 3%;
+  margin-top: -1px;
+  
   background-color: rgb(47, 47, 47);
 
 }
@@ -34,6 +42,7 @@
   width: 100%;
   padding: 8px;
   height: 45px;
+  margin-left: 2%;
   font-size: clamp(0.8rem, 1em, 1.1rem);
 }
 
@@ -49,13 +58,39 @@
 
 
 .catechism-content {
+  
   padding: 1% 4% 0% 7%;
-  margin-top: 160px;
+  /* margin-top: 150px; */
 
 }
+.catechism-fixed-header {
+  position: sticky;  /* 또는 fixed */
+  
+  top: 0;
+  z-index: 100;
+  background-color: white; /* 배경 이미지가 흰색이면 불투명으로 고정 */
+  /* padding-bottom: 0.5rem; */
+  border-bottom: 1px solid #ddd;
+}
 
+.catechism-scroll-content {
+  
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+
+.section-title {
+  display: inline-block;
+  text-align: left; 
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  margin: rem 0;
+  margin-left: 3%;
+  border-bottom: 3px solid #ccc;
+}
 .catechism-title {
-  margin-top: 5px;
+  /* margin-top: 5px; */
   font-size: clamp(1rem, 1rem, 1.2rem);
   margin-left: 10px;
   font-weight: bold;
@@ -64,17 +99,26 @@
 
 .catechism-list {
   list-style: none;
-  padding: 0;
+  /* padding: 3px; */
+  margin-top: -5%;
 }
 
 .catechism-item {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  /* padding: 10px; */
+  /* margin-top: 10px; */
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  padding-bottom: 3%;
+  border-bottom: 1px dotted #ccc;
   cursor: pointer;
   font-size: clamp(1em, 1em, 1.2rem);
-
+  
 }
 
 .catechism-item:hover {
   background-color: #f0f0f0;
+}
+.chapter-number {
+  color: #170ec1;  /* 원하는 색상 코드로 변경 */
 }
