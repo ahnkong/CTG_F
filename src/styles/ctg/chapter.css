@@ -1,0 +1,142 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 0.75rem 1rem;
+}
+
+.header-container .back-button,
+.header-container .menu-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.header-container .header-title {
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+}
+
+.search-input {
+  flex: 1;
+  background-color: #444;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: #bbb;
+}
+
+.search-button {
+  margin-left: 0.5rem;
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.chapter-subtitle {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #888;
+  text-decoration: underline;
+}
+
+.chapter-fixed-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-content {
+  padding: 1rem;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pill-icon {
+  margin-right: 0.5rem;
+}
+
+.question-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #222;
+}
+
+.answer-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.refs-container {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ref-pill {
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.prev-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.next-btn {
+  background-color: #222;
+  color: #fff;
+}
+
