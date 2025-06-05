@@ -1,123 +1,111 @@
-
-
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "styles/ctg/catechism.css"
-import Page from "components/styles/Page";
+import { useNavigate } from "react-router-dom";
+import "styles/ctg/catechism.css";
 import Background from "context/Background";
-// import Header from "../components/Header.jsx";
-
 import IconBackButton from "assets/icon/IconBackButton.png";
 import IconMenu from "assets/icon/IconMenu.png";
 import IconSearch from "assets/icon/IconSearch.png";
 
 const CatechismPage = () => {
-    const { type } = useParams(); // 🔥 URL에서 type 받아오기 (shorter-catechism / large-catechism)
-    const navigate = useNavigate();
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [catechismList, setCatechismList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const catechismFile =
-            type === "larger-catechism"
-                ? "/data/largerCatechism.json"
-                : "/data/shorterCatechism.json"; // 🔥 type에 따라 JSON 파일 선택
+  useEffect(() => {
+    fetch("/api/books")
+      .then((res) => (res.ok ? res.json() : Promise.reject("네트워크 오류")))
+      .then((data) => {
+        const chapters = Array.from(
+          new Map(
+            data.map((item) => [item.chapterNumber, item.chapterTitle])
+          ).entries(),
+          ([chapterNumber, chapterTitle]) => ({ chapterNumber, chapterTitle })
+        ).sort((a, b) => a.chapterNumber - b.chapterNumber);
+        setEntries(chapters);
+      })
+      .catch((e) => setError(e))
+      .finally(() => setLoading(false));
+  }, []);
 
-        fetch(catechismFile)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("✅ JSON 로드 성공:", data);
-                setCatechismList(
-                    type === "larger-catechism" ? data.largerCatechism : data.shorterCatechism
-                );
-            })
-            .catch((error) => console.error("🚨 JSON 로드 오류:", error));
-    }, [type]);
+  const filteredEntries = entries.filter((entry) =>
+    entry.chapterTitle.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-    // 🔍 검색어 필터링
-    const filteredQuestions = catechismList.filter(
-        (q) =>
-            q.question.includes(searchTerm) ||
-            (q.answer && q.answer.includes(searchTerm))
-    );
-
-    return (
-        <Background type="white">
-                {/* ✅ 공통 클래스명 사용 */}
-                <div className="catechism-container">
-                    {/* <header className={`catechism-header ${type}`}> */}
-                    <div className="header-container">
-                        <img
-                            src={IconBackButton}
-                            alt="뒤로 가기"
-                            className="back-button"
-                            onClick={() => navigate("/bibleStudy")}
-                        />
-                        <h1 className="title">Christian to God</h1>
-                        <div className="menu-container">
-                            <img
-                                src={IconMenu}
-                                alt="메뉴 아이콘"
-                                className="IconMenu"
-                                onClick={() => setMenuOpen(!menuOpen)}
-                            />
-                            {menuOpen && (
-                                <div className="dropdown-menu">
-                                    <button onClick={() => navigate("/bibleStudy")}>🏠 홈으로</button>
-                                    <button onClick={() => navigate(`/${type}`)}>🔍 검색</button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    {/* ✅ 헤더 분리 후 적용 */}
-                    {/* <Header title="Christian to God" backPath={`/${type}`} /> */}
-
-                    {/* ✅ 검색창 */}
-                    <div className="search-container">
-                        <input
-                            className="search-input"
-                            type="text"
-                            placeholder="검색어를 입력하세요"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <img
-                            src={IconSearch}
-                            alt="검색 버튼"
-                            className="search-button"
-                            onClick={() => navigate(`/${type}`)}
-                        />
-                    </div>
-                    {/* </header> */}
+  return (
+    <Background type="white">
+      <div className="catechism-container">
+        {/* Fixed Header + Search + Title */}
+        <div className="catechism-fixed-header">
+          {/* Header */}
+          <div className="header-container">
+            <img
+              src={IconBackButton}
+              alt="뒤로 가기"
+              className="back-button"
+              onClick={() => navigate("/BibleStudy")}
+            />
+            <h1 className="title">Christian to God</h1>
+            <div className="menu-container">
+              <img
+                src={IconMenu}
+                alt="메뉴 아이콘"
+                className="IconMenu"
+                onClick={() => setMenuOpen(!menuOpen)}
+              />
+              {menuOpen && (
+                <div className="dropdown-menu">
+                  <button onClick={() => navigate("/Menu")}>🏠 홈으로</button>
+                  <button onClick={() => navigate("/confession")}>🔍 검색</button>
                 </div>
+              )}
+            </div>
+          </div>
 
-                {/* ✅ 문답 목록 */}
-                <main className="catechism-content">
-                    <p className="catechism-title">
-                        {type === "larger-catechism" ? "웨스트민스터 대요리문답" : "웨스트민스터 소요리문답"}
-                    </p>
-                    <ul className="catechism-list">
-                        {filteredQuestions.map((q) => (
-                            <p
-                                key={q.id}
-                                className="catechism-item"
-                                onClick={() => navigate(`/${type}/${q.id}`)}
-                            >
-                                <span className="pin">📌 </span>
-                                <span
-                                    className="question"
-                                    style={{ whiteSpace: "normal", wordBreak: "break-word" }}
-                                >
-                                    {q.id}문 {q.question}
-                                </span>
-                                {/* <div className="item-divider" /> */}
-                            </p>
-                        ))}
-                    </ul>
-                </main>
-        </Background>
-    );
+          {/* Search Bar */}
+          <div className="search-container">
+            <input
+              className="search-input"
+              type="text"
+              placeholder="검색어를 입력하세요"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <img
+              src={IconSearch}
+              alt="검색 버튼"
+              className="search-button"
+              onClick={() => {}}
+            />
+          </div>
+          </div>
+          {/* Centered Title */}
+          <p className="section-title">표준 신앙 고백서</p>
+        
+
+        {/* Scrollable Content */}
+        <main className="catechism-list">
+          {loading && <p>Loading chapters…</p>}
+          {error && <p className="text-red-500">Error: {error}</p>}
+
+          {filteredEntries.map((ch) => (
+            <li
+              key={ch.chapterNumber}
+              className="catechism-item"
+              onClick={() => navigate(`/confession/${ch.chapterNumber}`)}
+            >
+              <span className="emoji">📌</span>
+              <span className="chapter-title">
+                <span className="chapter-number"> {ch.chapterNumber}장</span>. {ch.chapterTitle}
+              </span>
+            </li>
+          ))}
+        </main>
+      </div>
+    </Background>
+  );
 };
 
 export default CatechismPage;
