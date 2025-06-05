@@ -1,25 +1,20 @@
-
-/* Moneygraphy-Rounded 폰트 */
+/* NanumSquareRound 웹폰트 */
 @font-face {
-  font-family: "Moneygraphy-Rounded";
-  font-weight: normal;
-  src: url("assets/font/Moneygraphy-Rounded.ttf");
+  font-family: 'NanumSquareRound';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-      
 }
-
 
 /* 전역 폰트 적용 */
-body {
-  /* font-family: "Moneygraphy-Rounded", sans-serif !important; */
-  font-family: sans-serif !important;
-
+:root {
+  --font-primary: "NanumSquareRound", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: var(--font-primary) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ✅ 기본 마진/패딩 제거 */
@@ -41,4 +36,10 @@ html, body {
 /* 모든 요소의 크기를 padding 포함하도록 설정 */
 * {
   box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+/* 코드 블록용 폰트 설정 */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

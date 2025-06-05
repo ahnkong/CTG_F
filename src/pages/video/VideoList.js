@@ -14,6 +14,11 @@ const VideoList = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [youtubeUrl, setYoutubeUrl] = useState('');
+  const extractYoutubeId = (url) => {
+    const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+    const match = url.match(regExp);
+    return match ? match[1] : '';
+  };
 
   const fetchVideos = useCallback(async () => {
     if (!domainId) return;
@@ -152,6 +157,13 @@ const VideoList = () => {
                     </div>
                   </div>
                   {video.subTitle && <div className="video-card-subtitle">{video.subTitle}</div>}
+                  {video.videoUrl && (
+                    <img
+                      src={`https://img.youtube.com/vi/${extractYoutubeId(video.videoUrl)}/hqdefault.jpg`}
+                      alt="썸네일"
+                      className="video-thumbnail"
+                    />
+                  )}
                   <div className="video-card-info-row">
                     <div className="video-card-info-left">
                       <div>본문</div>

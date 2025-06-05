@@ -1,0 +1,126 @@
+/* 공통 태그 버튼 스타일 */
+.tag-button {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  height: 28px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  display: flex;
+}
+
+.tag-button.active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* 태그 그룹 스타일 */
+.tag-button-group {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Notice variants */
+.tag-button.all {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.tag-button.notice {
+  background-color: #E1E6FF;
+  color: #1133F6;
+}
+
+.tag-button.event {
+  background-color: #FFE0E1;
+  color: #FF020A;
+}
+
+.tag-button.news {
+  background-color: #CAE5FF;
+  color: #1600BE;
+}
+
+/* Community variants */
+.tag-button.daily {
+  background-color: #E4F9C8;
+  color: #132003;
+}
+
+.tag-button.bible {
+  background-color: #E1E6FF;
+  color: #6518B3;
+}
+
+.tag-button.word {
+  background-color: #FFE0E1;
+  color: #FF020A;
+}
+
+.tag-button.meditation {
+  background-color: #CAE5FF;
+  color: #1600BE;
+}
+
+.tag-button.worship {
+  background-color: #FFDCB8;
+  color: #FF500B;
+}
+
+/* Status variants */
+.tag-button.ongoing {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.tag-button.ended {
+  background-color: #FFEBEE;
+  color: #D32F2F;
+}
+
+/* 특수 상황을 위한 수정자 */
+.tag-button.small {
+  height: 24px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.tag-button.large {
+  height: 32px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 1;
+  background-color: transparent;
+  color: #000;
+}
+
+.tag-button.large.active {
+  position: relative;
+}
+
+.tag-button.large.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+.tag-button.with-margin {
+  margin-left: 8px;
+} 

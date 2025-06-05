@@ -323,4 +323,22 @@
   height: 14px;
 }
 
+.status-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.status-tag.in_progress {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.status-tag.ended {
+  background-color: #FFEBEE;
+  color: #D32F2F;
+}
+
 

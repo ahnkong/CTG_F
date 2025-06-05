@@ -6,17 +6,10 @@ import Background from "context/Background.jsx";
 import BottomNav from "layouts/BottomNav";
 import IconPen from "assets/icon/IconPen.png"
 import "styles/menu/menu.css"; // Menu 전용 스타일
-// import "styles/page.css"; // 공통 스타일
 import Hearder_ChuchType from "layouts/Hearder_ChurchType";
 import CloseIcon from "assets/icon/IconClose.png"; // 닫기 아이콘
 
 /* 이미지 import */
-import money from "assets/image/money.png";
-import cart from "assets/image/cart.png";
-import note from "assets/image/note.png";
-import trophy from "assets/image/trophy.png";
-import people from "assets/image/people.png"; // 하단 이미지
-import bible from "assets/image/imageBible.png";
 import sheep from "assets/image/imageSheep.png";
 import notice from "assets/image/imageNotice.png";
 import churchImage from "assets/image/churhch_img.png"; // 상대경로 또는 절대경로
@@ -46,7 +39,7 @@ const cardData = [
     image: notice,
     title: "교회 공지",
     description: "교회 공지를\n확인하세요~!",
-    url : "/boardNotice",
+    url : "/noticeList",
   },
   {
     image: sheep,
@@ -111,17 +104,17 @@ const Menu = () => {
 
   return (
     <Background type="white">
-      <Hearder_ChuchType />
+      <Hearder_ChuchType type="white"/>
         <Page id="menuPage" className="menuPage" scrollable={true}>
           {/* 교회 공지 */}
           <section className="menu-notice-preview">
-            <h3 className="notice-title">📢 최신 공지</h3>
+            <h3 className="notice-section-title">📢 최신 공지</h3>
             <ul className="notice-list">
               {latestNotices.map((notice) => (
                 <li key={notice.boardId} onClick={() => navigate(`/board/${notice.boardId}`)}>
                   <p className="notice-item-title">{notice.title}</p>
                   <p className="notice-item-date">{formatDate(notice.cDate)}</p>
-                  </li>
+                </li>
               ))}
             </ul>
           <section className="menu-church-section">

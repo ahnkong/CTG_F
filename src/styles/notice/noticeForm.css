@@ -1,0 +1,177 @@
+.NoticeForm_write {
+  
+  margin-top: 3rem;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notice-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-sort-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+}
+
+.sort-button {
+  border: none;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.sort-button:hover {
+  background-color: #e0e0e0;
+}
+
+.sort-button.active {
+  /* background-color: #1133f6; */
+  color: #fff;
+  font-weight: 600;
+  /* border: 1px solid #1133f6; */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.tag-button-group {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tag-button {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  height: 28px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 공지사항 태그 */
+.tag-button.notice {
+  background-color: #E1E6FF;
+  color: #1133F6;
+  font-weight: normal;
+}
+
+/* 행사 태그 */
+.tag-button.event {
+  background-color: #FFE0E1;
+  color: #FF020A;
+  font-weight: normal;
+}
+
+/* 소식 태그 */
+.tag-button.news {
+  background-color: #CAE5FF;
+  color: #1600BE;
+  font-weight: normal;
+}
+
+.tag-button.active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+.notice-row label {
+  min-width: 80px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #595959;
+}
+
+.notice-row input,
+.notice-row select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-group input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.date-group input[type="date"]:first-child::before {
+  content: "시작일";
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+.date-group input[type="date"]:last-child::before {
+  content: "종료일"; 
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+.notice-content {
+  width: 100%;
+  padding: 10px;
+  /* border: 1px solid #ddd; */
+  border: none;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.bottom-bar {
+  position: fixed;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-bar button {
+  flex: 1;
+  margin: 0;
+}
+
+.bottom-bar button:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bottom-bar button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.bottom-bar button:hover {
+  background-color: #0056b3;
+}

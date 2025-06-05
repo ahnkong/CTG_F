@@ -12,12 +12,13 @@ import InitScreen from 'pages/login/InitScreen';
 import Menu from 'pages/menu/menu'
 // import Board from './components/board/Board';
 
-
-
 import BoardForm from 'pages/board/boardForm';
 import BoardList from 'pages/board/BoardList';
 import BoardDetail from 'pages/board/BoardDetail';
-import BoardNotice from 'pages/notice/BoardNotice';
+
+import NoticeList from 'pages/notice/NoticeList';
+import NoticeForm from 'pages/notice/NoticeForm';
+import NoticeDetail from 'pages/notice/NoticeDetail';
 
 import AuthCheck from 'utils/AuthCheck';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -48,8 +49,6 @@ import DetailPage from 'pages/ctg/detailPage';
 import Hearder_ChuchType from 'layouts/Hearder_ChurchType';
 import CatechismPage from "pages/ctg/CatechismPage";
 import Header from "components/styles/Header";
-
-
 
 import Newsletter from 'pages/newsletter/newsletter';
 import NewsletterDetail from 'pages/newsletter/NewsletterDetail';
@@ -88,13 +87,18 @@ function App() {
             <Route path="/NewRegister" element={<NewRegister />} />
             <Route path="/create" element={<BoardForm />} />
             <Route path="/menu" element={<Menu />} /> {/* 상세 페이지 추가 */}
-              
+
             <Route path="/Video" element={<Video />} /> {/* 상세 페이지 추가 */}
             <Route path="/Video/:videoId" element={<VideoDetail />} /> {/* 상세 페이지 추가 */}
 
+
+            <Route path="/noticeForm" element={<NoticeForm />} />
+            <Route path="/noticeList" element={<NoticeList />} />
+            <Route path="/notice/:boardId" element={<NoticeDetail />} />
+
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/newsletter/:id" element={<NewsletterDetail />} />
-            
+
             <Route path="/churchVideo" element={<VideoList />}/>
             <Route path="/videoForm" element={<VideoForm />}/>
 
@@ -111,7 +115,6 @@ function App() {
             {/* 기본 경로 */}
             <Route path="/main" element={<BoardList />} />
             <Route path="/board/:boardId" element={<BoardDetail />} />
-            <Route path="/boardNotice" element={<BoardNotice />} />
 
 
             <Route path="/check-password" element={<CheckPassword />} />

@@ -1,0 +1,175 @@
+/* 배경 스타일 */
+.NoticeList-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+/* 정렬 옵션 영역 */
+.NoticeList-sort-options {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0px 0 5px 0;
+  max-width: 100%;
+  position: sticky;
+  top: 20px;
+  height: 50px;
+  box-sizing: border-box;
+  z-index: 9;
+}
+
+/* 정렬 버튼 스타일 */
+.NoticeList-sort-button {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #000000;
+  transition: color 0.3s;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* 하단 슬라이더 */
+.NoticeList-sort-button-wrapper {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.NoticeList-sort-button.NoticeList-active {
+  color: #000000;
+  font-weight: bold;
+}
+
+.NoticeList-active-indicator {
+  height: 4px;
+  width: 50px;
+  background-color: #000000;
+  border-radius: 2px;
+  transition: transform 0.3s, width 0.3s;
+  position: absolute;
+  bottom: -5px;
+}
+
+/* 게시글 목록 영역 */
+.NoticeList-posts {
+  width: 100%;
+  max-width: 500px;
+  flex-grow: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+  height: calc(100vh - 190px);
+  margin-bottom: 95px;
+}
+
+/* 스크롤바 숨기기 */
+.NoticeList-posts::-webkit-scrollbar {
+  display: none;
+}
+
+/* 게시글 카드 스타일 */
+.NoticeList-post {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 3%;
+  border-bottom: 0.5px solid rgba(114, 112, 112, 0.23);
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* 왼쪽 콘텐츠 */
+.NoticeList-post-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100px;
+}
+
+/* 해시태그 스타일 */
+.NoticeList-post-tags {
+  
+  display: flex;
+}
+
+/* 메타 정보 */
+.NoticeList-post-meta {
+  color: #000000;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+}
+
+/* 오른쪽 콘텐츠 */
+.NoticeList-post-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* 썸네일 */
+.NoticeList-post-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 3px;
+}
+
+.NoticeList-post-thumbnail.transparent {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px dashed #ddd;
+}
+
+/* 좋아요, 댓글 수 */
+.NoticeList-post-stats {
+  display: flex;
+  gap: 15px;
+  font-size: 0.7rem;
+  color: #000;
+  align-items: center;
+}
+
+.NoticeList-post-likes,
+.NoticeList-post-comments {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+}
+
+.NoticeList-hashtag-filter {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 16px;
+  background-color: #fff;
+}

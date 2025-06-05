@@ -85,9 +85,18 @@
   margin-bottom: 8px;
 }
 
+.video-thumbnail {
+  width: 124px;
+  height: 70px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin: 8px 0;
+}
+
+
 .video-card-info-row {
   display: flex;
-  gap: 50%;
+  gap: 10%;
 }
 
 .video-card-info-left {

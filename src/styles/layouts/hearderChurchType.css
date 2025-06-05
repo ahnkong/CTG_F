@@ -1,41 +1,50 @@
-
 .church-header-wrapper {
     position: relative;
-    background-color: #fd9956;
-    padding: 10px 40px;
+    /* background-color: #fd9956; */
+    background-color: #C01C2C;
+    padding: 10px 20px;
     max-width: 600px;
+    height: 56px;
     margin: 0 auto;
     box-sizing: border-box;
-    text-align: left;
+  } 
 
-  }
   
   .church-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
-    font-size: 1.2rem;
+    width: 100%;
+    height: 100%;
   }
   
   .church-title {
-    font-weight: bold;
+    font-weight: 600;
+    font-size:18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
   
   /* 아이콘을 감싸는 부모 (오른쪽 정렬) */
   .church-icons {
     display: flex;
-    gap: 20px; /* 아이콘 간격 */
+    gap: 16px;
     align-items: center;
   }
   
   /* 공통 아이콘 버튼 스타일 */
   .icon-button {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    filter: brightness(0) invert(1); /* 흰색처럼 보이게 */
+    padding: 2px;
+    transition: opacity 0.2s;
+  }
 
+  .icon-button:hover {
+    opacity: 0.8;
   }
 
   .dropdown-menu {
@@ -46,7 +55,7 @@
     padding: 10px;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    font-size: 0.8rem; /* ✅ 여기서 최소 크기 보장 */
+    font-size: 0.8rem;
     z-index: 1000;
   }
   
@@ -55,8 +64,7 @@
     border: none;
     cursor: pointer;
     text-align: left;
-    font-size: 0.8rem; /* ✅ 부모의 font-size 상속 */
+    font-size: 0.8rem;
     padding: 4px 0;
     color: #333;
   }
-  

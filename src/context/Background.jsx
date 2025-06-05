@@ -19,14 +19,11 @@ import { orange } from "@mui/material/colors";
 const Background = ({ type = "default", children }) => {
   const inlineStyles = {
     white: {
-      // backgroundImage: `url(${White})`,
-      backgroundColor : "#FAFAF8",
-      backgroundSize: "cover",
+      backgroundColor : "white",
       minHeight: "100vh",
     },
     gray: {
       backgroundColor: "#F5F5F5",
-      // backgroundColor: "#D3D3D3",
       minHeight: "100dvh",
     },
     coin: {
@@ -50,11 +47,6 @@ const Background = ({ type = "default", children }) => {
     },
     grass: {
       backgroundImage: `url(${Grass})`,
-      backgroundSize: "cover",
-      minHeight: "100vh",
-    },
-    tree: {
-      backgroundImage: `url(${Tree})`,
       backgroundSize: "cover",
       minHeight: "100vh",
     },

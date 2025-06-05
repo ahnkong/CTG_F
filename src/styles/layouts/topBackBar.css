@@ -1,0 +1,21 @@
+.top-back-bar {
+  display: flex;
+  align-items: center;
+  padding: 7%;
+  background-color: #ffffff;
+  position: relative;
+  height: 56px;
+}
+
+.top-back-button {
+  background: none;
+  cursor: pointer;
+  width: 20px;
+  
+}
+
+.top-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 4%;
+}

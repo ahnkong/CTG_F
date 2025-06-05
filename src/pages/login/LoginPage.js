@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,6 +15,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
   // ✅ 애니메이션 효과
   useEffect(() => {
@@ -53,46 +53,47 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setInProp(false);
+    setIsLoading(true); // 로딩 시작
+    try {
+        const response = await axios.post('http://localhost:8080/api/v1/auth/login', { email, password }, { withCredentials: true });
+      console.log(response.data.userId)
+      
+      if (response.data.token) {
+        // 서버에서 반환한 데이터
+        const { userId, nickname, profilePicture, token, domainId } = response.data;
 
-    setTimeout(async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/api/v1/auth/login",
-          { email, password },
-          { withCredentials: true }
+        // 토큰을 로컬 스토리지에 저장
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("nickname", nickname);
+        localStorage.setItem("profilePicture", profilePicture);
+        localStorage.setItem("domainId", domainId); // domainId 저장
+
+        // Redux에 사용자 정보 저장
+        dispatch(
+          setUser({
+            email: response.data.email,
+            nickname: response.data.nickname,
+            token: response.data.token,
+            profileImage: response.data.profileImage, // 선택
+            domainId: response.data.domainId,
+          })
         );
 
-        if (response.data.token) {
-          localStorage.removeItem("email"); // ❌ 직접 저장하던 것 제거
-          localStorage.removeItem("nickname");
-          console.log("✅ 로그인 성공:", response.data);
-
-          
-          // ✅ localStorage 직접 조작 (백업용일 뿐, redux-persist가 주가 되어야 함)
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("userId", response.data.userId); // 👈 반드시 추가!
-
-
-          // ✅ Redux-persist에 상태 저장
-          dispatch(
-            setUser({
-              email: response.data.email,
-              nickname: response.data.nickname,
-              token: response.data.token,
-              profileImage: response.data.profileImage, // 선택
-              domainId: response.data.domainId,
-            })
-          );
-
-          navigate("/Menu");
-        } else {
-          alert("로그인 실패");
-        }
-      } catch (error) {
-        console.error("❌ 로그인 에러:", error);
+        // 페이드 아웃 애니메이션 및 페이지 전환
+        setTimeout(() => {
+            setFadeOut(true); // 페이드 아웃 시작
+            setTimeout(() => navigate('/MyPage'), 500); // 마이페이지로 이동
+        }, 2000); // 로딩 지속 시간
+      }  else {
+        alert("로그인 실패");
+        setIsLoading(false); // 로딩 종료
       }
-    }, 500); // 애니메이션 대기
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("로그인 중 오류가 발생했습니다.");
+      setIsLoading(false); // 로딩 종료
+    }
   };
 
   return (
